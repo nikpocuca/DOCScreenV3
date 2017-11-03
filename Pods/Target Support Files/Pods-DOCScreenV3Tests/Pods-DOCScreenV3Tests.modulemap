@@ -1,0 +1,6 @@
+framework module Pods_DOCScreenV3Tests {
+  umbrella header "Pods-DOCScreenV3Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
