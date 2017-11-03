@@ -2,18 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ClockData+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:ClockData+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Subject+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Subject+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:DOCScreenV3.xcodeproj">
    </FileRef>
    <FileRef

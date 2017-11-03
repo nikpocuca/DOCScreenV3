@@ -56,9 +56,6 @@
 @end
 
 
-static const CGFloat TopToSigningLineRatio = 0.7;
-
-
 @implementation ORKSignatureGestureRecognizer
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -229,8 +226,12 @@ static const CGFloat LineWidthStepValue = 0.25f;
 
 - (CGPoint)placeholderPoint {
     CGFloat height = self.bounds.size.height;
+    
+    CGFloat bottom = 0.90;
+    
     CGFloat x1 = 0;
-    CGFloat y1 = height * TopToSigningLineRatio;
+        
+    CGFloat y1 = height*bottom;
     UIFont *font = [ORKSelectionTitleLabel defaultFont];
     return (CGPoint){x1, y1 - 5 - font.pointSize + font.descender};
 }
@@ -241,12 +242,14 @@ static const CGFloat LineWidthStepValue = 0.25f;
         CGFloat height = self.bounds.size.height;
         
         UIBezierPath *path = [UIBezierPath bezierPath];
+        
+        CGFloat bottom = 0.90;
         {
             CGFloat x1 = 0;
             CGFloat x2 = width;
             
-            CGFloat y1 = height * TopToSigningLineRatio;
-            CGFloat y2 = height * TopToSigningLineRatio;
+            CGFloat y1 = height*bottom;
+            CGFloat y2 = height*bottom;
             
             [path moveToPoint:CGPointMake(x1, y1)];
             [path addLineToPoint:CGPointMake(x2, y2)];
@@ -259,7 +262,7 @@ static const CGFloat LineWidthStepValue = 0.25f;
 
 #pragma mark Touch Event Handlers
 
-- (BOOL)isForceTouchAvailable {
+- (BOOL)_isForceTouchAvailable {
     static BOOL isAvailable;
     static dispatch_once_t onceToken;
     
@@ -275,7 +278,7 @@ static const CGFloat LineWidthStepValue = 0.25f;
     return isAvailable;
 }
 
-- (BOOL)isTouchTypeStylus:(UITouch*)touch {
+- (BOOL)_isTouchTypeStylus:(UITouch*)touch {
     BOOL isStylus = NO;
     
     if ([touch respondsToSelector:@selector(type)] && touch.type == UITouchTypeStylus) {
@@ -297,7 +300,7 @@ static const CGFloat LineWidthStepValue = 0.25f;
     previousPoint2 = [touch previousLocationInView:self];
     currentPoint = [touch locationInView:self];
     
-    if ([self isForceTouchAvailable] || [self isTouchTypeStylus:touch]) {
+    if ([self _isForceTouchAvailable] || [self _isTouchTypeStylus:touch]) {
         // This is a scale based on true force on the screen.
         minPressure = 0.f;
         maxPressure = [touch maximumPossibleForce] / 2.f;
@@ -338,7 +341,7 @@ static CGPoint mmid_Point(CGPoint p1, CGPoint p2) {
     // value on all devices.
     CGFloat pressure = minPressure;
     
-    if ([self isForceTouchAvailable] || [self isTouchTypeStylus:touch]) {
+    if ([self _isForceTouchAvailable] || [self _isTouchTypeStylus:touch]) {
         // If the device supports Force Touch, or is using a stylus, use it.
         pressure = [touch force];
     }
@@ -461,11 +464,8 @@ static CGPoint mmid_Point(CGPoint p1, CGPoint p2) {
 }
 
 - (UIImage *)signatureImage {
-    CGSize imageContextSize;
-    imageContextSize = (self.bounds.size.width == 0 || self.bounds.size.height == 0) ? CGSizeMake(200, 200) :
-                        self.bounds.size;
-    UIGraphicsBeginImageContext(imageContextSize);
-
+    UIGraphicsBeginImageContext(self.bounds.size);
+    
     for (UIBezierPath *path in self.pathArray) {
         [self.lineColor setStroke];
         [path stroke];

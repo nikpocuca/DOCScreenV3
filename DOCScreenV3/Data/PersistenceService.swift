@@ -13,6 +13,15 @@ import CoreData
 class PersistenceService {
     // MARK: - Core Data stack
     
+    
+    private init() {}
+    
+    static var context: NSManagedObjectContext {
+        
+        return persistentContainer.viewContext
+    }
+    
+    
     static var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation

@@ -52,8 +52,8 @@
 
 #import "ORKAudioGenerator.h"
 
-@import AudioToolbox;
 
+@import AudioToolbox;
 
 @interface ORKAudioGenerator () {
   @public

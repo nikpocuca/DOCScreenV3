@@ -1,5 +1,5 @@
 //
-//  Subject+CoreDataClass.swift
+//  ClockData1+CoreDataClass.swift
 //  DOCScreenV3
 //
 //  Created by Nik on 2017-11-03.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Subject)
-public class Subject: NSManagedObject {
+@objc(ClockData1)
+public class ClockData1: NSManagedObject {
 
 }

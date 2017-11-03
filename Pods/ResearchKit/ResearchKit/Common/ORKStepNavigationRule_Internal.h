@@ -34,6 +34,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface ORKStepNavigationRule ()
+
+- (instancetype)init_ork;
+
+@end
+
+
 @interface ORKPredicateStepNavigationRule ()
 
 + (NSArray *)leafResultsFromTaskResult:(ORKTaskResult *)ORKTaskResult;

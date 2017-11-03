@@ -48,7 +48,6 @@
     self = [super initWithIdentifier:identifier];
     if (self) {
         self.shouldShowDefaultTimer = NO;
-        self.shouldStartTimerAutomatically = YES;
     }
     return self;
 }

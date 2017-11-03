@@ -37,22 +37,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#if TARGET_INTERFACE_BUILDER
-
-@interface ORKIBGraphChartViewDataSource : NSObject <ORKGraphChartViewDataSource>
-
-@property (nonatomic, strong, nullable) NSArray <NSArray *> *plotPoints;
-
-@end
-
-
-@interface ORKIBValueRangeGraphChartViewDataSource : ORKIBGraphChartViewDataSource <ORKValueRangeGraphChartViewDataSource>
-
-@end
-
-#endif
-
-
 @class ORKXAxisView;
 
 typedef NS_ENUM(NSUInteger, ORKGraphAnimationType) {
@@ -97,6 +81,15 @@ ORK_INLINE CGFloat xOffsetForPlotIndex(NSInteger plotIndex, NSInteger numberOfPl
     return offset;
 }
 
+#if TARGET_INTERFACE_BUILDER
+@interface ORKIBSampleDiscreteGraphDataSource : NSObject <ORKGraphChartViewDataSource>
+@property (nonatomic, strong, nullable) NSArray <NSArray *> *plotPoints;
+@end
+
+@interface ORKIBSampleLineGraphDataSource : NSObject <ORKGraphChartViewDataSource>
+@property (nonatomic, strong, nullable) NSArray <NSArray *> *plotPoints;
+@end
+#endif
 
 @interface ORKGraphChartView ()
 

@@ -43,8 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
             caption:(NSString *)caption
            animated:(BOOL)animated;
 
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *leftButton;
-@property (nonatomic, strong, readonly) ORKRoundTappingButton *rightButton;
+@property (nonatomic, strong, readonly) ORKRoundTappingButton *tapButton;
 
 @end
 

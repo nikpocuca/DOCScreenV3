@@ -13,6 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+    let subject = Subject(context: PersistenceService.context)
+
+        let clockData = ClockData1(context: PersistenceService.context)
     }
 
     override func didReceiveMemoryWarning() {

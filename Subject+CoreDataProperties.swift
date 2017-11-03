@@ -1,8 +1,9 @@
 //
 //  Subject+CoreDataProperties.swift
-//  
+//  DOCScreenV3
 //
 //  Created by Nik on 2017-11-03.
+//  Copyright © 2017 Nik. All rights reserved.
 //
 //
 
@@ -29,6 +30,6 @@ extension Subject {
     @NSManaged public var name: String?
     @NSManaged public var sex: String?
     @NSManaged public var weight: Int16
-    @NSManaged public var clockData: ClockData?
+    @NSManaged public var clockData: ClockData1?
 
 }

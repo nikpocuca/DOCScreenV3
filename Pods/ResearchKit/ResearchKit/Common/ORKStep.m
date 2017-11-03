@@ -170,8 +170,4 @@
     return ORKPermissionNone;
 }
 
-- (NSSet<HKObjectType *> *)requestedHealthKitTypesForReading {
-    return nil;
-}
-
 @end

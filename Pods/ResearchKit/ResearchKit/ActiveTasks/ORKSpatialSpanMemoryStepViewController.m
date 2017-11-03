@@ -37,7 +37,6 @@
 
 #import "ORKActiveStepViewController_Internal.h"
 #import "ORKStepViewController_Internal.h"
-#import "ORKStepHeaderView_Internal.h"
 
 #import "ORKActiveStep_Internal.h"
 #import "ORKResult.h"
@@ -117,8 +116,6 @@ typedef void (^_ORKStateHandler)(ORKState *fromState, ORKState *_toState, id con
     ORKGridSize _gridSize;
     
     ORKSpatialSpanGameState *_currentGameState;
-    UIBarButtonItem *_customLearnMoreButtonItem;
-    UIBarButtonItem *_learnMoreButtonItem;
     
     // ORKSpatialSpanMemoryGameRecord
     NSMutableArray *_gameRecords;
@@ -153,13 +150,6 @@ typedef void (^_ORKStateHandler)(ORKState *fromState, ORKState *_toState, id con
 #pragma mark Overrides
 
 - (void)viewDidLoad {
-    
-    // Setup to always have a learn more button item but with an empty title
-    BOOL usesDefaultCopyright = (self.learnMoreButtonItem == nil);
-    if (usesDefaultCopyright) {
-        self.learnMoreButtonItem = [[UIBarButtonItem alloc] initWithTitle:ORKLocalizedString(@"BUTTON_COPYRIGHT", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showCopyright)];
-    }
-    
     [super viewDidLoad];
     
     _contentView = [ORKSpatialSpanMemoryContentView new];
@@ -174,10 +164,6 @@ typedef void (^_ORKStateHandler)(ORKState *fromState, ORKState *_toState, id con
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleUserTap:)];
     [self.activeStepView addGestureRecognizer:tapGestureRecognizer];
-    
-    if (usesDefaultCopyright) {
-        self.activeStepView.headerView.learnMoreButton.alpha = 0;
-    }
 }
 
 - (void)stepDidChange {
@@ -454,7 +440,7 @@ typedef void (^_ORKStateHandler)(ORKState *fromState, ORKState *_toState, id con
     _contentView.footerHidden = YES;
     _contentView.buttonItem = nil;
     ORKSpatialSpanMemoryStep *step = [self spatialSpanStep];
-    NSString *title = [NSString localizedStringWithFormat:ORKLocalizedString(@"MEMORY_GAME_PLAYBACK_TITLE_%@", nil), step.customTargetPluralName ? : ORKLocalizedString(@"SPATIAL_SPAN_MEMORY_TARGET_PLURAL", nil)];
+    NSString *title = [NSString stringWithFormat:ORKLocalizedString(@"MEMORY_GAME_PLAYBACK_TITLE_%@", nil), step.customTargetPluralName ? : ORKLocalizedString(@"SPATIAL_SPAN_MEMORY_TARGET_PLURAL", nil)];
     
     [self.activeStepView updateTitle:title text:nil];
     
@@ -648,22 +634,9 @@ typedef void (^_ORKStateHandler)(ORKState *fromState, ORKState *_toState, id con
 - (void)showComplete {
     [self.activeStepView updateTitle:ORKLocalizedString(@"MEMORY_GAME_COMPLETE_TITLE", nil) text:nil];
     
-    // Show the copyright
-    self.activeStepView.headerView.learnMoreButton.alpha = 1;
-    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         _contentView.buttonItem = [[UIBarButtonItem alloc] initWithTitle:ORKLocalizedString(@"BUTTON_NEXT", nil) style:UIBarButtonItemStylePlain target:self action:@selector(continueAction)];
     });
-}
-
-- (void)showCopyright {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                   message:ORKLocalizedString(@"MEMORY_GAME_COPYRIGHT_TEXT", nil)
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:ORKLocalizedString(@"BUTTON_OK", nil)
-                                              style:UIAlertActionStyleDefault
-                                            handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark ORKSpatialSpanStepStateRestart

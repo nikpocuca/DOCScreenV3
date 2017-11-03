@@ -165,14 +165,12 @@
     _learnMoreButton.titleLabel.preferredMaxLayoutWidth = insetBounds.size.width - sideMargin * 2;
 }
 
-const CGFloat IconHeight = 60;
-
 - (void)updateConstraintConstantsForWindow:(UIWindow *)window {
     static const CGFloat AssumedNavBarHeight = 44;
     static const CGFloat AssumedStatusBarHeight = 20;
     
     const CGFloat IconBottomToCaptionBaseline = ORKGetMetricForWindow(ORKScreenMetricIconImageViewToCaptionBaseline, window);;
-    
+    const CGFloat IconHeight = 60;
     const CGFloat TopToIconTop = ORKGetMetricForWindow(ORKScreenMetricTopToIconImageViewTop, window);
     BOOL hasIconView = _iconImageView.image != nil;
     
@@ -185,7 +183,7 @@ const CGFloat IconHeight = 60;
     const CGFloat LearnMoreBaselineToStepViewTop = ORKGetMetricForWindow(ORKScreenMetricLearnMoreBaselineToStepViewTop, window);
     const CGFloat InstructionBaselineToStepViewTopWithNoLearnMore = ORKGetMetricForWindow(ORKScreenMetricLearnMoreBaselineToStepViewTopWithNoLearnMore, window);
     
-    BOOL hasCaptionLabel = _captionLabel.text.length > 0 || hasIconView;
+    BOOL hasCaptionLabel = _captionLabel.text.length > 0;
     BOOL hasInstructionLabel = _instructionLabel.text.length > 0;
     BOOL hasLearnMoreButton = (_learnMoreButton.alpha > 0);
     
@@ -287,14 +285,6 @@ const CGFloat IconHeight = 60;
                                                             attribute:NSLayoutAttributeCenterX
                                                            multiplier:1.0
                                                              constant:0.0]];
-        
-        [constraints addObject:[NSLayoutConstraint constraintWithItem:_iconImageView
-                                                            attribute:NSLayoutAttributeWidth
-                                                            relatedBy:NSLayoutRelationLessThanOrEqual
-                                                               toItem:nil
-                                                            attribute:NSLayoutAttributeNotAnAttribute
-                                                           multiplier:1.0
-                                                             constant:IconHeight]];
     }
     
     {

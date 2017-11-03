@@ -35,7 +35,6 @@
 #import "ORKReactionTimeContentView.h"
 
 #import "ORKActiveStepViewController_Internal.h"
-#import "ORKStepViewController_Internal.h"
 
 #import "ORKReactionTimeStep.h"
 #import "ORKResult.h"
@@ -107,7 +106,7 @@ static const NSTimeInterval OutcomeAnimationDuration = 0.3;
 
 - (ORKStepResult *)result {
     ORKStepResult *stepResult = [super result];
-    stepResult.results = [self.addedResults arrayByAddingObjectsFromArray:_results] ? : _results;
+    stepResult.results = _results;
     return stepResult;
 }
 

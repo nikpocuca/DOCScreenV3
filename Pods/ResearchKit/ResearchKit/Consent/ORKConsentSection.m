@@ -118,7 +118,6 @@ static CFStringRef CFXMLCreateStringByEscapingEntities(CFAllocatorRef allocator,
     return newString;
 }
 
-
 @implementation ORKConsentSection {
     NSString *_escapedContent;
 }

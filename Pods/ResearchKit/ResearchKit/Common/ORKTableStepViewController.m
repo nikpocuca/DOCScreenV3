@@ -47,14 +47,11 @@
 #import "ORKSkin.h"
 
 
-ORKDefineStringKey(ORKBasicCellReuseIdentifier);
-
-
 @implementation ORKTableStepViewController 
 
-- (id <ORKTableStepSource>)tableStep {
-    if ([self.step conformsToProtocol:@protocol(ORKTableStepSource)]) {
-        return (id <ORKTableStepSource>)self.step;
+- (ORKTableStep *)tableStep {
+    if ([self.step isKindOfClass:[ORKTableStep class]]) {
+        return (ORKTableStep *)self.step;
     }
     return nil;
 }
@@ -88,10 +85,6 @@ ORKDefineStringKey(ORKBasicCellReuseIdentifier);
     self.continueSkipView.skipButtonItem = skipButtonItem;
     [self updateButtonStates];
 }
-    
-- (UITableViewStyle)tableViewStyle {
-    return [self numSections] > 1 ? UITableViewStyleGrouped : UITableViewStylePlain;
-}
 
 - (void)stepDidChange {
     [super stepDidChange];
@@ -106,7 +99,7 @@ ORKDefineStringKey(ORKBasicCellReuseIdentifier);
     _continueSkipView = nil;
     
     if (self.step) {
-        _tableContainer = [[ORKTableContainerView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
+        _tableContainer = [[ORKTableContainerView alloc] initWithFrame:self.view.bounds];
         if ([self conformsToProtocol:@protocol(ORKTableContainerViewDelegate)]) {
             _tableContainer.delegate = (id)self;
         }
@@ -119,7 +112,7 @@ ORKDefineStringKey(ORKBasicCellReuseIdentifier);
         _tableView.rowHeight = UITableViewAutomaticDimension;
         _tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
         _tableView.estimatedRowHeight = ORKGetMetricForWindow(ORKScreenMetricTableCellDefaultHeight, self.view.window);
-        _tableView.estimatedSectionHeaderHeight = [self numSections] > 1 ? 30.0 : 0.0;
+        _tableView.estimatedSectionHeaderHeight = 30.0;
         _tableView.allowsSelection = NO;
         
         _headerView = _tableContainer.stepHeaderView;
@@ -134,11 +127,7 @@ ORKDefineStringKey(ORKBasicCellReuseIdentifier);
         _continueSkipView.optional = self.step.optional;
         
         // Register the cells for the table view
-        if ([self.tableStep respondsToSelector:@selector(registerCellsForTableView:)]) {
-            [self.tableStep registerCellsForTableView:_tableView];
-        } else {
-            [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:ORKBasicCellReuseIdentifier];
-        }
+        [self.tableStep registerCellsForTableView:_tableView];
     }
 }
 
@@ -151,17 +140,9 @@ ORKDefineStringKey(ORKBasicCellReuseIdentifier);
 }
 
 #pragma mark UITableViewDataSource
-    
-- (NSInteger)numSections {
-    if ([self.tableStep respondsToSelector:@selector(numberOfSections)]) {
-        return [self.tableStep numberOfSections] ?: 1;
-    } else {
-        return 1;
-    }
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self numSections];
+    return self.tableStep.numberOfSections ?: 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -171,12 +152,7 @@ ORKDefineStringKey(ORKBasicCellReuseIdentifier);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ORKThrowInvalidArgumentExceptionIfNil(self.tableStep);
     
-    NSString *reuseIdentifier;
-    if ([self.tableStep respondsToSelector:@selector(reuseIdentifierForRowAtIndexPath:)]) {
-        reuseIdentifier = [self.tableStep reuseIdentifierForRowAtIndexPath:indexPath];
-    } else {
-        reuseIdentifier = ORKBasicCellReuseIdentifier;
-    }
+    NSString *reuseIdentifier = [self.tableStep reuseIdentifierForRowAtIndexPath:indexPath];
     ORKThrowInvalidArgumentExceptionIfNil(reuseIdentifier);
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];

@@ -32,7 +32,6 @@
 #import "ORKNavigationContainerView.h"
 #import "ORKContinueButton.h"
 #import "ORKTextButton_Internal.h"
-#import "ORKFootnoteLabel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -41,7 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) ORKContinueButton *continueButton;
 @property (nonatomic, strong, readonly) ORKTextButton *skipButton;
-@property (nonatomic, strong, readonly) ORKFootnoteLabel *footnoteLabel;
 
 @property (nonatomic) BOOL useNextForSkip;
 @property (nonatomic, getter=isOptional) BOOL optional;

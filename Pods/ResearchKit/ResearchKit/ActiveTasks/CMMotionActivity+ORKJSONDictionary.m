@@ -72,7 +72,6 @@ static NSArray *activityArray(CMMotionActivity *activity) {
 static NSString *const ActivityKey = @"activity";
 static NSString *const ConfidenceKey = @"confidence";
 
-
 @implementation CMMotionActivity (ORKJSONDictionary)
 
 - (NSDictionary *)ork_JSONDictionary {

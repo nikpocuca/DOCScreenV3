@@ -36,11 +36,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ORK_CLASS_AVAILABLE
-@interface ORKRoundTappingButton : ORKBorderedButton {
-    CGFloat diameter;
-}
-
-- (void)setDiameter:(CGFloat)diameter;
+@interface ORKRoundTappingButton : ORKBorderedButton
 
 @end
 

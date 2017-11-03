@@ -41,6 +41,12 @@ static NSString *const KeychainDictionaryTouchIdKey = @"touchIdEnabled";
 static NSString *const PasscodeStepIdentifier = @"passcode_step";
 static NSString *const PasscodeKey = @"ORKPasscode";
 
+typedef NS_ENUM(NSUInteger, ORKPasscodeFlow) {
+    ORKPasscodeFlowCreate,
+    ORKPasscodeFlowAuthenticate,
+    ORKPasscodeFlowEdit
+};
+
 typedef NS_ENUM(NSUInteger, ORKPasscodeState) {
     ORKPasscodeStateEntry,
     ORKPasscodeStateConfirm,
@@ -52,6 +58,7 @@ typedef NS_ENUM(NSUInteger, ORKPasscodeState) {
 
 @interface ORKPasscodeStepViewController() <UITextFieldDelegate, CAAnimationDelegate>
 
+@property (nonatomic) ORKPasscodeFlow passcodeFlow;
 @property (nonatomic, weak) id<ORKPasscodeDelegate> passcodeDelegate;
 
 /**

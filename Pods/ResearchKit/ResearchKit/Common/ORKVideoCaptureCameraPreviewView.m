@@ -41,7 +41,7 @@
     NSLayoutConstraint *_templateImageViewTopInsetConstraint;
     NSLayoutConstraint *_templateImageViewLeftInsetConstraint;
     NSLayoutConstraint *_templateImageViewBottomInsetConstraint;
-    NSLayoutConstraint *_templateImageViewRightInsetConstraint;
+    NSLayoutConstraint *_templateImageViewRightInseConstraint;
 }
 
 - (instancetype)init {
@@ -98,14 +98,14 @@
                                                                             constant:0.0];
     [constraints addObject:_templateImageViewBottomInsetConstraint];
     
-    _templateImageViewRightInsetConstraint = [NSLayoutConstraint constraintWithItem:_templateImageView
+    _templateImageViewRightInseConstraint = [NSLayoutConstraint constraintWithItem:_templateImageView
                                                                          attribute:NSLayoutAttributeRight
                                                                          relatedBy:NSLayoutRelationEqual
                                                                             toItem:self
                                                                          attribute:NSLayoutAttributeRight
                                                                         multiplier:1.0
                                                                           constant:0.0];
-    [constraints addObject:_templateImageViewRightInsetConstraint];
+    [constraints addObject:_templateImageViewRightInseConstraint];
     
     [NSLayoutConstraint activateConstraints:constraints];
 }
@@ -182,8 +182,8 @@
     if (_templateImageViewBottomInsetConstraint.constant != -insets.bottom) {
         _templateImageViewBottomInsetConstraint.constant = -insets.bottom;
     }
-    if (_templateImageViewRightInsetConstraint.constant != -insets.right) {
-        _templateImageViewRightInsetConstraint.constant = -insets.right;
+    if (_templateImageViewRightInseConstraint.constant != -insets.right) {
+        _templateImageViewRightInseConstraint.constant = -insets.right;
     }
 }
 

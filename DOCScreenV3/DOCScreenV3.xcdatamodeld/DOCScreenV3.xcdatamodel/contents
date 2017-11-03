@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13532" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ClockData" representedClassName="ClockData" syncable="YES">
+    <entity name="ClockData1" representedClassName="ClockData1" syncable="YES">
         <attribute name="contour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hands" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numbers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -20,10 +20,10 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="clockData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClockData" inverseName="subject" inverseEntity="ClockData" syncable="YES"/>
+        <relationship name="clockData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClockData1" inverseName="subject" inverseEntity="ClockData1" syncable="YES"/>
     </entity>
     <elements>
+        <element name="ClockData1" positionX="160" positionY="18" width="128" height="103"/>
         <element name="Subject" positionX="-54" positionY="-9" width="128" height="253"/>
-        <element name="ClockData" positionX="160" positionY="18" width="128" height="103"/>
     </elements>
 </model>

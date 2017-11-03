@@ -590,19 +590,16 @@ static const CGFloat AssumedStatusBarHeight = 20;
                                                                         multiplier:1.0
                                                                           constant:0.0]];
         } else {
-            
-            NSLayoutRelation relation = (view == _continueSkipContainer) ? NSLayoutRelationEqual : NSLayoutRelationGreaterThanOrEqual;
-            
             [_variableConstraints addObject:[NSLayoutConstraint constraintWithItem:view
                                                                          attribute:NSLayoutAttributeLeft
-                                                                         relatedBy:relation
+                                                                         relatedBy:NSLayoutRelationGreaterThanOrEqual
                                                                             toItem:_container
                                                                          attribute:NSLayoutAttributeLeftMargin
                                                                         multiplier:1.0
                                                                           constant:0.0]];
             [_variableConstraints addObject:[NSLayoutConstraint constraintWithItem:view
                                                                          attribute:NSLayoutAttributeRight
-                                                                         relatedBy:relation
+                                                                         relatedBy:NSLayoutRelationLessThanOrEqual
                                                                             toItem:_container
                                                                          attribute:NSLayoutAttributeRightMargin
                                                                         multiplier:1.0
@@ -655,7 +652,7 @@ static const CGFloat AssumedStatusBarHeight = 20;
                                                                            attribute:NSLayoutAttributeNotAnAttribute
                                                                           multiplier:1.0
                                                                             constant:ORKScreenMetricMaxDimension];
-        widthConstraint.priority = UILayoutPriorityFittingSizeLevel;
+        widthConstraint.priority = UILayoutPriorityDefaultHigh;
         [_variableConstraints addObject:widthConstraint];
         
         [_variableConstraints addObject:[NSLayoutConstraint constraintWithItem:_stepView

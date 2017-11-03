@@ -196,7 +196,6 @@
 
 @end
 
-
 @implementation ORKFormSectionHeaderView {
     ORKFormSectionTitleLabel *_label;
     BOOL _firstSection;
@@ -335,7 +334,7 @@
     NSMutableSet *types = [NSMutableSet set];
     for (ORKFormItem *item in [self formItems]) {
         ORKAnswerFormat *format = [item answerFormat];
-        HKObjectType *objType = [format healthKitObjectTypeForAuthorization];
+        HKObjectType *objType = [format healthKitObjectType];
         if (objType) {
             [types addObject:objType];
         }
@@ -521,7 +520,6 @@
         _continueSkipView.continueEnabled = [self continueButtonEnabled];
         _continueSkipView.continueButtonItem = self.continueButtonItem;
         _continueSkipView.optional = self.step.optional;
-        _continueSkipView.footnoteLabel.text = [self formStep].footnote;
         if (self.readOnlyMode) {
             _continueSkipView.optional = YES;
             [_continueSkipView setNeverHasContinueButton:YES];
@@ -720,9 +718,7 @@
             }
         } else if ([impliedAnswerFormat isKindOfClass:[ORKNumericAnswerFormat class]]) {
             ORKNumericQuestionResult *nqr = (ORKNumericQuestionResult *)result;
-            if (nqr.unit == nil) {
-                nqr.unit = [(ORKNumericAnswerFormat *)impliedAnswerFormat unit];
-            }
+            nqr.unit = [(ORKNumericAnswerFormat *)impliedAnswerFormat unit];
         }
         
         result.startDate = answerDate;
@@ -731,7 +727,7 @@
         [qResults addObject:result];
     }
     
-    parentResult.results = [parentResult.results arrayByAddingObjectsFromArray:qResults] ? : qResults;
+    parentResult.results = [qResults copy];
     
     return parentResult;
 }
@@ -802,7 +798,6 @@
                 case ORKQuestionTypeDate:
                 case ORKQuestionTypeTimeOfDay:
                 case ORKQuestionTypeTimeInterval:
-                case ORKQuestionTypeMultiplePicker:
                 case ORKQuestionTypeHeight: {
                     class = [ORKFormItemPickerCell class];
                     break;

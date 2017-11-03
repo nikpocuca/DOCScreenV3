@@ -36,7 +36,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ORKTableStepSource;
+@class ORKTableStep;
 
 /**
  The `ORKTableStepViewController` class is an base class that inherits from `ORKStepViewController` 
@@ -58,9 +58,9 @@ ORK_CLASS_AVAILABLE
 @interface ORKTableStepViewController : ORKStepViewController <UITableViewDataSource, UITableViewDelegate>
 
 /**
- @return    The step associated with this view controller if it conforms to ORKTableStepSource.
+ @return    The step associated with this view controller if it can be cast to ORKTableStep.
  */
-@property (nonatomic, readonly, nullable) id <ORKTableStepSource> tableStep;
+@property (nonatomic, readonly, nullable) ORKTableStep *tableStep;
 
 /**
  @return    The table view managed by the controller object.
@@ -77,11 +77,6 @@ ORK_CLASS_AVAILABLE
  @return    State of continue button
  */
 - (BOOL)continueButtonEnabled;
-    
-/**
- Update the button state for the skip and continue buttons
- */
-- (void)updateButtonStates;
 
 @end
 

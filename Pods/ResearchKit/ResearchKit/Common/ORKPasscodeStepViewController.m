@@ -131,10 +131,10 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
         }
         
         // Set the starting passcode state and textfield based on flow.
-        ORKPasscodeStep *passcodeStep = [self passcodeStep];
-        switch (passcodeStep.passcodeFlow) {
+        switch (_passcodeFlow) {
             case ORKPasscodeFlowCreate:
-                _passcodeStepView.textField.numberOfDigits = [self numberOfDigitsForPasscodeType:passcodeStep.passcodeType];
+                [self removePasscodeFromKeychain];
+                _passcodeStepView.textField.numberOfDigits = [self numberOfDigitsForPasscodeType:[self passcodeStep].passcodeType];
                 [self changeStateTo:ORKPasscodeStateEntry];
                 break;
                 
@@ -153,7 +153,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
         
         // If Touch ID was enabled then present it for authentication flow.
         if (_useTouchId &&
-            passcodeStep.passcodeFlow == ORKPasscodeFlowAuthenticate) {
+            self.passcodeFlow == ORKPasscodeFlowAuthenticate) {
             [self promptTouchId];
         }
         
@@ -175,14 +175,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    // Destructive: Only clear the passcode when the step starts in creation mode
-    if ([self passcodeStep].passcodeFlow == ORKPasscodeFlowCreate) {
-        [self removePasscodeFromKeychain];
-    }
-    
     if (!_shouldResignFirstResponder) {
-        [self.view layoutIfNeeded]; // layout pass might be required before showing the keyboard
         [self makePasscodeViewBecomeFirstResponder];
     }
 }
@@ -285,10 +278,6 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
     return stepResult;
 }
 
-- (void)addResult:(ORKResult *)result {
-    ORKThrowMethodUnavailableException();
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -364,7 +353,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
                     _isTouchIdAuthenticated = YES;
                     
                     // Send a delegate callback for authentication flow.
-                    if ([strongSelf passcodeStep].passcodeFlow == ORKPasscodeFlowAuthenticate) {
+                    if (strongSelf.passcodeFlow == ORKPasscodeFlowAuthenticate) {
                         [strongSelf.passcodeDelegate passcodeViewControllerDidFinishWithSuccess:strongSelf];
                     }
                 } else if (error.code != LAErrorUserCancel) {
@@ -380,17 +369,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
                                                             }]];
                     [strongSelf presentViewController:alert animated:YES completion:nil];
                 } else if (error.code == LAErrorUserCancel) {
-
-                    // call becomeFirstResponder here to show the keyboard. dispatch to main queue with
-                    // delay because without it, the transition from the touch ID context back to the app
-                    // inexplicably causes the keyboard to be invisble. It's not hidden, as user can still
-                    // tap keys, but cannot see them
-                    
-                    double delayInSeconds = 0.3;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        [strongSelf makePasscodeViewBecomeFirstResponder];
-                    });
+                    [strongSelf makePasscodeViewBecomeFirstResponder];
                 }
                 
                 [strongSelf finishTouchId];
@@ -416,20 +395,16 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
 
 - (void)finishTouchId {
     // Only save to keychain if it is not in authenticate flow.
-    ORKPasscodeFlow passcodeFlow = [self passcodeStep].passcodeFlow;
-    if (passcodeFlow != ORKPasscodeFlowAuthenticate) {
+    if (!(self.passcodeFlow == ORKPasscodeFlowAuthenticate)) {
         [self savePasscodeToKeychain];
-    }
-    
-    if (passcodeFlow == ORKPasscodeFlowCreate) {
-        // If it is in creation flow (consent step), go to the next step.
-        [self goForward];
-    } else if (passcodeFlow == ORKPasscodeFlowAuthenticate) {
-        // If it is in authentication flow (any task), go to the next step.
-        [self goForward];
-    } else if (passcodeFlow == ORKPasscodeFlowEdit) {
-        // If it is in editing flow, send a delegate callback.
-        [self.passcodeDelegate passcodeViewControllerDidFinishWithSuccess:self];
+        
+        if (self.passcodeFlow == ORKPasscodeFlowCreate) {
+            // If it is in creation flow (consent step), go to the next step.
+            [self goForward];
+        } else if (self.passcodeFlow == ORKPasscodeFlowEdit) {
+            // If it is in editing flow, send a delegate callback.
+            [self.passcodeDelegate passcodeViewControllerDidFinishWithSuccess:self];
+        }
     }
 }
 
@@ -485,7 +460,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
     NSString *storedPasscode = dictionary[KeychainDictionaryPasscodeKey];
     _authenticationPasscodeType = (storedPasscode.length == 4) ? ORKPasscodeType4Digit : ORKPasscodeType6Digit;
     
-    if ([self passcodeStep].passcodeFlow == ORKPasscodeFlowAuthenticate) {
+    if (self.passcodeFlow == ORKPasscodeFlowAuthenticate) {
         _useTouchId = [dictionary[KeychainDictionaryTouchIdKey] boolValue];
     }
 }
@@ -618,9 +593,6 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
         if ([self passcodeMatchesKeychain]) {
             // Passed authentication, send delegate callback.
             [self.passcodeDelegate passcodeViewControllerDidFinishWithSuccess:self];
-            
-            // If we're in a task with many steps, time to go to the next one.
-            [self goForward];
         } else {
             // Failed authentication, send delegate callback.
             [self.passcodeDelegate passcodeViewControllerDidFailAuthentication:self];
@@ -695,7 +667,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             ORKStrongTypeOf(self) strongSelf = weakSelf;
             
-            switch ([strongSelf passcodeStep].passcodeFlow) {
+            switch (_passcodeFlow) {
                 case ORKPasscodeFlowCreate:
                     [strongSelf passcodeFlowCreate];
                     break;
@@ -725,7 +697,7 @@ static CGFloat const kForgotPasscodeHeight              = 100.0f;
 }
 
 - (BOOL)hasForgotPasscode {
-    if (([self passcodeStep].passcodeFlow == ORKPasscodeFlowAuthenticate) &&
+    if ((self.passcodeFlow == ORKPasscodeFlowAuthenticate) &&
         [self.passcodeDelegate respondsToSelector:@selector(passcodeViewControllerForgotPasscodeTapped:)]) {
         return YES;
     }

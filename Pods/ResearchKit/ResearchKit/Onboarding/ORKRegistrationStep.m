@@ -150,7 +150,7 @@ static NSArray <ORKFormItem*> *ORKRegistrationFormItems(ORKRegistrationStepOptio
     
     if (options & ORKRegistrationStepIncludeDOB) {
         // Calculate default date (20 years from now).
-        NSDate *defaultDate = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] dateByAddingUnit:NSCalendarUnitYear
+        NSDate *defaultDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear
                                                                        value:-20
                                                                       toDate:[NSDate date]
                                                                      options:(NSCalendarOptions)0];
@@ -158,7 +158,7 @@ static NSArray <ORKFormItem*> *ORKRegistrationFormItems(ORKRegistrationStepOptio
         ORKDateAnswerFormat *answerFormat = [ORKAnswerFormat dateAnswerFormatWithDefaultDate:defaultDate
                                                                                  minimumDate:nil
                                                                                  maximumDate:[NSDate date]
-                                                                                    calendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
+                                                                                    calendar:[NSCalendar currentCalendar]];
         
         ORKFormItem *item = [[ORKFormItem alloc] initWithIdentifier:ORKRegistrationFormItemIdentifierDOB
                                                                text:ORKLocalizedString(@"DOB_FORM_ITEM_TITLE", nil)
@@ -172,19 +172,18 @@ static NSArray <ORKFormItem*> *ORKRegistrationFormItems(ORKRegistrationStepOptio
     return formItems;
 }
 
-
 @implementation ORKRegistrationStep
 
 - (instancetype)initWithIdentifier:(NSString *)identifier
                              title:(NSString *)title
                               text:(NSString *)text
-passcodeValidationRegularExpression:(NSRegularExpression *)passcodeValidationRegularExpression
+           passcodeValidationRegex:(NSString *)passcodeValidationRegex
             passcodeInvalidMessage:(NSString *)passcodeInvalidMessage
                            options:(ORKRegistrationStepOption)options {
     self = [super initWithIdentifier:identifier title:title text:text];
     if (self) {
         _options = options;
-        self.passcodeValidationRegularExpression = passcodeValidationRegularExpression;
+        self.passcodeValidationRegex = passcodeValidationRegex;
         self.passcodeInvalidMessage = passcodeInvalidMessage;
         self.optional = NO;
     }
@@ -198,7 +197,7 @@ passcodeValidationRegularExpression:(NSRegularExpression *)passcodeValidationReg
     return [self initWithIdentifier:identifier
                               title:title
                                text:text
-passcodeValidationRegularExpression:nil
+            passcodeValidationRegex:nil
              passcodeInvalidMessage:nil
                             options:options];
 }
@@ -245,16 +244,16 @@ passcodeValidationRegularExpression:nil
     return [super formItems];
 }
 
-- (NSRegularExpression *)passcodeValidationRegularExpression {
-    return [self passwordAnswerFormat].validationRegularExpression;
-}
-
-- (void)setPasscodeValidationRegularExpression:(NSRegularExpression *)passcodeValidationRegularExpression {
-    [self passwordAnswerFormat].validationRegularExpression = passcodeValidationRegularExpression;
+- (NSString *)passcodeValidationRegex {
+    return [self passwordAnswerFormat].validationRegex;
 }
 
 - (NSString *)passcodeInvalidMessage {
     return [self passwordAnswerFormat].invalidMessage;
+}
+
+- (void)setPasscodeValidationRegex:(NSString *)passcodeValidationRegex {
+    [self passwordAnswerFormat].validationRegex = passcodeValidationRegex;
 }
 
 - (void)setPasscodeInvalidMessage:(NSString *)passcodeInvalidMessage {
@@ -269,9 +268,9 @@ passcodeValidationRegularExpression:nil
     self = [super initWithCoder:aDecoder];
     if (self) {
         
-        // `passcodeValidationRegularExpression` and `passcodeInvalidMessage` are transparent
-        // properties. The corresponding decoding for these properties takes place in the answer
-        // format's `-initWithCode:` method, invoked from super's (ORKFormStep) implementation.
+        // The `passcodeValidationRegex` and `passcodeInvalidMessage` properties
+        // are transparent properties. The `initWithCoder:` for these properties is
+        // defined in the answer format (super).
         ORK_DECODE_INTEGER(aDecoder, options);
     }
     return self;
@@ -280,18 +279,18 @@ passcodeValidationRegularExpression:nil
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    // `passcodeValidationRegularExpression` and `passcodeInvalidMessage` are transparent
-    // properties. The corresponding encoding for these properties takes place in the answer format's
-    // `-encodeWithCoder:` method, invoked from super's (ORKFormStep) implementation.
+    // The `passcodeValidationRegex` and `passcodeInvalidMessage` properties
+    // are transparent properties. The `encodeWithCoder:` for these properties is
+    // defined in the answer format (super).
     ORK_ENCODE_INTEGER(aCoder, options);
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
     ORKRegistrationStep *step = [super copyWithZone:zone];
     
-    // `passcodeValidationRegularExpression` and `passcodeInvalidMessage` are transparent
-    // properties. The corresponding copying of these properties happens in the answer format
-    // `-copyWithZone:` method, invoked from the super's (ORKFormStep) implementation.
+    // The `passcodeValidationRegex` and `passcodeInvalidMessage` properties
+    // are transparent properties. The `copyWithZone:` for these properties is
+    // defined in the answer format (super).
     step->_options = self.options;
     return step;
 }
@@ -299,9 +298,9 @@ passcodeValidationRegularExpression:nil
 - (BOOL)isEqual:(id)object {
     BOOL isParentSame = [super isEqual:object];
     
-    // `passcodeValidationRegularExpression` and `passcodeInvalidMessage` are transparent
-    // properties. The corresponding equality test for these properties takes place in the answer
-    // format's `-isEqual:` method, invoked from super's (ORKFormStep) implementation.
+    // The `passcodeValidationRegex` and `passcodeInvalidMessage` properties
+    // are transparent properties. The `isEqual:` for these properties is
+    // defined in the answer format (super).
     __typeof(self) castObject = object;
     return (isParentSame &&
             self.options == castObject.options);

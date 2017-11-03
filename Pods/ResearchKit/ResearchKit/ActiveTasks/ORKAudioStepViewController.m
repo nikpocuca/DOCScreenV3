@@ -91,6 +91,11 @@
     self.activeStepView.activeCustomView = _audioContentView;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self start];
+}
+
 - (void)audioRecorderDidChange {
     _audioRecorder.audioRecorder.meteringEnabled = YES;
     [self setAvAudioRecorder:_audioRecorder.audioRecorder];
@@ -182,7 +187,7 @@
     _avAudioRecorder = recorder;
 }
 
-- (void)recorder:(ORKRecorder *)recorder didFailWithError:(NSError *)error {
+- (void) recorder:(ORKRecorder *)recorder didFailWithError:(NSError *)error {
     [super recorder:recorder didFailWithError:error];
     _audioRecorderError = error;
     _audioContentView.failed = YES;

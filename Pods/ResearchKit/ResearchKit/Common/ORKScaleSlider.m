@@ -42,13 +42,11 @@
 #import "ORKAccessibility.h"
 #import "ORKSkin.h"
 
-
 @interface ORKScaleSlider ()
 
 @property (nonatomic, strong, nullable) CAGradientLayer *gradientLayer;
 
 @end
-
 
 @implementation ORKScaleSlider {
     CFAbsoluteTime _axLastOutputTime;

@@ -45,7 +45,7 @@
 #import "ORKSkin.h"
 
 
-@interface ORKSignatureWrapperView : UIView
+@interface ORKConsentSignatureWrapperView : UIView
 
 @property (nonatomic, strong) ORKSignatureView *signatureView;
 
@@ -56,10 +56,12 @@
 @end
 
 
-@implementation ORKSignatureWrapperView
+@implementation ORKConsentSignatureWrapperView {
+}
 
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     [super willMoveToWindow:newWindow];
+    _signatureView.layoutMargins = (UIEdgeInsets){.top = ORKGetMetricForWindow(ORKScreenMetricLearnMoreBaselineToStepViewTopWithNoLearnMore, newWindow) - ABS([ORKTextButton defaultFont].descender) - 1};
     [self setNeedsLayout];
 }
 
@@ -79,6 +81,10 @@
         {
             _signatureView = [ORKSignatureView new];
             [_signatureView setClipsToBounds:YES];
+            
+            // This allows us to layout the signature view sticking up a bit past the top of the superview,
+            // so drawing can extend higher
+            _signatureView.layoutMargins = (UIEdgeInsets){.top=36};
             
             _signatureView.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:_signatureView];
@@ -144,8 +150,13 @@
                                                                              metrics:nil
                                                                                views:views]];
     
+    /*
+     Using top margin here is a hack to get the drawable area of the signature view to poke up
+     a bit past the top of this view. Doing anything else would be a layering violation, so...
+     we do this.
+     */
     [constraints addObject:[NSLayoutConstraint constraintWithItem:_signatureView
-                                                        attribute:NSLayoutAttributeTop
+                                                        attribute:NSLayoutAttributeTopMargin
                                                         relatedBy:NSLayoutRelationEqual
                                                            toItem:self
                                                         attribute:NSLayoutAttributeTop
@@ -176,7 +187,7 @@
 
 @interface ORKConsentSigningView : ORKVerticalContainerView
 
-@property (nonatomic, strong) ORKSignatureWrapperView *wrapperView;
+@property (nonatomic, strong) ORKConsentSignatureWrapperView *wrapperView;
 
 @end
 
@@ -187,7 +198,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        _wrapperView = [ORKSignatureWrapperView new];
+        _wrapperView = [ORKConsentSignatureWrapperView new];
         _wrapperView.translatesAutoresizingMaskIntoConstraints = NO;
         
         self.stepView = _wrapperView;
