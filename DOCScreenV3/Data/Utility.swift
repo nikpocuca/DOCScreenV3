@@ -9,6 +9,8 @@
 import Foundation
 import ResearchKit
 import CoreVideo
+import CoreData
+
 
 
 func roundToDecimals(num: CGFloat,decimals: Int = 2) -> CGFloat {
@@ -113,6 +115,25 @@ struct ImageProcessor {
     }
     
 }
+
+
+
+
+func deleteSubjects() -> Void {
+    
+    do {
+        
+        _ = try PersistenceService.context.execute(NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "Subject")))
+        PersistenceService.saveContext()
+        
+        
+    } catch {}
+    
+    
+}
+
+
+
 
 
 

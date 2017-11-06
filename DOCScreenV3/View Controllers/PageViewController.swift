@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PageViewController: UIViewController {
 
@@ -203,6 +204,32 @@ class PageViewController: UIViewController {
  
         
     }
+    
+    
+    
+    
+    @IBAction func test(_ sender: Any) {
+        
+        let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+        
+        do {
+            let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+            
+            for i in subjectArray {
+                
+                if i.name != nil {
+                print("Name: \(i.name!)")
+                }
+                
+            }
+        }
+        catch {}
+       
+        
+    }
+    
+    
+    
     
     
     

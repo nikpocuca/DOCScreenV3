@@ -19,7 +19,6 @@
 		244892E71FAC8EA300139579 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 244892E51FAC8EA300139579 /* LaunchScreen.storyboard */; };
 		244892F21FAC8EA300139579 /* DOCScreenV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244892F11FAC8EA300139579 /* DOCScreenV3Tests.swift */; };
 		244892FD1FAC8EA300139579 /* DOCScreenV3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244892FC1FAC8EA300139579 /* DOCScreenV3UITests.swift */; };
-		2448930B1FAC8EDB00139579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448930A1FAC8EDB00139579 /* Main.storyboard */; };
 		244893121FAC8F1D00139579 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893111FAC8F1D00139579 /* Colors.swift */; };
 		244893151FAC8F4200139579 /* DocTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893141FAC8F4200139579 /* DocTabViewController.swift */; };
 		244893171FAC8F5500139579 /* DOCEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893161FAC8F5500139579 /* DOCEntry.swift */; };
@@ -37,6 +36,7 @@
 		244893351FAC901600139579 /* ClockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448932E1FAC901600139579 /* ClockTask.swift */; };
 		244893361FAC901600139579 /* MemoryRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448932F1FAC901600139579 /* MemoryRegistration.swift */; };
 		244893371FAC901600139579 /* MemoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893301FAC901600139579 /* MemoryTask.swift */; };
+		24ED600A1FB09D850041C5A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ED60091FB09D840041C5A8 /* Main.storyboard */; };
 		49BB277AB8C3681387E651D2 /* Pods_DOCScreenV3Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D30EBD9A56976ACC7AE389E /* Pods_DOCScreenV3Tests.framework */; };
 		4FDCF003A59A0256DA21EBEE /* Pods_DOCScreenV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1D196965358B1E9DFE8888 /* Pods_DOCScreenV3.framework */; };
 		88AEDBFEA3DEB17849D232D7 /* Pods_DOCScreenV3UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED2D80C78443B977A071F3F /* Pods_DOCScreenV3UITests.framework */; };
@@ -78,7 +78,6 @@
 		244892F81FAC8EA300139579 /* DOCScreenV3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DOCScreenV3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		244892FC1FAC8EA300139579 /* DOCScreenV3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOCScreenV3UITests.swift; sourceTree = "<group>"; };
 		244892FE1FAC8EA300139579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2448930A1FAC8EDB00139579 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		244893111FAC8F1D00139579 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		244893141FAC8F4200139579 /* DocTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocTabViewController.swift; sourceTree = "<group>"; };
 		244893161FAC8F5500139579 /* DOCEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOCEntry.swift; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		2448932E1FAC901600139579 /* ClockTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockTask.swift; sourceTree = "<group>"; };
 		2448932F1FAC901600139579 /* MemoryRegistration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryRegistration.swift; sourceTree = "<group>"; };
 		244893301FAC901600139579 /* MemoryTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryTask.swift; sourceTree = "<group>"; };
+		24ED60091FB09D840041C5A8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2A68D2621CBFA113356887B5 /* Pods-DOCScreenV3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3/Pods-DOCScreenV3.debug.xcconfig"; sourceTree = "<group>"; };
 		2B1D196965358B1E9DFE8888 /* Pods_DOCScreenV3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOCScreenV3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED2D80C78443B977A071F3F /* Pods_DOCScreenV3UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOCScreenV3UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +164,7 @@
 		244892D81FAC8EA300139579 /* DOCScreenV3 */ = {
 			isa = PBXGroup;
 			children = (
+				24ED60091FB09D840041C5A8 /* Main.storyboard */,
 				244893131FAC8F3A00139579 /* DOCTab */,
 				244893181FAC8F6F00139579 /* Landing */,
 				244893291FAC900400139579 /* Tasks */,
@@ -174,7 +175,6 @@
 				244892DB1FAC8EA300139579 /* ViewController.swift */,
 				244893161FAC8F5500139579 /* DOCEntry.swift */,
 				244893271FAC8FFB00139579 /* TaskTableViewCell.swift */,
-				2448930A1FAC8EDB00139579 /* Main.storyboard */,
 				244892E31FAC8EA300139579 /* Assets.xcassets */,
 				244892E51FAC8EA300139579 /* LaunchScreen.storyboard */,
 				244892E81FAC8EA300139579 /* Info.plist */,
@@ -398,7 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2448930B1FAC8EDB00139579 /* Main.storyboard in Resources */,
+				24ED600A1FB09D850041C5A8 /* Main.storyboard in Resources */,
 				244892E71FAC8EA300139579 /* LaunchScreen.storyboard in Resources */,
 				244892E41FAC8EA300139579 /* Assets.xcassets in Resources */,
 			);

@@ -29,8 +29,6 @@ class DocTabViewController: UITabBarController {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let taskViewController = mainStoryboard.instantiateViewController(withIdentifier: "TaskTableViewController")
         
-   
-        
         taskViewController.tabBarItem = UITabBarItem(title: "Tasks", image: #imageLiteral(resourceName: "hand"), selectedImage: #imageLiteral(resourceName: "hand"))
       
         let nav = UINavigationController(rootViewController: taskViewController)

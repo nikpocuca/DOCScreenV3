@@ -41,9 +41,7 @@ class TaskTableViewController: UITableViewController {
         guard let task7 = DocEntry(TaskName: "Memory", Image: #imageLiteral(resourceName: "memory"), CompleteString: "", Task: MemoryTask)
             else { fatalError("unable to create docEntry") }
         
-        
         docEntries = [task1,task2,task3,task4,task5,task6,task7];
-        
         
     }
     
@@ -59,6 +57,8 @@ class TaskTableViewController: UITableViewController {
        
         UIView.appearance().tintColor = UIColor.docRed()
 
+        
+        
     }
     
 
@@ -145,6 +145,26 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
   
         taskViewController.dismiss(animated: true, completion: nil)
         
+        if taskViewController.task?.identifier == "ProfileTask" {
+            if reason == .completed {
+                
+                deleteSubjects()
+                
+                let subject = Subject(context: PersistenceService.context)
+              
+                let result = taskViewController.result.stepResult(forStepIdentifier: "nameStep")
+                
+                let textResult = result?.firstResult as? ORKTextQuestionResult
+                
+                let name = textResult?.textAnswer!
+                
+                subject.name = name
+                
+                PersistenceService.saveContext()
+            }
+        }
+        
+    
         var documentsUrl: URL {
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         }
@@ -209,15 +229,6 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
             return nil
         }
         
-/*
-        let lexicon = ["sex": DataStorage.sex,
-                       "name": DataStorage.name,
-                       "age": DataStorage.age,
-                       "BMI": DataStorage.BMI,
-                       "weight": DataStorage.weight,
-                       "education": DataStorage.education
-            ] as NSMutableDictionary
-        */
         
         
         let textAnswerSteps: Array<String> = ["nameStep"]
@@ -263,7 +274,7 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
         }
         
         
-        
+       
         for step in textAnswerSteps {
             if reason == .completed {
             if let stepResult = taskViewController.result.stepResult(forStepIdentifier: step),
@@ -273,6 +284,9 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                 let textAnswer = textResult.textAnswer {
                 let input =  "\(textAnswer)"
                 data[step] = input;
+                
+            
+                
                 }
             }
         }
@@ -473,14 +487,8 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                 
                 let input = "\(BMI)"
                 
-                
-                print("denom is: \(input)")
+              
 
-                
-               
-            
-                
-                
                 dataPass(name: "BMI", value: input )
                 
                 }
@@ -490,6 +498,70 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
         }
         
 
+        /*
+         let stepResults = taskViewController.result.results!
+         
+         
+         for stepResult in stepResults {
+         
+         // print(stepResult)
+         let questionResults = taskViewController.result.stepResult(forStepIdentifier: stepResult.identifier)?.results
+         
+         for question in questionResults!{
+         
+         let questionResult = question as! ORKQuestionResult
+         
+         
+         let questionCheck = questionResult.questionType;
+         switch (questionCheck) {
+         case ORKQuestionType.singleChoice: do{
+         
+         let choiceResult = questionResult as! ORKChoiceQuestionResult
+         
+         let choice = choiceResult.choiceAnswers?.first as! Int + 1
+         
+         data += [choice]
+         
+         }
+         
+         case ORKQuestionType.boolean: do{
+         
+         let booleanResult = questionResult as! ORKBooleanQuestionResult
+         
+         let entry = booleanResult.booleanAnswer as! Int + 1
+         
+         data += [entry]
+         
+         }
+         default: do {
+         break}
+         
+         
+         } // end of switch
+         
+         }
+         
+         
+         
+         }
+         
+        */
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
