@@ -41,8 +41,6 @@ struct ClockData {
 
 
 
-
-
 func dataPass(name: String, value: String) {
     
     func str2Float(num: String) -> CGFloat {
@@ -52,7 +50,6 @@ func dataPass(name: String, value: String) {
         
         return CGFloat(numberFloatValue)
     }
-    
     
     switch name {
     case "name": DataStorage.name = value

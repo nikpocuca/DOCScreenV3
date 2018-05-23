@@ -1,16 +1,17 @@
 //
-//  ProfileTask.swift
-//  DOCScreenV2
+//  ProfileTask1.swift
+//  DOCScreenV3
 //
-//  Created by Nik on 2017-10-06.
-//  Copyright © 2017 Nik. All rights reserved.
+//  Created by Nik on 2018-05-23.
+//  Copyright © 2018 Nik. All rights reserved.
 //
 
 import Foundation
 import ResearchKit
 
+import ResearchKit
 
-public var ProfileTask: ORKOrderedTask{
+public var ProfileTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
     
@@ -40,7 +41,7 @@ public var ProfileTask: ORKOrderedTask{
     let sexTitle = "Sex Question"
     let sexText = "What is your sex?"
     let sexStep = ORKQuestionStep(identifier: "sexStep", title: sexTitle, text: sexText, answer: sexAnswerFormat)
-
+    
     steps += [sexStep]
     
     // Education Question
@@ -54,7 +55,7 @@ public var ProfileTask: ORKOrderedTask{
     // Height Question
     
     let heightFormTitle = "Height Information"
- 
+    
     let heightAnswerFormat = ORKNumericAnswerFormat(style: .decimal, unit: "")
     
     let heightUnitTextChoices = [
@@ -65,32 +66,32 @@ public var ProfileTask: ORKOrderedTask{
     let heightUnitFormat = ORKValuePickerAnswerFormat(textChoices: heightUnitTextChoices)
     
     let heightFormStep = ORKFormStep(identifier: "heightStep", title: heightFormTitle, text: "")
-
+    
     let heightUnitItem = ORKFormItem(identifier: "heightUnitItem", text: "Unit", answerFormat: heightUnitFormat)
     let heightAnswerItem  = ORKFormItem(identifier: "heightAnswerItem", text: "Height", answerFormat: heightAnswerFormat)
     
     heightFormStep.formItems = [heightUnitItem,heightAnswerItem]
-
+    
     steps += [heightFormStep]
     
     // Weight Question
-
+    
     let w8formTitle = "Weight Information"
     
     let w8FormStep = ORKFormStep(identifier: "weightStep", title: w8formTitle, text: "")
     
-
+    
     let w8UnitTextChoices = [
-    ORKTextChoice(text: "kg", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
-      ORKTextChoice(text: "lbs", value: 1 as NSCoding & NSCopying & NSObjectProtocol)
+        ORKTextChoice(text: "kg", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
+        ORKTextChoice(text: "lbs", value: 1 as NSCoding & NSCopying & NSObjectProtocol)
     ]
     
     let w8UnitAnswer = ORKValuePickerAnswerFormat(textChoices: w8UnitTextChoices)
-
+    
     let w8unitItem = ORKFormItem(identifier: "w8UnitItem", text: "Unit", answerFormat: w8UnitAnswer)
     
     let w8AnswerFormat = ORKNumericAnswerFormat(style: .integer, unit: "")
-
+    
     
     let w8AnswerItem = ORKFormItem(identifier: "weightAnswerItem", text: "Weight of subject:", answerFormat: w8AnswerFormat)
     
@@ -100,8 +101,7 @@ public var ProfileTask: ORKOrderedTask{
     
     
     // BMI Question
-
-
+    
     return ORKOrderedTask(identifier: "ProfileTask", steps: steps)
 }
 

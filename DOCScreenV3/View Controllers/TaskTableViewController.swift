@@ -12,11 +12,7 @@ import CoreML
 
 class TaskTableViewController: UITableViewController {
 
-    
-    
     var docEntries = [DocEntry]()
-    
-    
     
     private func loadTasks() {
         
@@ -57,18 +53,13 @@ class TaskTableViewController: UITableViewController {
        
         UIView.appearance().tintColor = UIColor.docRed()
 
-        
-        
     }
     
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     
     }
 
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -148,19 +139,9 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
         if taskViewController.task?.identifier == "ProfileTask" {
             if reason == .completed {
                 
-                deleteSubjects()
+                ExtractProfile(taskController: taskViewController)
+               
                 
-                let subject = Subject(context: PersistenceService.context)
-              
-                let result = taskViewController.result.stepResult(forStepIdentifier: "nameStep")
-                
-                let textResult = result?.firstResult as? ORKTextQuestionResult
-                
-                let name = textResult?.textAnswer!
-                
-                subject.name = name
-                
-                PersistenceService.saveContext()
             }
         }
         
@@ -180,7 +161,6 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
             return nil
         }
 
-        
         
         func crop(image: UIImage, withWidth width: Double, andHeight height: Double) -> UIImage? {
             
@@ -546,24 +526,6 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
          }
          
         */
-        
-        
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
        
     }

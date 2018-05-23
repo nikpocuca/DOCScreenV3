@@ -24,7 +24,7 @@ public var ClockTask: ORKOrderedTask{
     imageCaptureStep.isOptional = false
     imageCaptureStep.accessibilityHint = ""
     imageCaptureStep.templateImage = #imageLiteral(resourceName: "target")
-    imageCaptureStep.templateImageInsets = UIEdgeInsets(top: 0.3, left: 0.3, bottom: 0.3, right: 0.3)
+    imageCaptureStep.templateImageInsets = UIEdgeInsetsMake(0.35, 0.35, 0.35, 0.35)
     
    
     

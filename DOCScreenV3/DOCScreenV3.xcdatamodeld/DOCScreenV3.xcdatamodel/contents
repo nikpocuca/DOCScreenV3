@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13532" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ClockData1" representedClassName="ClockData1" syncable="YES">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Abstraction" representedClassName="Abstraction" syncable="YES">
+        <attribute name="q1Score" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="q2Score" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="abstractData" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Apnea" representedClassName="Apnea" syncable="YES">
+        <attribute name="q1Apnea" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="q2Apnea" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="q3Apnea" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="q4Apnea" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="apneaData" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="ClockDataScore" representedClassName="ClockDataScore" syncable="YES">
         <attribute name="contour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hands" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numbers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="clockData" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Memory" representedClassName="Memory" syncable="YES">
+        <attribute name="churchCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="churchMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="churchRegT1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="churchRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="churchWC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="daisyCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="daisyMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="daisyRegT1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="daisyRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="daisyWC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="faceCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="faceMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="faceRegT1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="faceRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="faceWC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redRegT1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redWC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="velvetCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="velvetMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="velvetRegT1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="velvetRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="velvetWC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="memoryData" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Mood" representedClassName="Mood" syncable="YES">
+        <attribute name="q1Mood" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="q2Mood" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="moodData" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <entity name="Subject" representedClassName="Subject" syncable="YES">
         <attribute name="abstractScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -20,10 +65,18 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="clockData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClockData1" inverseName="subject" inverseEntity="ClockData1" syncable="YES"/>
+        <relationship name="abstractData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Abstraction" inverseName="subject" inverseEntity="Abstraction" syncable="YES"/>
+        <relationship name="apneaData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Apnea" inverseName="subject" inverseEntity="Apnea" syncable="YES"/>
+        <relationship name="clockData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClockDataScore" inverseName="subject" inverseEntity="ClockDataScore" syncable="YES"/>
+        <relationship name="memoryData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Memory" inverseName="subject" inverseEntity="Memory" syncable="YES"/>
+        <relationship name="moodData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mood" inverseName="subject" inverseEntity="Mood" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ClockData1" positionX="160" positionY="18" width="128" height="103"/>
-        <element name="Subject" positionX="-54" positionY="-9" width="128" height="253"/>
+        <element name="Abstraction" positionX="-342" positionY="9" width="128" height="90"/>
+        <element name="Apnea" positionX="-353" positionY="114" width="128" height="120"/>
+        <element name="ClockDataScore" positionX="160" positionY="18" width="128" height="103"/>
+        <element name="Memory" positionX="-524" positionY="-9" width="128" height="435"/>
+        <element name="Mood" positionX="-153" positionY="333" width="128" height="90"/>
+        <element name="Subject" positionX="-54" positionY="-9" width="128" height="313"/>
     </elements>
 </model>

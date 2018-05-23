@@ -55,8 +55,6 @@ extension String {
 //
 
 
-
-
 struct ImageProcessor {
     
     
@@ -117,8 +115,6 @@ struct ImageProcessor {
 }
 
 
-
-
 func deleteSubjects() -> Void {
     
     do {
@@ -131,8 +127,6 @@ func deleteSubjects() -> Void {
     
     
 }
-
-
 
 
 

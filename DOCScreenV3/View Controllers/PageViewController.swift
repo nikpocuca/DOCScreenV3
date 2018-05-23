@@ -206,8 +206,6 @@ class PageViewController: UIViewController {
     }
     
     
-    
-    
     @IBAction func test(_ sender: Any) {
         
         let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
@@ -218,26 +216,24 @@ class PageViewController: UIViewController {
             for i in subjectArray {
                 
                 if i.name != nil {
-                print("Name: \(i.name!)")
+                    print("Name: \(i.name!)")
+                    print("Age: \(i.age)")
+                    print("Sex: \(i.sex)")
+                    print("Education: \(i.education)")
+                    print("Height: \(i.height!)")
+                    print("Weight: \(i.weight!)")
                 }
+        
                 
             }
         }
         catch {}
-       
-        
     }
-    
-    
-    
-    
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         docImage.layer.borderWidth = 2;
         docImage.layer.borderColor = UIColor.docRed().cgColor;
 

@@ -7,7 +7,9 @@ target 'DOCScreenV3' do
 
   # Pods for DOCScreenV3
 
-pod 'ResearchKit', '1.4.1'
+pod 'PDFGenerator', '2.0.1'
+pod 'ResearchKit', '1.5'
+
   target 'DOCScreenV3Tests' do
     inherit! :search_paths
     # Pods for testing
