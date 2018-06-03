@@ -92,13 +92,13 @@ public var ProfileTask: ORKOrderedTask {
     
     let w8AnswerFormat = ORKNumericAnswerFormat(style: .integer, unit: "")
     
-    
     let w8AnswerItem = ORKFormItem(identifier: "weightAnswerItem", text: "Weight of subject:", answerFormat: w8AnswerFormat)
     
     w8FormStep.formItems = [w8unitItem,w8AnswerItem]
     
     steps += [w8FormStep]
     
+    for step  in steps {step.isOptional = false}
     
     // BMI Question
     

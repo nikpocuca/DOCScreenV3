@@ -39,6 +39,7 @@
         <attribute name="faceRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="faceWC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="memoryScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="redMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="redRegT1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="redRegT2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -74,8 +75,8 @@
         <element name="Abstraction" positionX="-6372" positionY="774" width="128" height="103"/>
         <element name="Apnea" positionX="-6363" positionY="909" width="128" height="133"/>
         <element name="Clock" positionX="-6365" positionY="1089" width="128" height="133"/>
-        <element name="Memory" positionX="-6678" positionY="770" width="126" height="433"/>
+        <element name="Memory" positionX="-6678" positionY="770" width="126" height="448"/>
         <element name="Mood" positionX="-6525" positionY="1026" width="128" height="103"/>
-        <element name="Subject" positionX="-6527" positionY="774" width="128" height="223"/>
+        <element name="Subject" positionX="-6527" positionY="774" width="128" height="225"/>
     </elements>
 </model>

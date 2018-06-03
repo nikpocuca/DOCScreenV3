@@ -217,11 +217,14 @@ class PageViewController: UIViewController {
                 
                 if i.name != nil {
                     print("Name: \(i.name!)")
-                    print("Age: \(i.age)")
-                    print("Sex: \(i.sex)")
-                    print("Education: \(i.education)")
-                    print("Height: \(i.height!)")
-                    print("Weight: \(i.weight!)")
+                    //print("Age: \(i.age)")
+                    //print("Sex: \(i.sex)")
+                    //print("Education: \(i.education)")
+                    //print("Height: \(i.height!)")
+                   // print("Weight: \(i.weight!)")
+                    print("Memory RegT1: \(i.memory?.faceRegT1)")
+                    print("Memory RegT2: \(i.memory?.faceRegT2)")
+                    print("Memory ScoreWC: \(i.memory?.faceWC)")
                 }
         
                 

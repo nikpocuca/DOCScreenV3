@@ -8,7 +8,9 @@
 
 import Foundation
 import ResearchKit
+import CoreData
 
+// Extracts Profile and deletes previous one.
 
 func ExtractProfile(taskController: ORKTaskViewController) {
     
@@ -110,6 +112,133 @@ func ExtractProfile(taskController: ORKTaskViewController) {
     }
     
     subject.weight = weightString + " " + weightUnitString
+    
+    PersistenceService.saveContext()
+    
+}
+
+
+// Extracts Memory Registration values and assigns them to the subject.
+
+func ExtractMemoryRegistration(taskController: ORKTaskViewController) {
+    
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // there is only one subject
+        let subject = subjectArray.first
+        
+        let regResultOne = taskController.result.stepResult(forStepIdentifier: "trial1RegistrationTextChoiceQuestionStep")
+        
+        let trialOneChoices = regResultOne?.firstResult as! ORKChoiceQuestionResult
+        
+        var choiceArray = trialOneChoices.choiceAnswers
+        
+        let subjectMemory = Memory(context: PersistenceService.context)
+        
+        subjectMemory.faceRegT1 = false
+        subjectMemory.velvetRegT1 = false
+        subjectMemory.churchRegT1 = false
+        subjectMemory.daisyRegT1 = false
+        subjectMemory.redRegT1 = false
+        
+        for choice in choiceArray! {
+        
+            let choiceNumber = choice as! NSNumber
+
+            //print("Choice number is : \(choiceNumber)")
+            switch choiceNumber.intValue {
+            case 0:
+                subjectMemory.faceRegT1 = true
+            case 1:
+                subjectMemory.velvetRegT1 = true
+            case 2:
+                subjectMemory.churchRegT1 = true
+            case 3:
+                subjectMemory.daisyRegT1 = true
+            default:
+                subjectMemory.redRegT1 = true
+            }
+
+        }
+        
+        let regResultTwo = taskController.result.stepResult(forStepIdentifier: "trial2RegistrationTextChoiceQuestionStep")
+        
+        let trialTwoChoices = regResultTwo?.firstResult as! ORKChoiceQuestionResult
+        
+        choiceArray = trialTwoChoices.choiceAnswers
+        subjectMemory.faceRegT2 = false
+        subjectMemory.velvetRegT2 = false
+        subjectMemory.churchRegT2 = false
+        subjectMemory.daisyRegT2 = false
+        subjectMemory.redRegT2 = false
+        
+        for choice in choiceArray! {
+            
+            let choiceNumber = choice as! NSNumber
+            
+            //print("Choice number is : \(choiceNumber)")
+            switch choiceNumber.intValue {
+            case 0:
+                subjectMemory.faceRegT2 = true
+            case 1:
+                subjectMemory.velvetRegT2 = true
+            case 2:
+                subjectMemory.churchRegT2 = true
+            case 3:
+                subjectMemory.daisyRegT2 = true
+            default:
+                subjectMemory.redRegT2 = true
+            }
+            
+        }
+        
+        subject?.memory = subjectMemory
+        
+        PersistenceService.saveContext()
+        
+    }
+    catch {print("Place view Controller that says Alert there is no subject yet")}
+    
+}
+
+// Memory Scoring Function
+
+
+func ExtractMemoryScores(taskController: ORKTaskViewController) {
+    
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // there is only one subject.
+        let subject = subjectArray.first
+        
+        subject?.memory?.faceWC = false
+        subject?.memory?.velvetWC = false
+        subject?.memory?.churchWC = false
+        subject?.memory?.daisyWC = false
+        subject?.memory?.redWC = false
+        subject?.memory?.faceCC = false
+        subject?.memory?.velvetCC = false
+        subject?.memory?.churchCC = false
+        subject?.memory?.daisyCC = false
+        subject?.memory?.redCC = false
+        subject?.memory?.faceMC = false
+        subject?.memory?.velvetMC = false
+        subject?.memory?.churchMC = false
+        subject?.memory?.daisyMC = false
+        subject?.memory?.redMC = false
+        
+        
+        
+    }
+    catch {print("Place view Controller that says Alert there is no subject yet")}
     
     PersistenceService.saveContext()
     

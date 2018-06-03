@@ -2,7 +2,7 @@
 //  Memory+CoreDataProperties.swift
 //  DOCScreenV3
 //
-//  Created by Nik on 2018-05-23.
+//  Created by Nik on 2018-05-26.
 //  Copyright © 2018 Nik. All rights reserved.
 //
 //
@@ -42,6 +42,7 @@ extension Memory {
     @NSManaged public var velvetRegT1: Bool
     @NSManaged public var velvetRegT2: Bool
     @NSManaged public var velvetWC: Bool
+    @NSManaged public var redCC: Bool
     @NSManaged public var subject: Subject?
 
 }

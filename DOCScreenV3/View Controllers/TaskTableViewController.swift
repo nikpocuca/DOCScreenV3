@@ -141,8 +141,24 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                 
                 ExtractProfile(taskController: taskViewController)
                
+            }
+        }
+        
+        if taskViewController.task?.identifier == "MemoryRegistrationTask"{
+            if reason == .completed {
+             
+                ExtractMemoryRegistration(taskController: taskViewController)
                 
             }
+        }
+        
+        if taskViewController.task?.identifier == "MemoryTask"{
+            if reason == .completed {
+                
+                ExtractMemoryScores(taskController: taskViewController)
+                
+            }
+            
         }
         
     
