@@ -222,9 +222,30 @@ class PageViewController: UIViewController {
                     //print("Education: \(i.education)")
                     //print("Height: \(i.height!)")
                    // print("Weight: \(i.weight!)")
-                    print("Memory RegT1: \(i.memory?.faceRegT1)")
-                    print("Memory RegT2: \(i.memory?.faceRegT2)")
-                    print("Memory ScoreWC: \(i.memory?.faceWC)")
+                  //  print("Memory RegT1: \(i.memory?.faceRegT1)")
+                  //  print("Memory RegT2: \(i.memory?.faceRegT2)")
+                  /*  print("Memory FaceWC: \(i.memory?.faceWC)")
+                    print("Memory VelvetWC: \(i.memory?.velvetWC)")
+                    print("Memory churchWC: \(i.memory?.churchWC)")
+                    print("Memory DaisyWC: \(i.memory?.daisyWC)")
+                    print("Memory RedWC: \(i.memory?.redWC)")
+                    print("Memory FaceCC: \(i.memory?.faceCC)")
+                    print("Memory VelvetCC: \(i.memory?.velvetCC)")
+                    print("Memory churchCC: \(i.memory?.churchCC)")
+                    print("Memory DaisyCC: \(i.memory?.daisyCC)")
+                    print("Memory RedCC: \(i.memory?.redCC)")
+                    print("Memory FaceMC: \(i.memory?.faceMC)")
+                    print("Memory VelvetMC: \(i.memory?.velvetMC)")
+                    print("Memory churchMC: \(i.memory?.churchMC)")
+                    print("Memory DaisyMC: \(i.memory?.daisyMC)")
+                    print("Memory RedMC: \(i.memory?.redMC)")
+                    print("MemoryScore : \(i.memory?.memoryScore)")
+                    */
+                
+                    print("Mood q1Result: \(i.mood?.q1Mood)")
+                    print("Mood q2Result: \(i.mood?.q1Mood)")
+                    
+        
                 }
         
                 

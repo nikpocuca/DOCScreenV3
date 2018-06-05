@@ -428,7 +428,7 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                 let textChoice = data[preKey]!;
                 
                 let resultsArray = Array(textChoice.removeCharacters(from: "[], "));
-                print("\(resultsArray)")
+               // print("\(resultsArray)")
                 
                 let memoryScore = resultsArray.count
                 
