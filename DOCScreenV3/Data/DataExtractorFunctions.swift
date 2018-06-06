@@ -207,7 +207,6 @@ func ExtractMemoryRegistration(taskController: ORKTaskViewController) {
 
 // Memory Scoring Function
 
-
 func ExtractMemoryScores(taskController: ORKTaskViewController) {
     
     let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
@@ -219,6 +218,7 @@ func ExtractMemoryScores(taskController: ORKTaskViewController) {
         // there is only one subject.
         let subject = subjectArray.first
         
+        // declare all false
         subject?.memory?.faceWC = false
         subject?.memory?.velvetWC = false
         subject?.memory?.churchWC = false
@@ -312,7 +312,7 @@ func ExtractMemoryScores(taskController: ORKTaskViewController) {
             subject?.memory?.memoryScore = 5
         
         case 3:
-            
+        
             // Parse first step, then extract responses without cue.
             let firstQuestionStep = trialResults![1] as! ORKStepResult
             let firstResult = firstQuestionStep.firstResult as! ORKChoiceQuestionResult
@@ -366,8 +366,6 @@ func ExtractMemoryScores(taskController: ORKTaskViewController) {
                 ExtractResponesMC(intNumber: choiceNumber.intValue)
             }
             
-            
-            // handle all memory respones
         }
         
     }
@@ -378,7 +376,125 @@ func ExtractMemoryScores(taskController: ORKTaskViewController) {
     
 }
 
+// Mood Extracting function
 
+func ExtractMoodScore(taskController: ORKTaskViewController) {
+    
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // there is only one subject
+        let subject = subjectArray.first
+        
+        // Create Mood object
+        let subjectMood = Mood(context: PersistenceService.context)
+        
+        let q1StepResults = taskController.result.stepResult(forStepIdentifier: "moodChoiceQuestion1Step")
+        
+        let q1Results = q1StepResults?.firstResult as! ORKChoiceQuestionResult
+        
+        let q1Score = q1Results.choiceAnswers?.first as! NSNumber
+        
+        subjectMood.q1Mood = q1Score.int16Value
+        
+        let q2StepResults = taskController.result.stepResult(forStepIdentifier: "moodChoiceQuestion2Step")
+        
+        let q2Results = q2StepResults?.firstResult as! ORKChoiceQuestionResult
+        
+        let q2Score = q2Results.choiceAnswers?.first as! NSNumber
+        
+        subjectMood.q2Mood = q2Score.int16Value
+        
+        subjectMood.moodScore = q1Score.int16Value + q2Score.int16Value
+        
+        // record the mood data and save context
+        subject?.mood = subjectMood
+        
+        PersistenceService.saveContext()
+        
+    }
+    catch {print("Place view Controller that says Alert there is no subject yet")}
+    
+}
 
+// Abstraction Extracting function
 
+func ExtractAbstractionScore(taskController: ORKTaskViewController){
+    
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // there is only one subject
+        let subject = subjectArray.first
+        
+        let subjectAbstraction = Abstraction(context: PersistenceService.context)
+        
+        let transportResults = taskController.result.stepResult(forStepIdentifier: "transportStep")?.firstResult as! ORKBooleanQuestionResult
+        
+        let transportBool = transportResults.booleanAnswer?.boolValue
+        
+        subjectAbstraction.q1BoolScore = transportBool!
+        
+        let measureResults = taskController.result.stepResult(forStepIdentifier: "measureStep")?.firstResult as! ORKBooleanQuestionResult
+        
+        let measureBool = measureResults.booleanAnswer?.boolValue
+        
+        subjectAbstraction.q2BoolScore = measureBool!
+        
+        subjectAbstraction.abstractScore = NSNumber(booleanLiteral: transportBool!).int16Value + NSNumber(booleanLiteral: measureBool!).int16Value
+        
+        subject?.abstract = subjectAbstraction
+        
+        PersistenceService.saveContext()
+    }
+    catch {print("Place view Controller that says Alert there is no subject yet")}
+    
+}
 
+// Apnea Extract
+
+func ExtractApneaScore(taskController: ORKTaskViewController) {
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // there is only one subject
+        let subject = subjectArray.first
+        
+        let subjectApnea = Apnea(context: PersistenceService.context)
+        
+        let taskResults = taskController.result.results
+        
+        var apneaArray = [Bool]();
+        
+        for taskResult in taskResults![1...4] {
+            
+            let stepResult = taskResult as! ORKStepResult
+            
+            let boolQuestionResult = stepResult.firstResult as! ORKBooleanQuestionResult
+            
+            apneaArray.append((boolQuestionResult.booleanAnswer?.boolValue)!)
+            
+        }
+        
+        subjectApnea.q1Score = apneaArray[0]
+        subjectApnea.q2Score = apneaArray[1]
+        subjectApnea.q3Score = apneaArray[2]
+        subjectApnea.q4Score = apneaArray[3]
+        subjectApnea.apneaScore = apneaArray.map{ NSNumber(value: $0).int16Value}.reduce(0, +)
+        
+        subject?.apnea = subjectApnea
+        
+        PersistenceService.saveContext()
+    }
+    catch {print("Place view Controller that says Alert there is no subject yet")}
+    
+}

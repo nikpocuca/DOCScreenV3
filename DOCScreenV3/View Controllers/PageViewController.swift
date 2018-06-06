@@ -240,12 +240,26 @@ class PageViewController: UIViewController {
                     print("Memory DaisyMC: \(i.memory?.daisyMC)")
                     print("Memory RedMC: \(i.memory?.redMC)")
                     print("MemoryScore : \(i.memory?.memoryScore)")
-                    */
+              
                 
                     print("Mood q1Result: \(i.mood?.q1Mood)")
-                    print("Mood q2Result: \(i.mood?.q1Mood)")
+                    print("Mood q2Result: \(i.mood?.q2Mood)")
+                    print("Mood Score: \(i.mood?.moodScore)")
+ 
                     
-        
+                    print("AbstractScore : \(i.abstract?.abstractScore)")
+                    print("q1Result: \(i.abstract?.q1BoolScore)")
+                    print("q2Result: \(i.abstract?.q2BoolScore)")
+ 
+ 
+                    
+                    print("ApneaScore : \(i.apnea?.apneaScore)")
+                    print("q1: \(i.apnea?.q1Score)")
+                    print("q2: \(i.apnea?.q2Score)")
+                    print("q3: \(i.apnea?.q3Score)")
+                    print("q4: \(i.apnea?.q4Score)")
+                        */
+
                 }
         
                 

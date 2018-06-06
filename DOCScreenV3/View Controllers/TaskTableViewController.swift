@@ -161,6 +161,32 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
             
         }
         
+        if taskViewController.task?.identifier == "MoodTask"{
+            if reason == .completed {
+                
+                ExtractMoodScore(taskController: taskViewController)
+                
+            }
+            
+        }
+        
+        if taskViewController.task?.identifier == "AbstractionTask"{
+            if reason == .completed {
+                
+                ExtractAbstractionScore(taskController: taskViewController)
+                
+            }
+            
+        }
+        
+        if taskViewController.task?.identifier == "SleepTask"{
+            if reason == .completed {
+                
+                ExtractApneaScore(taskController: taskViewController)
+                
+            }
+            
+        }
     
         var documentsUrl: URL {
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
