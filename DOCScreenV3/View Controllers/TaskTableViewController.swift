@@ -187,71 +187,57 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
             }
             
         }
+        
+        if taskViewController.task?.identifier == "ClockTask"{
+            if reason == .completed {
+                
     
-        var documentsUrl: URL {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        }
-        
-        func loadImage(fileName: String) -> UIImage? {
-            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(fileName)
-            do {
-                let imageData = try Data(contentsOf: fileURL)
-                return UIImage(data: imageData)
-            } catch {
-                print("Error loading image : \(error)")
-            }
-            return nil
-        }
-
-        
-        func crop(image: UIImage, withWidth width: Double, andHeight height: Double) -> UIImage? {
-            
-            if let cgImage = image.cgImage {
-                
-                let contextImage: UIImage = UIImage(cgImage: cgImage)
-                
-                let contextSize: CGSize = contextImage.size
-                
-                var posX: CGFloat = 0.0
-                var posY: CGFloat = 0.0
-                var cgwidth: CGFloat = CGFloat(width)
-                var cgheight: CGFloat = CGFloat(height)
-                
-                // See what size is longer and create the center off of that
-                if contextSize.width > contextSize.height {
-                    posX = ((contextSize.width - contextSize.height) / 2)
-                    posY = 0
-                    cgwidth = contextSize.height
-                    cgheight = contextSize.height
-                } else {
-                    posX = 0
-                    posY = ((contextSize.height - contextSize.width) / 2)
-                    cgwidth = contextSize.width
-                    cgheight = contextSize.width
+                var ScoreClockTask: ORKOrderedTask{
+                    
+                    var steps = [ORKStep]()
+    
+                    let imageScoreStepImage = crop(image: loadClockImage(fileName: "imageStep.jpg")!,withWidth: 2000, andHeight: 2000)!
+                    let imageTitle = "Score the clock"
+                    let imageFormStep = ORKFormStep(identifier: "imageFormStep", title: imageTitle, text: "")
+                    
+                    let imageAnswerChoice = ORKImageChoice(normalImage: imageScoreStepImage, selectedImage: imageScoreStepImage, text: "", value: 0 as NSCoding & NSCopying & NSObjectProtocol)
+                    let imageChoiceAnswerFormat = ORKImageChoiceAnswerFormat(imageChoices: [imageAnswerChoice])
+                    let imageItem = ORKFormItem(identifier: "imageItem", text: "", answerFormat: imageChoiceAnswerFormat)
+                    
+                    let textChoices = [
+                        ORKTextChoice(text: "Contour", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
+                        ORKTextChoice(text: "Numbers", value: 1 as NSCoding & NSCopying & NSObjectProtocol),
+                        ORKTextChoice(text: "Hands", value: 2 as NSCoding & NSCopying & NSObjectProtocol) ]
+                    
+                    let textChoicesFormat = ORKTextChoiceAnswerFormat(style: .multipleChoice, textChoices: textChoices)
+                    
+                    let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: false)
+                    
+                    imageFormStep.formItems = [imageItem,scoreItem]
+                    
+                    steps += [imageFormStep]
+                    
+                    return ORKOrderedTask(identifier: "ScoreClockTask", steps: steps)
+                    
                 }
                 
-                let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+                let scoreTaskViewController = ORKTaskViewController(task: ScoreClockTask, taskRun: nil)
+                scoreTaskViewController.delegate = self
                 
-                // Create bitmap image from context using the rect
-                var croppedContextImage: CGImage? = nil
-                if let contextImage = contextImage.cgImage {
-                    if let croppedImage = contextImage.cropping(to: rect) {
-                        croppedContextImage = croppedImage
-                    }
-                }
-                
-                // Create a new image based on the imageRef and rotate back to the original orientation
-                if let croppedImage:CGImage = croppedContextImage {
-                    let image: UIImage = UIImage(cgImage: croppedImage, scale: image.scale, orientation: image.imageOrientation)
-                    return image
-                }
-                
+                present(scoreTaskViewController, animated: true, completion: nil)
+               
             }
             
-            return nil
         }
-        
-        
+    
+        if taskViewController.task?.identifier == "ScoreClockTask"{
+            if reason == .completed {
+            
+                ExtractClockScores(taskController: taskViewController)
+                print("ScoreClock")
+                
+            }
+        }
         
         let textAnswerSteps: Array<String> = ["nameStep"]
         let numericAnswerSteps:  Array<String> = ["ageStep","educationStep"]
@@ -367,8 +353,6 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
         
         let preLexKeys = data.keys
         let lexKeys = Array(preLexKeys)
-        
-        print(data)
         
         
         if taskViewController.task?.identifier == "MoodTask"{

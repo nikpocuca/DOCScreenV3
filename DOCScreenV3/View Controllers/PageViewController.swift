@@ -258,9 +258,14 @@ class PageViewController: UIViewController {
                     print("q2: \(i.apnea?.q2Score)")
                     print("q3: \(i.apnea?.q3Score)")
                     print("q4: \(i.apnea?.q4Score)")
-                        */
+ 
 
-                }
+                    print("ClockPath \(i.clock?.clockImagePath)")
+                        */
+                    
+                    print("Clock Stuff \(i.clock?.clockScore), \(i.clock?.contour) , \(i.clock?.numbers) , \(i.clock?.hands)")
+                    }
+ 
         
                 
             }

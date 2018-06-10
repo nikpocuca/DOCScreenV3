@@ -19,18 +19,13 @@ public var ClockTask: ORKOrderedTask{
     instructionStep.text = "Please take the pen and paper and draw a clock ten minutes past eleven."
     steps += [instructionStep]
     
-    
+    // capturing image
     let imageCaptureStep = ORKImageCaptureStep(identifier: "imageStep")
     imageCaptureStep.isOptional = false
     imageCaptureStep.accessibilityHint = ""
     imageCaptureStep.templateImage = #imageLiteral(resourceName: "target")
     imageCaptureStep.templateImageInsets = UIEdgeInsetsMake(0.35, 0.35, 0.35, 0.35)
-    
-   
-    
     steps += [imageCaptureStep]
-    
-
     
     return ORKOrderedTask(identifier: "ClockTask", steps: steps)
 

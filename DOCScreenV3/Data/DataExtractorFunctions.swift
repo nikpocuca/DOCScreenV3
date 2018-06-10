@@ -498,3 +498,52 @@ func ExtractApneaScore(taskController: ORKTaskViewController) {
     catch {print("Place view Controller that says Alert there is no subject yet")}
     
 }
+
+
+// Clock Extraction function
+
+func ExtractClockScores(taskController: ORKTaskViewController){
+    
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // there is only one subject
+        let subject = subjectArray.first
+        
+        print(subject?.clock?.clockImagePath)
+        
+        let formStepResults = taskController.result.results
+        
+        let firstResult = formStepResults![0] as! ORKStepResult
+        
+        let firstResults = firstResult.results![1] as! ORKChoiceQuestionResult
+        
+        let choices = firstResults.choiceAnswers
+        
+        for choice in choices! {
+            let numChoice = choice as! NSNumber
+            switch numChoice.intValue {
+            case 0:
+                subject?.clock?.contour = true
+            case 1:
+                subject?.clock?.numbers = true
+            case 2:
+                subject?.clock?.hands = true
+            default:
+                subject?.clock?.contour = false
+                subject?.clock?.numbers = false
+                subject?.clock?.hands = false
+            }
+            
+        }
+    
+        subject?.clock?.clockScore = NSNumber(value: choices!.count).int16Value
+    
+        PersistenceService.saveContext()
+    }
+    catch {print("Place view Controller that says Alert there is no subject yet")}
+    
+}
