@@ -517,6 +517,14 @@
                                                     <action selector="test:" destination="MyY-8o-NvT" eventType="touchUpInside" id="iOl-hC-HVU"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6C-yQ-Teb">
+                                                <rect key="frame" x="259" y="362" width="85" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="CompilePDF"/>
+                                                <connections>
+                                                    <action selector="CompilePDF:" destination="MyY-8o-NvT" eventType="touchDown" id="1fr-2a-pix"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>

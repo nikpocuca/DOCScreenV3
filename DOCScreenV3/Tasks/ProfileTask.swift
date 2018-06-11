@@ -90,7 +90,7 @@ public var ProfileTask: ORKOrderedTask {
     
     let w8unitItem = ORKFormItem(identifier: "w8UnitItem", text: "Unit", answerFormat: w8UnitAnswer)
     
-    let w8AnswerFormat = ORKNumericAnswerFormat(style: .integer, unit: "")
+    let w8AnswerFormat = ORKNumericAnswerFormat(style: .decimal, unit: "")
     
     let w8AnswerItem = ORKFormItem(identifier: "weightAnswerItem", text: "Weight of subject:", answerFormat: w8AnswerFormat)
     
