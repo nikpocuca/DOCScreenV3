@@ -74,7 +74,7 @@ func ExtractProfile(taskController: ORKTaskViewController) {
             }
         default:
             let heightResult = result as? ORKNumericQuestionResult
-            let heightNumber = (heightResult?.numericAnswer?.int16Value)!
+            let heightNumber = (heightResult?.numericAnswer?.floatValue)!
             heightString = "\(heightNumber)"
         }
         
@@ -105,11 +105,16 @@ func ExtractProfile(taskController: ORKTaskViewController) {
             }
         default:
             let weightResult = result as? ORKNumericQuestionResult
-            let weightNumber = (weightResult?.numericAnswer?.int16Value)!
+            let weightNumber = (weightResult?.numericAnswer?.floatValue)!
             weightString = "\(weightNumber)"
         }
         
     }
+    
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd-MM-YYYY"
+    subject.date = formatter.string(from: date)
     
     subject.weight = weightString + " " + weightUnitString
     
@@ -512,8 +517,6 @@ func ExtractClockScores(taskController: ORKTaskViewController){
         
         // there is only one subject
         let subject = subjectArray.first
-        
-        print(subject?.clock?.clockImagePath)
         
         let formStepResults = taskController.result.results
         

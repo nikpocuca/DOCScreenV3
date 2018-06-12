@@ -8,40 +8,41 @@
 
 import UIKit
 import CoreData
+import SwiftCarousel
 
-class PageViewController: UIViewController,UIDocumentInteractionControllerDelegate {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sexLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var bmiLabel: UILabel!
+class PageViewController: UIViewController,UIDocumentInteractionControllerDelegate, SwiftCarouselDelegate {
     
     
-    @IBOutlet weak var moodScore: UILabel!
-    @IBOutlet weak var abstractScore: UILabel!
-    @IBOutlet weak var memoryScore: UILabel!
-    @IBOutlet weak var apneaScore: UILabel!
+    @IBOutlet weak var TaskCarousel: SwiftCarousel!
+    var taskImages: [UIImage]?
+    var imageViews: [UIImageView]?
     
-    @IBOutlet weak var docImage: UIImageView!
+    // Need to change this to fit your task carousel. 
     
-    @IBOutlet weak var clockScore: UILabel!
+    // create image view ?
+    
+    func imageViewForTask(image: UIImage) -> UIImageView {
+        return(UIImageView(image: image))
+    }
+    
+    /*
+    let carouselFrame = CGRect(x: view.center.x - 200.0, y: view.center.y - 100.0, width: 400.0, height: 200.0)
+    carouselView = SwiftCarousel(frame: carouselFrame)
+    try! carouselView.itemsFactory(itemsCount: 5) { choice in
+    let imageView = UIImageView(image: UIImage(named: "puppy\(choice+1)"))
+    imageView.frame = CGRect(origin: .zero, size: CGSize(width: 200.0, height: 200.0))
+    
+    return imageView
+    }
+    carouselView.resizeType = .withoutResizing(10.0)
+    carouselView.delegate = self
+    carouselView.defaultSelectedIndex = 2
+    view.addSubview(carouselView)
+    */
     
     
-    @IBOutlet weak var educationLabel: UILabel!
-    
-    
-    @IBOutlet weak var contourOut: UIButton!
-    
-    
-    @IBOutlet weak var numbersOut: UIButton!
-    
-    
-    @IBOutlet weak var handsOut: UIButton!
-    
-    
+/*
     @IBAction func CompilePDF(_ sender: Any) {
         
         CreatePDF()
@@ -59,27 +60,6 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
         return self
     }
 
-
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-    
-            abstractScore.text = "[   ]"
-            moodScore.text = "[   ]"
-            clockScore.text = "[       ]"
-            memoryScore.text = "[   ]"
-            apneaScore.text = "[   ]"
-            bmiLabel.text = ""
-            weightLabel.text = ""
-            ageLabel.text = ""
-            heightLabel.text = ""
-            
-        
-       
-        }
-    
-    
     @IBAction func test(_ sender: Any) {
         
         let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
@@ -141,24 +121,46 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
                     
                     }
  
-        
+ 
                 
             }
         }
         catch {}
     }
-    
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        taskImages = [#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "memory"),#imageLiteral(resourceName: "sleep"),#imageLiteral(resourceName: "abstraction"),#imageLiteral(resourceName: "mood"),#imageLiteral(resourceName: "clock")]
+      
+        imageViews = taskImages!.map( {imageViewForTask(image: $0)})
+        
+        TaskCarousel.items = imageViews!
+        TaskCarousel.resizeType = .visibleItemsPerPage(3)
+        TaskCarousel.defaultSelectedIndex = 3
+        TaskCarousel.delegate = self
+        TaskCarousel.scrollType = .default
+        
+        TaskCarousel.backgroundColor = UIColor.red
     }
 
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
     }
     
+    
+    // Carousel Delegates.
+    func didEndDragging(withOffset offset: CGPoint) {
+        print("Ended drag")
+    }
 
-
+    func didScroll(toOffset offset: CGPoint) {
+      print("Scrolling")
+    }
+    
 }

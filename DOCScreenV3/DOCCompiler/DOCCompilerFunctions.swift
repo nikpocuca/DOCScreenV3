@@ -18,6 +18,7 @@ func createLabel(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, text: 
     return newUILabel
 }
 
+
 func CreatePDF() {
     let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
     
@@ -64,15 +65,21 @@ func CreatePDF() {
             
             let heightStrings = inputHeight.split(separator: " ");
             let heightNumString = heightStrings[0];
-            let heightUnitString = heightStrings[1];
-            let height = NSNumber(integerLiteral: Int(heightNumString)!)
+            var heightUnitString = heightStrings[1];
+            let height = NSNumber(value: Float(heightNumString)!)
             
             let weightStrings = inputWeight.split(separator: " ");
             let weightNumString = weightStrings[0];
             let weightUnitString = weightStrings[1];
-            let weight = NSNumber(integerLiteral: Int(weightNumString)!)
+            let weight = NSNumber(value: Float(weightNumString)!)
             
-            let bmiFloat = weight.floatValue/(height.floatValue*height.floatValue)
+            var bmiFloat = weight.floatValue/(height.floatValue*height.floatValue)
+            
+            if heightUnitString == "cm" {bmiFloat = bmiFloat*10000
+               heightUnitString = "m"
+            }
+            
+            else {}
             
             let bmiNumString = String(bmiFloat)
             
@@ -87,56 +94,56 @@ func CreatePDF() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-YYYY"
         let nameLabel = createLabel(x: 415, y: 144, width: 200, height: 21, text: (subject?.name!)!)
-        let dateLabel = createLabel(x: 882, y: 144, width: 295, height: 21, text: formatter.string(from: date))
+        let dateLabel = createLabel(x: 882, y: 144, width: 295, height: 21, text: (subject?.date)!)
         let ageLabel = createLabel(x: 400, y: 219, width: 100, height: 21, text: int16ToString(inputInt: (subject?.age)!))
         let sexLabel = createLabel(x: 697, y: 219, width: 115, height: 21, text: sexToString(inputBool: (subject?.sex)!))
         let eduLabel = createLabel(x: 1070, y: 219, width: 63, height: 21, text: int16ToString(inputInt: (subject?.education)!))
         let heightLabel = createLabel(x: 415, y: 257, width: 100, height: 21, text: (subject?.height)!)
         let weightLabel = createLabel(x: 723, y: 257, width: 100, height: 21, text: (subject?.weight)!)
         let bmLabel = createLabel(x: 999, y: 256, width: 150, height: 21, text: bmiToString(inputHeight: (subject?.height)!, inputWeight: (subject?.weight)!))
-        let f1Label = createLabel(x: 637, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.faceRegT1)!))
-        let f2Label = createLabel(x: 637, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.faceRegT2)!))
-        let v1Label = createLabel(x: 733, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.velvetRegT1)!))
-        let v2Label = createLabel(x: 733, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.velvetRegT2)!))
-        let c1Label = createLabel(x: 853, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.churchRegT1)!))
-        let c2Label = createLabel(x: 853, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.churchRegT2)!))
-        let d1Label = createLabel(x: 949, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.daisyRegT1)!))
-        let d2Label = createLabel(x: 949, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.daisyRegT1)!))
-        let r1Label = createLabel(x: 1045, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.redRegT1)!))
-        let r2Label = createLabel(x: 1045, y: 359, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.daisyRegT2)!))
+        let f1Label = createLabel(x: 642, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.faceRegT1)!))
+        let f2Label = createLabel(x: 642, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.faceRegT2)!))
+        let v1Label = createLabel(x: 744, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.velvetRegT1)!))
+        let v2Label = createLabel(x: 744, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.velvetRegT2)!))
+        let c1Label = createLabel(x: 865, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.churchRegT1)!))
+        let c2Label = createLabel(x: 865, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.churchRegT2)!))
+        let d1Label = createLabel(x: 956, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.daisyRegT1)!))
+        let d2Label = createLabel(x: 956, y: 355, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.daisyRegT1)!))
+        let r1Label = createLabel(x: 1052, y: 322, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.redRegT1)!))
+        let r2Label = createLabel(x: 1052, y: 359, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.daisyRegT2)!))
         
         // define mood return functions, creates labels on the row and column associated with the result
         
         func moodReturnLabelsFirstRow(input: Int16) -> UILabel {
             switch input {
             case Int16(0):
-                return(createLabel(x: 599, y: 467, width: 63, height: 21, text: check))
+                return(createLabel(x: 564, y: 467, width: 63, height: 21, text: check))
             case Int16(1):
-                return(createLabel(x: 733, y: 467, width: 63, height: 21, text: check))
+                return(createLabel(x: 740, y: 467, width: 63, height: 21, text: check))
             case Int16(2):
-                return(createLabel(x: 882, y: 467, width: 63, height: 21, text: check))
+                return(createLabel(x: 890, y: 467, width: 63, height: 21, text: check))
             default:
-                return(createLabel(x: 1027, y: 467, width: 63, height: 21, text: check))
+                return(createLabel(x: 1033, y: 467, width: 63, height: 21, text: check))
             }
         }
         
         func moodReturnLabelsSecondRow(input: Int16) ->  UILabel {
             switch input {
             case Int16(0):
-                return(createLabel(x: 599, y: 504, width: 63, height: 21, text: check))
+                return(createLabel(x: 564, y: 504, width: 63, height: 21, text: check))
             case Int16(1):
-                return(createLabel(x: 733, y: 504, width: 63, height: 21, text: check))
+                return(createLabel(x: 740, y: 504, width: 63, height: 21, text: check))
             case Int16(2):
-                return(createLabel(x: 882, y: 504, width: 63, height: 21, text: check))
+                return(createLabel(x: 890, y: 504, width: 63, height: 21, text: check))
             default:
-                return(createLabel(x: 1027, y: 504, width: 63, height: 21, text: check))
+                return(createLabel(x: 1033, y: 504, width: 63, height: 21, text: check))
             }
         }
         
         let mR1Label = moodReturnLabelsFirstRow(input: (subject?.mood?.q1Mood)!)
         let mR2Label = moodReturnLabelsSecondRow(input: (subject?.mood?.q2Mood)!)
         
-        let moodScoreLabel = createLabel(x: 1139, y: 479, width: 63, height: 21, text: int16ToString(inputInt: (subject?.mood?.moodScore)!))
+        let moodScoreLabel = createLabel(x: 1150, y: 479, width: 63, height: 21, text: int16ToString(inputInt: (subject?.mood?.moodScore)!))
         
         // define apnea return functions for UIlabels.
         
@@ -181,7 +188,7 @@ func CreatePDF() {
         let q3ApneaLabel = apneaQThreeLabel(inputBool: (subject?.apnea?.q3Score)!)
         let q4ApneaLabel = apneaQFourLabel(inputBool: (subject?.apnea?.q4Score)!)
         
-        let apneaScoreLabel = createLabel(x: 1139, y: 632, width: 63, height: 21, text: int16ToString(inputInt: (subject?.apnea?.apneaScore)!))
+        let apneaScoreLabel = createLabel(x: 1144, y: 632, width: 63, height: 21, text: int16ToString(inputInt: (subject?.apnea?.apneaScore)!))
         
         let af1Label = createLabel(x: 637, y: 1196, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.faceWC)!))
         let af2Label = createLabel(x: 637, y: 1230, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.faceCC)!))
@@ -198,19 +205,32 @@ func CreatePDF() {
         let ar1Label = createLabel(x: 1054, y: 1196, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.redWC)!))
         let ar2Label = createLabel(x: 1054, y: 1230, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.redCC)!))
         let ar3Label = createLabel(x: 1054, y: 1263, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.memory?.redMC)!))
-        let memoryScoreLabel = createLabel(x: 1135, y: 1239, width: 63, height: 21, text: int16ToString(inputInt: (subject?.memory?.memoryScore)!))
+        let memoryScoreLabel = createLabel(x: 1145, y: 1239, width: 63, height: 21, text: int16ToString(inputInt: (subject?.memory?.memoryScore)!))
         
         let tallyMoodScoreLabel = createLabel(x: 1143, y: 1370, width: 63, height: 21, text: int16ToString(inputInt: (subject?.mood?.moodScore)!))
         let tallyApneaScoreLabel = createLabel(x: 1143, y: 1409, width: 63, height: 21, text: int16ToString(inputInt: (subject?.apnea?.apneaScore)!))
         let tallyCogScoreLabel = createLabel(x: 1135, y: 1450, width: 63, height: 21, text: int16ToString(inputInt: (subject?.clock?.clockScore)! + (subject?.abstract?.abstractScore)! + (subject?.memory?.memoryScore)!))
         
-        let contourLabel = createLabel(x: 1048, y: 845, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.clock?.contour)!))
-        let numbersLabel = createLabel(x: 1048, y: 891, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.clock?.numbers)!))
-        let handsLabel = createLabel(x: 1048, y: 937, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.clock?.hands)!))
-        let clockScoreLabel =  createLabel(x: 1135, y: 919, width: 63, height: 21, text: int16ToString(inputInt: (subject?.clock?.clockScore)!))
+        let contourLabel = createLabel(x: 1051, y: 845, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.clock?.contour)!))
+        let numbersLabel = createLabel(x: 1051, y: 891, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.clock?.numbers)!))
+        let handsLabel = createLabel(x: 1051, y: 937, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.clock?.hands)!))
+        let clockScoreLabel =  createLabel(x: 1145, y: 919, width: 63, height: 21, text: int16ToString(inputInt: (subject?.clock?.clockScore)!))
         let ab1Label = createLabel(x: 312, y: 1123, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.abstract?.q1BoolScore)!))
-        let ab2Label = createLabel(x: 833, y: 1123, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.abstract?.q2BoolScore)!))
-        let absScore = createLabel(x: 1135, y: 1123, width: 63, height: 21, text: int16ToString(inputInt: (subject?.abstract?.abstractScore)!) )
+        let ab2Label = createLabel(x: 840, y: 1123, width: 63, height: 21, text: booleanToCheck(inputBool: (subject?.abstract?.q2BoolScore)!))
+        let absScore = createLabel(x: 1140, y: 1123, width: 63, height: 21, text: int16ToString(inputInt: (subject?.abstract?.abstractScore)!) )
+        
+        // data string on pdf.
+        
+     
+        
+        func generateDataString() -> String {
+            let profileString = "name: \((subject?.name)!), age: \((subject?.age)!), date: \((subject?.date)!),edu: \((subject?.education)!),height: \((subject?.height)!), weight: \((subject?.weight)!),sex: \(sexToString(inputBool: (subject?.sex)!))"
+            return(profileString)
+        }
+        
+        let dataStringLabel = createLabel(x: 42, y: 1538, width: 917, height: 21, text: generateDataString())
+        
+        dataStringLabel.font = dataStringLabel.font.withSize(1)
         
         let clockImageView = UIImageView(frame: CGRect(x: 272, y: 735, width: 243.75, height: 325))
         
@@ -225,7 +245,7 @@ func CreatePDF() {
                                      af1Label,af2Label,af3Label,av1Label,av2Label,av3Label,ac1Label,ac2Label,ac3Label,ad1Label,ad2Label,ad3Label,ar1Label, absScore,
                                          mR1Label,mR2Label,
                                      ar2Label,ar3Label,memoryScoreLabel,tallyMoodScoreLabel,tallyApneaScoreLabel,tallyCogScoreLabel,f1Label,f2Label,v1Label,
-                                     v2Label,c1Label,c2Label,d1Label,d2Label,r1Label,r2Label,
+                                     v2Label,c1Label,c2Label,d1Label,d2Label,r1Label,r2Label,dataStringLabel,
                                      
                                      moodScoreLabel,q1ApneaLabel,q2ApneaLabel,q3ApneaLabel,q4ApneaLabel,apneaScoreLabel]
         for label in formLabels { formView.addSubview(label) }
