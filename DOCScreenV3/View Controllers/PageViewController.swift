@@ -17,32 +17,185 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
     @IBOutlet weak var TaskCarousel: SwiftCarousel!
     var taskImages: [UIImage]?
     var imageViews: [UIImageView]?
+    let infoTitleLabels = ["Profile","Memory","Sleep","Abstraction","Mood","Clock"]
     
-    // Need to change this to fit your task carousel. 
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var presentInfoView: UIView!
+    
+    // Need to change this to fit your task carousel.
     
     // create image view ?
     
     func imageViewForTask(image: UIImage) -> UIImageView {
-        return(UIImageView(image: image))
+        let taskImageView = UIImageView(image: image)
+        
+        taskImageView.backgroundColor = UIColor.red
+        return(taskImageView)
     }
     
-    /*
-    let carouselFrame = CGRect(x: view.center.x - 200.0, y: view.center.y - 100.0, width: 400.0, height: 200.0)
-    carouselView = SwiftCarousel(frame: carouselFrame)
-    try! carouselView.itemsFactory(itemsCount: 5) { choice in
-    let imageView = UIImageView(image: UIImage(named: "puppy\(choice+1)"))
-    imageView.frame = CGRect(origin: .zero, size: CGSize(width: 200.0, height: 200.0))
+
     
-    return imageView
+    func BuildProfileView() -> Void {
+        
+    presentInfoView.backgroundColor = UIColor.red
+        
     }
-    carouselView.resizeType = .withoutResizing(10.0)
-    carouselView.delegate = self
-    carouselView.defaultSelectedIndex = 2
-    view.addSubview(carouselView)
-    */
     
     
-/*
+    
+    func DrawProfileView(view: UIView) -> Void{
+    
+        let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+        
+        do {
+            
+            let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+            
+            // theres only one subject.
+            let subject = subjectArray.first
+            
+            let y = view.frame.origin.y
+            
+            let fullView = UIView(frame: CGRect(x: 0, y: y, width: 375, height: 120))
+            
+            // Style Function
+            func LabelStyle(label: UILabel) -> Void {
+                label.textAlignment = .center
+                label.layer.borderWidth = 1
+            }
+            
+            // Generate Age Title
+            let ageTitleLabel = UILabel(frame: CGRect(x: 0, y: y, width: 125, height: 30))
+            ageTitleLabel.text = "Age"
+            ageTitleLabel.textAlignment = .center
+            ageTitleLabel.layer.borderWidth = 1
+            
+            fullView.addSubview(ageTitleLabel)
+            
+            // Number of Age
+            let ageNumberLabel = UILabel(frame: CGRect(x: 0, y: y+30, width: 125, height: 50))
+            ageNumberLabel.text = String((subject?.age)!)
+            ageNumberLabel.textAlignment = .center
+            ageNumberLabel.layer.borderWidth = 1
+            
+            fullView.addSubview(ageNumberLabel)
+            
+            // Education Title
+            let eduTitleLabel = UILabel(frame: CGRect(x: 125, y: y, width: 125, height: 30))
+            eduTitleLabel.text = "Education"
+            eduTitleLabel.textAlignment = .center
+            eduTitleLabel.layer.borderWidth = 1
+            
+            fullView.addSubview(eduTitleLabel)
+            
+            // Education Number
+            let eduNumberLabel = UILabel(frame: CGRect(x: 125, y: y+30, width: 125, height: 50))
+            eduNumberLabel.text = String((subject?.education)!)
+            eduNumberLabel.textAlignment = .center
+            eduNumberLabel.layer.borderWidth = 1
+            
+            fullView.addSubview(eduNumberLabel)
+            
+            // Sex Title
+            let sexTitle = UILabel(frame: CGRect(x: 250, y: y, width: 125, height: 30))
+            sexTitle.text = "Sex"
+            sexTitle.textAlignment = .center
+            sexTitle.layer.borderWidth = 1
+            
+            fullView.addSubview(sexTitle)
+            
+            // Sex Label
+            
+            func sexToString(inputBool: Bool) -> String{
+                switch inputBool {
+                case true:
+                    return("Male")
+                default:
+                    return("Female")
+                }
+            }
+            
+            let sexLabel = UILabel(frame: CGRect(x: 250, y: y+30, width: 125, height: 50))
+            sexLabel.text = sexToString(inputBool: (subject?.sex)!)
+            sexLabel.textAlignment = .center
+            sexLabel.layer.borderWidth = 1
+            
+            fullView.addSubview(sexLabel)
+            
+            // Weight Title
+            let weightTitle = UILabel(frame: CGRect(x: 0, y: y+80, width: 125, height: 30))
+            weightTitle.text = "Weight"
+            LabelStyle(label: weightTitle)
+            fullView.addSubview(weightTitle)
+            
+            // Height Title
+            let heightTitle = UILabel(frame: CGRect(x: 125, y: y+80, width: 125, height: 30))
+            heightTitle.text = "Height"
+            LabelStyle(label: heightTitle)
+            fullView.addSubview(heightTitle)
+            
+            // BMI Title
+            let bmiTitle = UILabel(frame: CGRect(x: 250, y: y+80, width: 125, height: 30))
+            bmiTitle.text = "BMI"
+            LabelStyle(label: bmiTitle)
+            fullView.addSubview(bmiTitle)
+            
+            // Weight Number
+            let weightNumberLabel = UILabel(frame: CGRect(x: 0, y: y+110, width: 125, height: 50))
+            weightNumberLabel.text = (subject?.weight)!
+            LabelStyle(label: weightNumberLabel)
+            fullView.addSubview(weightNumberLabel)
+            
+            // Height Number
+            let heightNumberLabel = UILabel(frame: CGRect(x: 125, y: y+110, width: 125, height: 50))
+            heightNumberLabel.text = (subject?.height)!
+            LabelStyle(label: heightNumberLabel)
+            fullView.addSubview(heightNumberLabel)
+            
+            func bmiToString(inputHeight: String, inputWeight: String) -> String {
+                
+                let heightStrings = inputHeight.split(separator: " ");
+                let heightNumString = heightStrings[0];
+                var heightUnitString = heightStrings[1];
+                let height = NSNumber(value: Float(heightNumString)!)
+                
+                let weightStrings = inputWeight.split(separator: " ");
+                let weightNumString = weightStrings[0];
+                let weightUnitString = weightStrings[1];
+                let weight = NSNumber(value: Float(weightNumString)!)
+                
+                var bmiFloat = weight.floatValue/(height.floatValue*height.floatValue)
+                
+                if heightUnitString == "cm" {bmiFloat = bmiFloat*10000
+                    heightUnitString = "m"
+                }
+                    
+                else {}
+                
+                let bmiNumString = String(bmiFloat)
+                
+                let bmiUnitString = weightUnitString + "/" + heightUnitString + "^2";
+                
+                let bmiString = bmiNumString + " " + bmiUnitString
+                return (bmiString);
+            }
+            
+            // BMI Number
+            let bmiNumberLabel = UILabel(frame: CGRect(x: 250, y: y+110, width: 125, height: 50))
+            bmiNumberLabel.text = bmiToString(inputHeight: (subject?.height)!, inputWeight: (subject?.weight)!)
+            LabelStyle(label: bmiNumberLabel)
+            fullView.addSubview(bmiNumberLabel)
+            
+            fullView.tag = 200
+            
+            view.addSubview(fullView)
+        }
+            
+        catch {print("Place view Controller that says Alert there is no subject yet")}
+        
+    }
+    
+
     @IBAction func CompilePDF(_ sender: Any) {
         
         CreatePDF()
@@ -59,7 +212,7 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
     }
-
+/*
     @IBAction func test(_ sender: Any) {
         
         let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
@@ -137,15 +290,19 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
         imageViews = taskImages!.map( {imageViewForTask(image: $0)})
         
         TaskCarousel.items = imageViews!
-        TaskCarousel.resizeType = .visibleItemsPerPage(3)
-        TaskCarousel.defaultSelectedIndex = 3
+        
+        TaskCarousel.defaultSelectedIndex = 0
         TaskCarousel.delegate = self
         TaskCarousel.scrollType = .default
+        TaskCarousel.resizeType = .floatWithSpacing(10);
         
-        TaskCarousel.backgroundColor = UIColor.red
+        TaskCarousel.backgroundColor = UIColor.white
+        
+        infoTitleLabel.text = "Profile"
+        
+        
     }
 
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -154,13 +311,82 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
     }
     
     
+    func didSelectItem(item: UIView, index: Int, tapped: Bool) -> UIView? {
+        if let taskImage = item as? UIImageView {
+            
+            infoTitleLabel.text = infoTitleLabels[index]
+            print(index)
+            
+            if index == 5 {
+                
+                var clockImageView = UIImageView(image: loadImage(fileName: "imageStep.jpg")!)
+                
+                clockImageView.frame = CGRect(x: 30, y: 60, width: 200, height: 300)
+                
+                clockImageView.contentMode = .scaleAspectFit
+                
+                clockImageView.tag = 100
+                
+                presentInfoView.addSubview(clockImageView)
+                
+            }
+            
+            if index == 0 {
+                
+                DrawProfileView(view: presentInfoView)
+                
+            }
+            
+            return taskImage
+        }
+        return item
+    }
+    
+    func didDeselectItem(item: UIView, index: Int) -> UIView? {
+         if let taskImage = item as? UIImageView {
+            
+            if let viewWithTag = self.view.viewWithTag(100) {
+                print("Tag 100")
+                viewWithTag.removeFromSuperview()
+            }
+            if let viewWithTag = self.view.viewWithTag(200) {
+                print("Tag 200")
+                viewWithTag.removeFromSuperview()
+            }
+            else {
+                
+                print("tag not found")
+            }
+            
+            return taskImage
+        }
+        return item
+    }
+    
     // Carousel Delegates.
     func didEndDragging(withOffset offset: CGPoint) {
+        
+        
         print("Ended drag")
     }
 
     func didScroll(toOffset offset: CGPoint) {
+        presentInfoView.backgroundColor = UIColor.white
+        
+        if let viewWithTag = self.view.viewWithTag(100) {
+            print("Tag 100")
+            viewWithTag.removeFromSuperview()
+        }
+        else {
+            print("tag not found")
+        }
+        
+        
       print("Scrolling")
     }
+    
+    // Draw Profile View Controller
+    
+    
     
 }
