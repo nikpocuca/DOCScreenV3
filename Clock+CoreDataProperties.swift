@@ -2,7 +2,7 @@
 //  Clock+CoreDataProperties.swift
 //  DOCScreenV3
 //
-//  Created by Nik on 2018-05-23.
+//  Created by Nik on 2018-07-03.
 //  Copyright © 2018 Nik. All rights reserved.
 //
 //
@@ -17,7 +17,6 @@ extension Clock {
         return NSFetchRequest<Clock>(entityName: "Clock")
     }
 
-    @NSManaged public var clockImagePath: String?
     @NSManaged public var clockScore: Int16
     @NSManaged public var contour: Bool
     @NSManaged public var hands: Bool

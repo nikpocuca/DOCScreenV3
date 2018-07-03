@@ -232,7 +232,7 @@ func CreatePDF() {
         
         dataStringLabel.font = dataStringLabel.font.withSize(1)
         
-        let clockImageView = UIImageView(frame: CGRect(x: 272, y: 735, width: 243.75, height: 325))
+        let clockImageView = UIImageView(frame: CGRect(x: 272, y: 735, width: 325, height: 325))
         
         let imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("imageStep.jpg")
         

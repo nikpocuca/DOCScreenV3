@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="18A293u" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Abstraction" representedClassName="Abstraction" syncable="YES">
         <attribute name="abstractScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="q1BoolScore" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -15,7 +15,6 @@
         <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="apnea" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <entity name="Clock" representedClassName="Clock" syncable="YES">
-        <attribute name="clockImagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clockScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="contour" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hands" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -74,7 +73,7 @@
     <elements>
         <element name="Abstraction" positionX="-6372" positionY="774" width="128" height="103"/>
         <element name="Apnea" positionX="-6363" positionY="909" width="128" height="133"/>
-        <element name="Clock" positionX="-6365" positionY="1089" width="128" height="133"/>
+        <element name="Clock" positionX="-6365" positionY="1089" width="128" height="118"/>
         <element name="Memory" positionX="-6678" positionY="770" width="126" height="448"/>
         <element name="Mood" positionX="-6525" positionY="1026" width="128" height="103"/>
         <element name="Subject" positionX="-6527" positionY="774" width="128" height="225"/>

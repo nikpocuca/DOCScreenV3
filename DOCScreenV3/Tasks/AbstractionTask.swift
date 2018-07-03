@@ -36,7 +36,6 @@ public var AbstractionTask: ORKOrderedTask {
     
     steps += [measureStep]
     
-    
 
 
     return ORKOrderedTask(identifier: "AbstractionTask", steps: steps)

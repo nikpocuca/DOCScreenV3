@@ -11,6 +11,27 @@ import ResearchKit
 import CoreVideo
 import CoreData
 
+// testing function.
+
+func testData() -> Void {
+    
+    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
+    
+    do {
+        
+        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        // theres only one subject.
+        let subject = subjectArray.first
+        print(subjectArray)
+        print(subject)
+
+        
+        PersistenceService.saveContext()
+    }
+    catch {print("error getting subject in score clock")}
+}
+
 
 
 func roundToDecimals(num: CGFloat,decimals: Int = 2) -> CGFloat {
@@ -31,37 +52,6 @@ public func loadImage(fileName: String) -> UIImage? {
 
 
 
-public func loadClockImage(fileName: String) -> UIImage? {
-    
-    let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(fileName)
-    
-    let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
-        
-    do {
-        let subjectArray = try PersistenceService.context.fetch(fetchRequest)
-        
-        // there is only one subject
-        let subject = subjectArray.first
-    
-        let imageData = try Data(contentsOf: fileURL)
-        
-        let clockObject = Clock(context: PersistenceService.context)
-        
-        clockObject.clockImagePath = fileURL.absoluteString
-        
-        subject?.clock = clockObject
-        
-        PersistenceService.saveContext()
-        
-        return UIImage(data: imageData)
-        
-    } catch {
-        print("Error loading image : \(error)")
-    }
-    
-    return nil
-}
-
 extension String {
     
     func removeCharacters(from forbiddenChars: CharacterSet) -> String {
@@ -73,15 +63,6 @@ extension String {
         return removeCharacters(from: CharacterSet(charactersIn: from))
     }
 }
-
-
-//
-//  File.swift
-//  BasicCoreML
-//
-//  Created by Brian Advent on 09.06.17.
-//  Copyright © 2017 Brian Advent. All rights reserved.
-//
 
 
 struct ImageProcessor {
@@ -202,6 +183,15 @@ func crop(image: UIImage, withWidth width: Double, andHeight height: Double) -> 
     }
     
     return nil
+}
+
+func bool2String(b: Bool?) -> String {
+    switch b! {
+    case true:
+        return("Yes")
+    default:
+        return("No")
+    }
 }
 
 

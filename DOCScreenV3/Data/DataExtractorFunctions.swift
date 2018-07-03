@@ -518,6 +518,8 @@ func ExtractClockScores(taskController: ORKTaskViewController){
         // there is only one subject
         let subject = subjectArray.first
         
+        let subjectClock = Clock(context: PersistenceService.context)
+        
         let formStepResults = taskController.result.results
         
         let firstResult = formStepResults![0] as! ORKStepResult
@@ -526,26 +528,34 @@ func ExtractClockScores(taskController: ORKTaskViewController){
         
         let choices = firstResults.choiceAnswers
         
+        subjectClock.contour = false
+        subjectClock.hands = false
+        subjectClock.numbers = false
+        
+        print(choices!)
+        
         for choice in choices! {
             let numChoice = choice as! NSNumber
             switch numChoice.intValue {
             case 0:
-                subject?.clock?.contour = true
+                subjectClock.contour = true
             case 1:
-                subject?.clock?.numbers = true
+                subjectClock.numbers = true
             case 2:
-                subject?.clock?.hands = true
+                 subjectClock.hands = true
             default:
-                subject?.clock?.contour = false
-                subject?.clock?.numbers = false
-                subject?.clock?.hands = false
+                print("no score given")
             }
             
         }
+        
+        subjectClock.clockScore = NSNumber(value: choices!.count).int16Value
     
-        subject?.clock?.clockScore = NSNumber(value: choices!.count).int16Value
-    
+        subject?.clock = subjectClock
+        
         PersistenceService.saveContext()
+        
+        print("Hit score")
     }
     catch {print("Place view Controller that says Alert there is no subject yet")}
     

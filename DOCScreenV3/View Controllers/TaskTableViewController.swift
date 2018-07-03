@@ -9,6 +9,8 @@
 import UIKit
 import ResearchKit
 import CoreML
+import CoreData
+
 
 class TaskTableViewController: UITableViewController {
 
@@ -188,7 +190,7 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                     
                     var steps = [ORKStep]()
     
-                    let imageScoreStepImage = crop(image: loadClockImage(fileName: "imageStep.jpg")!,withWidth: 2000, andHeight: 2000)!
+                    let imageScoreStepImage = crop(image: loadImage(fileName: "imageStep.jpg")!,withWidth: 2000, andHeight: 2000)!
                     let imageTitle = "Score the clock"
                     let imageFormStep = ORKFormStep(identifier: "imageFormStep", title: imageTitle, text: "")
                     

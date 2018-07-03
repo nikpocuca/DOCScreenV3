@@ -19,7 +19,6 @@
 		244893171FAC8F5500139579 /* DOCEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893161FAC8F5500139579 /* DOCEntry.swift */; };
 		2448931A1FAC8F7C00139579 /* LandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893191FAC8F7C00139579 /* LandViewController.swift */; };
 		244893201FAC8FB400139579 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448931D1FAC8FB400139579 /* Utility.swift */; };
-		244893211FAC8FB400139579 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2448931E1FAC8FB400139579 /* MobileNet.mlmodel */; };
 		244893251FAC8FE800139579 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893231FAC8FE800139579 /* TaskTableViewController.swift */; };
 		244893261FAC8FE800139579 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893241FAC8FE800139579 /* PageViewController.swift */; };
 		244893281FAC8FFB00139579 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893271FAC8FFB00139579 /* TaskTableViewCell.swift */; };
@@ -32,20 +31,26 @@
 		245D1F8D20CD96D000EE4C02 /* DOCCompilerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D1F8C20CD96D000EE4C02 /* DOCCompilerFunctions.swift */; };
 		24AFEBF320B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24AFEBF120B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld */; };
 		24BF92C020B5F9EE00CCC989 /* DataExtractorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */; };
-		24BF92CD20B5FD1400CCC989 /* Apnea+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C120B5FD1400CCC989 /* Apnea+CoreDataClass.swift */; };
-		24BF92CE20B5FD1400CCC989 /* Apnea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C220B5FD1400CCC989 /* Apnea+CoreDataProperties.swift */; };
-		24BF92CF20B5FD1400CCC989 /* Memory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C320B5FD1400CCC989 /* Memory+CoreDataClass.swift */; };
-		24BF92D020B5FD1400CCC989 /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C420B5FD1400CCC989 /* Memory+CoreDataProperties.swift */; };
-		24BF92D120B5FD1400CCC989 /* Mood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C520B5FD1400CCC989 /* Mood+CoreDataClass.swift */; };
-		24BF92D220B5FD1400CCC989 /* Mood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C620B5FD1400CCC989 /* Mood+CoreDataProperties.swift */; };
-		24BF92D320B5FD1400CCC989 /* Clock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C720B5FD1400CCC989 /* Clock+CoreDataClass.swift */; };
-		24BF92D420B5FD1400CCC989 /* Clock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C820B5FD1400CCC989 /* Clock+CoreDataProperties.swift */; };
-		24BF92D520B5FD1400CCC989 /* Abstraction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92C920B5FD1400CCC989 /* Abstraction+CoreDataClass.swift */; };
-		24BF92D620B5FD1400CCC989 /* Abstraction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92CA20B5FD1400CCC989 /* Abstraction+CoreDataProperties.swift */; };
-		24BF92D720B5FD1400CCC989 /* Subject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92CB20B5FD1400CCC989 /* Subject+CoreDataClass.swift */; };
-		24BF92D820B5FD1400CCC989 /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92CC20B5FD1400CCC989 /* Subject+CoreDataProperties.swift */; };
 		24BF92DA20B601CA00CCC989 /* ProfileTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92D920B601CA00CCC989 /* ProfileTask.swift */; };
 		24C3F5BD20B1E4EF00A093C4 /* DOCForm.png in Resources */ = {isa = PBXBuildFile; fileRef = 24C3F5BC20B1E4EF00A093C4 /* DOCForm.png */; };
+		24CEE76520EBCE85005D983A /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE76420EBCE85005D983A /* ProfileBuilder.swift */; };
+		24CEE76720EBCEA7005D983A /* ClockBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE76620EBCEA7005D983A /* ClockBuilder.swift */; };
+		24CEE76920EBCEDA005D983A /* MoodBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE76820EBCEDA005D983A /* MoodBuilder.swift */; };
+		24CEE76B20EBCF06005D983A /* ApneaBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE76A20EBCF06005D983A /* ApneaBuilder.swift */; };
+		24CEE76D20EBCF2A005D983A /* MemoryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE76C20EBCF2A005D983A /* MemoryBuilder.swift */; };
+		24CEE76F20EBCF78005D983A /* AbstractBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE76E20EBCF78005D983A /* AbstractBuilder.swift */; };
+		24CEE77C20EBD808005D983A /* Mood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77020EBD808005D983A /* Mood+CoreDataClass.swift */; };
+		24CEE77D20EBD808005D983A /* Mood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77120EBD808005D983A /* Mood+CoreDataProperties.swift */; };
+		24CEE77E20EBD808005D983A /* Clock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77220EBD808005D983A /* Clock+CoreDataClass.swift */; };
+		24CEE77F20EBD808005D983A /* Clock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77320EBD808005D983A /* Clock+CoreDataProperties.swift */; };
+		24CEE78020EBD808005D983A /* Subject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77420EBD808005D983A /* Subject+CoreDataClass.swift */; };
+		24CEE78120EBD808005D983A /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77520EBD808005D983A /* Subject+CoreDataProperties.swift */; };
+		24CEE78220EBD808005D983A /* Apnea+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77620EBD808005D983A /* Apnea+CoreDataClass.swift */; };
+		24CEE78320EBD808005D983A /* Apnea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77720EBD808005D983A /* Apnea+CoreDataProperties.swift */; };
+		24CEE78420EBD808005D983A /* Abstraction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77820EBD808005D983A /* Abstraction+CoreDataClass.swift */; };
+		24CEE78520EBD808005D983A /* Abstraction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77920EBD808005D983A /* Abstraction+CoreDataProperties.swift */; };
+		24CEE78620EBD808005D983A /* Memory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77A20EBD808005D983A /* Memory+CoreDataClass.swift */; };
+		24CEE78720EBD808005D983A /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77B20EBD808005D983A /* Memory+CoreDataProperties.swift */; };
 		24ED600A1FB09D850041C5A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ED60091FB09D840041C5A8 /* Main.storyboard */; };
 		42D19150D5EFFAF8A8F7CB05 /* Pods_DOCScreenV3UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19906A1855E36D8B3943878 /* Pods_DOCScreenV3UITests.framework */; };
 		5F0987A342CEF006433B19F5 /* Pods_DOCScreenV3Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784A0BBC5C052F82D8B7D87 /* Pods_DOCScreenV3Tests.framework */; };
@@ -89,7 +94,6 @@
 		244893161FAC8F5500139579 /* DOCEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOCEntry.swift; sourceTree = "<group>"; };
 		244893191FAC8F7C00139579 /* LandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandViewController.swift; sourceTree = "<group>"; };
 		2448931D1FAC8FB400139579 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		2448931E1FAC8FB400139579 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 		244893231FAC8FE800139579 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		244893241FAC8FE800139579 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		244893271FAC8FFB00139579 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -102,20 +106,26 @@
 		245D1F8C20CD96D000EE4C02 /* DOCCompilerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOCCompilerFunctions.swift; sourceTree = "<group>"; };
 		24AFEBF220B1F7FF00526F8F /* DOCScreenV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DOCScreenV3.xcdatamodel; sourceTree = "<group>"; };
 		24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtractorFunctions.swift; sourceTree = "<group>"; };
-		24BF92C120B5FD1400CCC989 /* Apnea+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apnea+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24BF92C220B5FD1400CCC989 /* Apnea+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apnea+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		24BF92C320B5FD1400CCC989 /* Memory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24BF92C420B5FD1400CCC989 /* Memory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		24BF92C520B5FD1400CCC989 /* Mood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24BF92C620B5FD1400CCC989 /* Mood+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		24BF92C720B5FD1400CCC989 /* Clock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clock+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24BF92C820B5FD1400CCC989 /* Clock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clock+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		24BF92C920B5FD1400CCC989 /* Abstraction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Abstraction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24BF92CA20B5FD1400CCC989 /* Abstraction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Abstraction+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		24BF92CB20B5FD1400CCC989 /* Subject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24BF92CC20B5FD1400CCC989 /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24BF92D920B601CA00CCC989 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
 		24C3F5BC20B1E4EF00A093C4 /* DOCForm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DOCForm.png; sourceTree = "<group>"; };
+		24CEE76420EBCE85005D983A /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		24CEE76620EBCEA7005D983A /* ClockBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockBuilder.swift; sourceTree = "<group>"; };
+		24CEE76820EBCEDA005D983A /* MoodBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodBuilder.swift; sourceTree = "<group>"; };
+		24CEE76A20EBCF06005D983A /* ApneaBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApneaBuilder.swift; sourceTree = "<group>"; };
+		24CEE76C20EBCF2A005D983A /* MemoryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryBuilder.swift; sourceTree = "<group>"; };
+		24CEE76E20EBCF78005D983A /* AbstractBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractBuilder.swift; sourceTree = "<group>"; };
+		24CEE77020EBD808005D983A /* Mood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24CEE77120EBD808005D983A /* Mood+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24CEE77220EBD808005D983A /* Clock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clock+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24CEE77320EBD808005D983A /* Clock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clock+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24CEE77420EBD808005D983A /* Subject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24CEE77520EBD808005D983A /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24CEE77620EBD808005D983A /* Apnea+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apnea+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24CEE77720EBD808005D983A /* Apnea+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apnea+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24CEE77820EBD808005D983A /* Abstraction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Abstraction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24CEE77920EBD808005D983A /* Abstraction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Abstraction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24CEE77A20EBD808005D983A /* Memory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24CEE77B20EBD808005D983A /* Memory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24ED60091FB09D840041C5A8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4512DF37F28B8F8A60513238 /* Pods-DOCScreenV3Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3Tests/Pods-DOCScreenV3Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		506673F8F6CF6CE8FCE65CBD /* Pods-DOCScreenV3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3UITests/Pods-DOCScreenV3UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,21 +165,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2435B31D20E3EAEB00DBAEE0 /* UIBuilderFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				24CEE76420EBCE85005D983A /* ProfileBuilder.swift */,
+				24CEE76620EBCEA7005D983A /* ClockBuilder.swift */,
+				24CEE76820EBCEDA005D983A /* MoodBuilder.swift */,
+				24CEE76A20EBCF06005D983A /* ApneaBuilder.swift */,
+				24CEE76C20EBCF2A005D983A /* MemoryBuilder.swift */,
+				24CEE76E20EBCF78005D983A /* AbstractBuilder.swift */,
+			);
+			path = UIBuilderFunctions;
+			sourceTree = "<group>";
+		};
 		244892CD1FAC8EA300139579 = {
 			isa = PBXGroup;
 			children = (
-				24BF92C120B5FD1400CCC989 /* Apnea+CoreDataClass.swift */,
-				24BF92C220B5FD1400CCC989 /* Apnea+CoreDataProperties.swift */,
-				24BF92C320B5FD1400CCC989 /* Memory+CoreDataClass.swift */,
-				24BF92C420B5FD1400CCC989 /* Memory+CoreDataProperties.swift */,
-				24BF92C520B5FD1400CCC989 /* Mood+CoreDataClass.swift */,
-				24BF92C620B5FD1400CCC989 /* Mood+CoreDataProperties.swift */,
-				24BF92C720B5FD1400CCC989 /* Clock+CoreDataClass.swift */,
-				24BF92C820B5FD1400CCC989 /* Clock+CoreDataProperties.swift */,
-				24BF92C920B5FD1400CCC989 /* Abstraction+CoreDataClass.swift */,
-				24BF92CA20B5FD1400CCC989 /* Abstraction+CoreDataProperties.swift */,
-				24BF92CB20B5FD1400CCC989 /* Subject+CoreDataClass.swift */,
-				24BF92CC20B5FD1400CCC989 /* Subject+CoreDataProperties.swift */,
+				24CEE77020EBD808005D983A /* Mood+CoreDataClass.swift */,
+				24CEE77120EBD808005D983A /* Mood+CoreDataProperties.swift */,
+				24CEE77220EBD808005D983A /* Clock+CoreDataClass.swift */,
+				24CEE77320EBD808005D983A /* Clock+CoreDataProperties.swift */,
+				24CEE77420EBD808005D983A /* Subject+CoreDataClass.swift */,
+				24CEE77520EBD808005D983A /* Subject+CoreDataProperties.swift */,
+				24CEE77620EBD808005D983A /* Apnea+CoreDataClass.swift */,
+				24CEE77720EBD808005D983A /* Apnea+CoreDataProperties.swift */,
+				24CEE77820EBD808005D983A /* Abstraction+CoreDataClass.swift */,
+				24CEE77920EBD808005D983A /* Abstraction+CoreDataProperties.swift */,
+				24CEE77A20EBD808005D983A /* Memory+CoreDataClass.swift */,
+				24CEE77B20EBD808005D983A /* Memory+CoreDataProperties.swift */,
 				24AFEBF120B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld */,
 				244892D81FAC8EA300139579 /* DOCScreenV3 */,
 				244892F01FAC8EA300139579 /* DOCScreenV3Tests */,
@@ -257,7 +280,6 @@
 		2448931B1FAC8FA700139579 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2448931E1FAC8FB400139579 /* MobileNet.mlmodel */,
 				2448931D1FAC8FB400139579 /* Utility.swift */,
 				241C62B31FAC97CC004F42F5 /* PersistenceService.swift */,
 				24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */,
@@ -268,6 +290,7 @@
 		244893221FAC8FDA00139579 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2435B31D20E3EAEB00DBAEE0 /* UIBuilderFunctions */,
 				244893241FAC8FE800139579 /* PageViewController.swift */,
 				244893231FAC8FE800139579 /* TaskTableViewController.swift */,
 			);
@@ -538,39 +561,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24BF92CE20B5FD1400CCC989 /* Apnea+CoreDataProperties.swift in Sources */,
-				24BF92D820B5FD1400CCC989 /* Subject+CoreDataProperties.swift in Sources */,
+				24CEE78420EBD808005D983A /* Abstraction+CoreDataClass.swift in Sources */,
+				24CEE78320EBD808005D983A /* Apnea+CoreDataProperties.swift in Sources */,
 				244893151FAC8F4200139579 /* DocTabViewController.swift in Sources */,
+				24CEE76B20EBCF06005D983A /* ApneaBuilder.swift in Sources */,
 				244893351FAC901600139579 /* ClockTask.swift in Sources */,
 				244893281FAC8FFB00139579 /* TaskTableViewCell.swift in Sources */,
+				24CEE78520EBD808005D983A /* Abstraction+CoreDataProperties.swift in Sources */,
 				244893201FAC8FB400139579 /* Utility.swift in Sources */,
+				24CEE76520EBCE85005D983A /* ProfileBuilder.swift in Sources */,
+				24CEE76920EBCEDA005D983A /* MoodBuilder.swift in Sources */,
 				244893261FAC8FE800139579 /* PageViewController.swift in Sources */,
 				244893121FAC8F1D00139579 /* Colors.swift in Sources */,
+				24CEE78620EBD808005D983A /* Memory+CoreDataClass.swift in Sources */,
 				241C62B41FAC97CC004F42F5 /* PersistenceService.swift in Sources */,
+				24CEE78020EBD808005D983A /* Subject+CoreDataClass.swift in Sources */,
 				244893361FAC901600139579 /* MemoryRegistration.swift in Sources */,
-				24BF92CF20B5FD1400CCC989 /* Memory+CoreDataClass.swift in Sources */,
+				24CEE76D20EBCF2A005D983A /* MemoryBuilder.swift in Sources */,
 				244893321FAC901600139579 /* AbstractionTask.swift in Sources */,
 				244893251FAC8FE800139579 /* TaskTableViewController.swift in Sources */,
 				24BF92C020B5F9EE00CCC989 /* DataExtractorFunctions.swift in Sources */,
 				24AFEBF320B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld in Sources */,
+				24CEE78720EBD808005D983A /* Memory+CoreDataProperties.swift in Sources */,
 				244893371FAC901600139579 /* MemoryTask.swift in Sources */,
 				244893171FAC8F5500139579 /* DOCEntry.swift in Sources */,
+				24CEE78220EBD808005D983A /* Apnea+CoreDataClass.swift in Sources */,
+				24CEE77D20EBD808005D983A /* Mood+CoreDataProperties.swift in Sources */,
+				24CEE77C20EBD808005D983A /* Mood+CoreDataClass.swift in Sources */,
+				24CEE78120EBD808005D983A /* Subject+CoreDataProperties.swift in Sources */,
+				24CEE77E20EBD808005D983A /* Clock+CoreDataClass.swift in Sources */,
 				245D1F8D20CD96D000EE4C02 /* DOCCompilerFunctions.swift in Sources */,
-				24BF92D220B5FD1400CCC989 /* Mood+CoreDataProperties.swift in Sources */,
-				24BF92D120B5FD1400CCC989 /* Mood+CoreDataClass.swift in Sources */,
-				24BF92D320B5FD1400CCC989 /* Clock+CoreDataClass.swift in Sources */,
-				24BF92D020B5FD1400CCC989 /* Memory+CoreDataProperties.swift in Sources */,
+				24CEE77F20EBD808005D983A /* Clock+CoreDataProperties.swift in Sources */,
 				24BF92DA20B601CA00CCC989 /* ProfileTask.swift in Sources */,
-				24BF92D420B5FD1400CCC989 /* Clock+CoreDataProperties.swift in Sources */,
-				244893211FAC8FB400139579 /* MobileNet.mlmodel in Sources */,
-				24BF92D520B5FD1400CCC989 /* Abstraction+CoreDataClass.swift in Sources */,
+				24CEE76F20EBCF78005D983A /* AbstractBuilder.swift in Sources */,
 				244893331FAC901600139579 /* MoodTask.swift in Sources */,
-				24BF92D720B5FD1400CCC989 /* Subject+CoreDataClass.swift in Sources */,
 				2448931A1FAC8F7C00139579 /* LandViewController.swift in Sources */,
 				244892DC1FAC8EA300139579 /* ViewController.swift in Sources */,
 				244893341FAC901600139579 /* SleepTask.swift in Sources */,
-				24BF92CD20B5FD1400CCC989 /* Apnea+CoreDataClass.swift in Sources */,
-				24BF92D620B5FD1400CCC989 /* Abstraction+CoreDataProperties.swift in Sources */,
+				24CEE76720EBCEA7005D983A /* ClockBuilder.swift in Sources */,
 				244892DA1FAC8EA300139579 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
