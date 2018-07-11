@@ -12,7 +12,7 @@ import CoreData
 import UIKit
 
 
-func DrawMoodView(view: UIView) -> Void{
+func DrawMoodView(view: UIView, viewController: UIViewController) -> Void{
     
     let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
     
@@ -30,13 +30,18 @@ func DrawMoodView(view: UIView) -> Void{
         // Style Function
         func LabelStyle(label: UILabel) -> Void {
             label.textAlignment = .center
-            label.layer.borderWidth = 1
             label.font = UIFont(name: "HelveticaNeue", size: 20)
+            label.textColor = UIColor.white
+            label.backgroundColor = UIColor.red
+            
         }
         
         func NumberStyle(label: UILabel) -> Void {
             label.textAlignment = .center
-            label.layer.borderWidth = 1
+            label.layer.borderWidth = 0.5
+            label.textColor = UIColor.red
+            label.layer.borderColor = UIColor.red.cgColor
+            label.layer.cornerRadius = 10
             label.font = UIFont(name: "HelveticaNeue", size: 20)
         }
         
@@ -72,7 +77,7 @@ func DrawMoodView(view: UIView) -> Void{
         // depression Number label.
         let depNumLabel = UILabel(frame: CGRect(x: 125, y: y + 30, width: 125, height: 70))
         NumberStyle(label: depNumLabel)
-        depNumLabel.text = "\((subject?.mood?.q2Mood)!)"
+         depNumLabel.text = "\((subject?.mood?.q2Mood)!)"
         
         fullView.addSubview(depNumLabel)
         
@@ -88,5 +93,5 @@ func DrawMoodView(view: UIView) -> Void{
         
         PersistenceService.saveContext()
     }
-    catch{ print("Insert error view controlle here")}
+    catch{ viewController.present(callError(), animated: true, completion: nil)}
 }

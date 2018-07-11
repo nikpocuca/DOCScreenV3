@@ -51,6 +51,8 @@
 		24CEE78520EBD808005D983A /* Abstraction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77920EBD808005D983A /* Abstraction+CoreDataProperties.swift */; };
 		24CEE78620EBD808005D983A /* Memory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77A20EBD808005D983A /* Memory+CoreDataClass.swift */; };
 		24CEE78720EBD808005D983A /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEE77B20EBD808005D983A /* Memory+CoreDataProperties.swift */; };
+		24ECD02820F694E4001C87BE /* ControlSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECD02620F694E4001C87BE /* ControlSettings+CoreDataClass.swift */; };
+		24ECD02920F694E4001C87BE /* ControlSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECD02720F694E4001C87BE /* ControlSettings+CoreDataProperties.swift */; };
 		24ED600A1FB09D850041C5A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ED60091FB09D840041C5A8 /* Main.storyboard */; };
 		42D19150D5EFFAF8A8F7CB05 /* Pods_DOCScreenV3UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19906A1855E36D8B3943878 /* Pods_DOCScreenV3UITests.framework */; };
 		5F0987A342CEF006433B19F5 /* Pods_DOCScreenV3Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784A0BBC5C052F82D8B7D87 /* Pods_DOCScreenV3Tests.framework */; };
@@ -126,6 +128,8 @@
 		24CEE77920EBD808005D983A /* Abstraction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Abstraction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24CEE77A20EBD808005D983A /* Memory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		24CEE77B20EBD808005D983A /* Memory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24ECD02620F694E4001C87BE /* ControlSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControlSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24ECD02720F694E4001C87BE /* ControlSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControlSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24ED60091FB09D840041C5A8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4512DF37F28B8F8A60513238 /* Pods-DOCScreenV3Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3Tests/Pods-DOCScreenV3Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		506673F8F6CF6CE8FCE65CBD /* Pods-DOCScreenV3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3UITests/Pods-DOCScreenV3UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 		244892CD1FAC8EA300139579 = {
 			isa = PBXGroup;
 			children = (
+				24ECD02620F694E4001C87BE /* ControlSettings+CoreDataClass.swift */,
+				24ECD02720F694E4001C87BE /* ControlSettings+CoreDataProperties.swift */,
 				24CEE77020EBD808005D983A /* Mood+CoreDataClass.swift */,
 				24CEE77120EBD808005D983A /* Mood+CoreDataProperties.swift */,
 				24CEE77220EBD808005D983A /* Clock+CoreDataClass.swift */,
@@ -573,6 +579,7 @@
 				24CEE76920EBCEDA005D983A /* MoodBuilder.swift in Sources */,
 				244893261FAC8FE800139579 /* PageViewController.swift in Sources */,
 				244893121FAC8F1D00139579 /* Colors.swift in Sources */,
+				24ECD02820F694E4001C87BE /* ControlSettings+CoreDataClass.swift in Sources */,
 				24CEE78620EBD808005D983A /* Memory+CoreDataClass.swift in Sources */,
 				241C62B41FAC97CC004F42F5 /* PersistenceService.swift in Sources */,
 				24CEE78020EBD808005D983A /* Subject+CoreDataClass.swift in Sources */,
@@ -591,6 +598,7 @@
 				24CEE78120EBD808005D983A /* Subject+CoreDataProperties.swift in Sources */,
 				24CEE77E20EBD808005D983A /* Clock+CoreDataClass.swift in Sources */,
 				245D1F8D20CD96D000EE4C02 /* DOCCompilerFunctions.swift in Sources */,
+				24ECD02920F694E4001C87BE /* ControlSettings+CoreDataProperties.swift in Sources */,
 				24CEE77F20EBD808005D983A /* Clock+CoreDataProperties.swift in Sources */,
 				24BF92DA20B601CA00CCC989 /* ProfileTask.swift in Sources */,
 				24CEE76F20EBCF78005D983A /* AbstractBuilder.swift in Sources */,

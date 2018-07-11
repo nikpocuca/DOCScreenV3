@@ -129,108 +129,170 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
         //Handle results with taskViewController.result
   
         taskViewController.dismiss(animated: true, completion: nil)
+
         
-        if taskViewController.task?.identifier == "ProfileTask" {
-            if reason == .completed {
-                
-                ExtractProfile(taskController: taskViewController)
-               
-            }
-        }
+        // Handle ControlSettings ahead of time.
         
-        if taskViewController.task?.identifier == "MemoryRegistrationTask"{
-            if reason == .completed {
-             
-                ExtractMemoryRegistration(taskController: taskViewController)
-                
-            }
-        }
+        let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
         
-        if taskViewController.task?.identifier == "MemoryTask"{
-            if reason == .completed {
-                
-                ExtractMemoryScores(taskController: taskViewController)
-                
-            }
+        do {
             
-        }
+            let controlArray = try PersistenceService.context.fetch(fetchRequest)
+            
+            var control = controlArray.first
+            
+            if (control == nil ){
+                control = ControlSettings(context: PersistenceService.context)
+                control?.abstractionComplete = false
+                control?.apneaComplete = false
+                control?.clockComplete = false
+                control?.fullComplete = false
+                control?.memoryComplete = false
+                control?.moodComplete = false
+                control?.profileComplete = false
+            }
         
-        if taskViewController.task?.identifier == "MoodTask"{
-            if reason == .completed {
-                
-                ExtractMoodScore(taskController: taskViewController)
+            if taskViewController.task?.identifier == "ProfileTask" {
+                if reason == .completed {
+                    
+                    ExtractProfile(taskController: taskViewController)
+                    
+                    control?.profileComplete = true
+                    
+                    control?.abstractionComplete = false
+                    control?.apneaComplete = false
+                    control?.clockComplete = false
+                    control?.fullComplete = false
+                    control?.memoryComplete = false
+                    control?.moodComplete = false
+                    
+                    PersistenceService.saveContext()
+                }
+            }
+        
+            if taskViewController.task?.identifier == "MemoryRegistrationTask"{
+                if reason == .completed {
+                 
+                    ExtractMemoryRegistration(taskController: taskViewController)
+                    
+                }
+            }
+        
+            if taskViewController.task?.identifier == "MemoryTask"{
+                if reason == .completed {
+                    
+                    ExtractMemoryScores(taskController: taskViewController)
+                    
+                    control?.memoryComplete = true
+                    
+                    PersistenceService.saveContext()
+                }
                 
             }
-            
-        }
         
-        if taskViewController.task?.identifier == "AbstractionTask"{
-            if reason == .completed {
-                
-                ExtractAbstractionScore(taskController: taskViewController)
+            if taskViewController.task?.identifier == "MoodTask"{
+                if reason == .completed {
+                    
+                    ExtractMoodScore(taskController: taskViewController)
+                    
+                    control?.moodComplete = true
+                    
+                    PersistenceService.saveContext()
+                }
                 
             }
-            
-        }
         
-        if taskViewController.task?.identifier == "SleepTask"{
-            if reason == .completed {
-                
-                ExtractApneaScore(taskController: taskViewController)
-                
-            }
-            
-        }
-        
-        if taskViewController.task?.identifier == "ClockTask"{
-            if reason == .completed {
-                
-    
-                var ScoreClockTask: ORKOrderedTask{
+            if taskViewController.task?.identifier == "AbstractionTask"{
+                if reason == .completed {
                     
-                    var steps = [ORKStep]()
-    
-                    let imageScoreStepImage = crop(image: loadImage(fileName: "imageStep.jpg")!,withWidth: 2000, andHeight: 2000)!
-                    let imageTitle = "Score the clock"
-                    let imageFormStep = ORKFormStep(identifier: "imageFormStep", title: imageTitle, text: "")
+                    ExtractAbstractionScore(taskController: taskViewController)
                     
-                    let imageAnswerChoice = ORKImageChoice(normalImage: imageScoreStepImage, selectedImage: imageScoreStepImage, text: "", value: 0 as NSCoding & NSCopying & NSObjectProtocol)
-                    let imageChoiceAnswerFormat = ORKImageChoiceAnswerFormat(imageChoices: [imageAnswerChoice])
-                    let imageItem = ORKFormItem(identifier: "imageItem", text: "", answerFormat: imageChoiceAnswerFormat)
+                    control?.abstractionComplete = true
                     
-                    let textChoices = [
-                        ORKTextChoice(text: "Contour", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
-                        ORKTextChoice(text: "Numbers", value: 1 as NSCoding & NSCopying & NSObjectProtocol),
-                        ORKTextChoice(text: "Hands", value: 2 as NSCoding & NSCopying & NSObjectProtocol) ]
-                    
-                    let textChoicesFormat = ORKTextChoiceAnswerFormat(style: .multipleChoice, textChoices: textChoices)
-                    
-                    let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: false)
-                    
-                    imageFormStep.formItems = [imageItem,scoreItem]
-                    
-                    steps += [imageFormStep]
-                    
-                    return ORKOrderedTask(identifier: "ScoreClockTask", steps: steps)
+                    PersistenceService.saveContext()
                     
                 }
                 
-                let scoreTaskViewController = ORKTaskViewController(task: ScoreClockTask, taskRun: nil)
-                scoreTaskViewController.delegate = self
-                
-                present(scoreTaskViewController, animated: true, completion: nil)
-               
             }
-            
-        }
-    
-        if taskViewController.task?.identifier == "ScoreClockTask"{
-            if reason == .completed {
-            
-                ExtractClockScores(taskController: taskViewController)
-                print("ScoreClock")
+        
+            if taskViewController.task?.identifier == "SleepTask"{
+                if reason == .completed {
+                    
+                    ExtractApneaScore(taskController: taskViewController)
+                    
+                    control?.apneaComplete = true
+                    
+                    PersistenceService.saveContext()
+                }
                 
             }
+        
+            if taskViewController.task?.identifier == "ClockTask"{
+                if reason == .completed {
+                    
+                    var ScoreClockTask: ORKOrderedTask{
+                        
+                        var steps = [ORKStep]()
+        
+                        let imageScoreStepImage = crop(image: loadImage(fileName: "imageStep.jpg")!,withWidth: 2000, andHeight: 2000)!
+                        let imageTitle = "Score the clock"
+                        let imageFormStep = ORKFormStep(identifier: "imageFormStep", title: imageTitle, text: "")
+                        
+                        let imageAnswerChoice = ORKImageChoice(normalImage: imageScoreStepImage, selectedImage: imageScoreStepImage, text: "", value: 0 as NSCoding & NSCopying & NSObjectProtocol)
+                        let imageChoiceAnswerFormat = ORKImageChoiceAnswerFormat(imageChoices: [imageAnswerChoice])
+                        let imageItem = ORKFormItem(identifier: "imageItem", text: "", answerFormat: imageChoiceAnswerFormat)
+                        
+                        let textChoices = [
+                            ORKTextChoice(text: "Contour", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
+                            ORKTextChoice(text: "Numbers", value: 1 as NSCoding & NSCopying & NSObjectProtocol),
+                            ORKTextChoice(text: "Hands", value: 2 as NSCoding & NSCopying & NSObjectProtocol) ]
+                        
+                        let textChoicesFormat = ORKTextChoiceAnswerFormat(style: .multipleChoice, textChoices: textChoices)
+                        
+                        let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: false)
+                        
+                        imageFormStep.formItems = [imageItem,scoreItem]
+                        
+                        steps += [imageFormStep]
+                        
+                        return ORKOrderedTask(identifier: "ScoreClockTask", steps: steps)
+                        
+                    }
+                    
+                    let scoreTaskViewController = ORKTaskViewController(task: ScoreClockTask, taskRun: nil)
+                    scoreTaskViewController.delegate = self
+                    
+                    present(scoreTaskViewController, animated: true, completion: nil)
+                   
+                }
+                
+            }
+        
+            if taskViewController.task?.identifier == "ScoreClockTask"{
+                if reason == .completed {
+                
+                    ExtractClockScores(taskController: taskViewController)
+             
+                    control?.clockComplete = true
+                    
+                    PersistenceService.saveContext()
+                    
+                }
+            }
+            
+            
+        if (control != nil) {
+            
+            control = checkTaskCompletions(control: control!)
+            
+            PersistenceService.saveContext()
+            
+            testControl()
         }
+        else { print("Control doesnt exist") }
+            
+        } catch {
+            print("hit control failure")
+            present(callError(), animated: true, completion: nil)}
     }
 }

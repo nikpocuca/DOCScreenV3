@@ -12,7 +12,7 @@ import CoreData
 import UIKit
 
 
-func DrawClockView(view: UIView) -> Void {
+func DrawClockView(view: UIView,viewController: UIViewController) -> Void {
     
     let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
     
@@ -31,13 +31,18 @@ func DrawClockView(view: UIView) -> Void {
         // Style Function
         func LabelStyle(label: UILabel) -> Void {
             label.textAlignment = .center
-            label.layer.borderWidth = 1
             label.font = UIFont(name: "HelveticaNeue", size: 20)
+            label.backgroundColor = UIColor.red
+            label.textColor = UIColor.white
+            label.layer.cornerRadius = 5
+            
         }
         
         func NumberStyle(label: UILabel) -> Void {
             label.textAlignment = .center
-            label.layer.borderWidth = 1
+            label.layer.borderWidth = 0.5
+            label.layer.borderColor = UIColor.red.cgColor
+            label.textColor = UIColor.red
         }
         
 
@@ -52,7 +57,6 @@ func DrawClockView(view: UIView) -> Void {
         let contTitle = UILabel(frame: CGRect(x: 250, y: y, width: 125, height: 30))
         contTitle.text = "Contour"
         contTitle.textAlignment = .center
-        contTitle.layer.borderWidth = 1
         LabelStyle(label: contTitle)
         
         fullView.addSubview(contTitle)
@@ -61,9 +65,8 @@ func DrawClockView(view: UIView) -> Void {
         
         let contLabel = UILabel(frame: CGRect(x: 250, y: y+30, width: 125, height: 53))
         contLabel.text = bool2String(b: subject?.clock?.contour)
-        contLabel.textAlignment = .center
-        contLabel.layer.borderWidth = 1
-        
+        NumberStyle(label: contLabel)
+
         fullView.addSubview(contLabel)
         
         
@@ -89,7 +92,7 @@ func DrawClockView(view: UIView) -> Void {
         // Hands Label
         let handLabel = UILabel(frame: CGRect(x: 250, y: y+196, width: 125, height: 54))
         handLabel.text = bool2String(b: subject?.clock?.hands)
-        LabelStyle(label: handLabel)
+        NumberStyle(label: handLabel)
         fullView.addSubview(handLabel)
         
         fullView.tag = 100
@@ -98,5 +101,5 @@ func DrawClockView(view: UIView) -> Void {
     
         PersistenceService.saveContext()
     }
-    catch{ print("Insert error view controlle here")}
+    catch{ viewController.present(callError(), animated: true, completion: nil)}
 }

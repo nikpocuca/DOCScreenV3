@@ -10,6 +10,7 @@ import Foundation
 import ResearchKit
 import CoreVideo
 import CoreData
+import UIKit
 
 // testing function.
 
@@ -30,8 +31,25 @@ func testData() -> Void {
         PersistenceService.saveContext()
     }
     catch {print("error getting subject in score clock")}
+    
 }
 
+
+func testControl() -> Void {
+    
+    let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
+    
+    do {
+        
+        let controlArray = try PersistenceService.context.fetch(fetchRequest)
+        
+        var control = controlArray.first
+        
+        print(control)
+    }
+    catch {print("testControl has failed")}
+    
+}
 
 
 func roundToDecimals(num: CGFloat,decimals: Int = 2) -> CGFloat {
@@ -195,3 +213,27 @@ func bool2String(b: Bool?) -> String {
 }
 
 
+func callError() -> UIViewController {
+    
+    let refreshAlert = UIAlertController(title: "Error loading Task", message: "Please try the task again", preferredStyle: UIAlertControllerStyle.alert)
+    
+    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+
+    }))
+ 
+    return(refreshAlert)
+}
+
+
+func checkTaskCompletions(control: ControlSettings) -> ControlSettings {
+    
+
+    if (control.abstractionComplete && control.apneaComplete && control.clockComplete && control.memoryComplete && control.moodComplete && control.profileComplete ) {
+        
+        control.fullComplete = true
+    }
+    
+    else { control.fullComplete = false }
+    
+    return(control)
+}

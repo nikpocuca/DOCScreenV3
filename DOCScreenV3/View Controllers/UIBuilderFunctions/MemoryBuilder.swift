@@ -13,7 +13,7 @@ import CoreData
 import UIKit
 
 
-func DrawMemoryView(view: UIView) -> Void {
+func DrawMemoryView(view: UIView, viewController: UIViewController) -> Void {
     
     let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
     
@@ -134,7 +134,7 @@ func DrawMemoryView(view: UIView) -> Void {
     
         PersistenceService.saveContext()
     }
-    catch{ print("Insert error view controlle here")}
+    catch{   viewController.present(callError(), animated: true, completion: nil)}
 }
 
 

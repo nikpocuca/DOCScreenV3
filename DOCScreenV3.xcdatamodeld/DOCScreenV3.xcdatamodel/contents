@@ -21,6 +21,15 @@
         <attribute name="numbers" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="clock" inverseEntity="Subject" syncable="YES"/>
     </entity>
+    <entity name="ControlSettings" representedClassName="ControlSettings" syncable="YES">
+        <attribute name="abstractionComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="apneaComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="clockComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fullComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="memoryComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="moodComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profileComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Memory" representedClassName="Memory" syncable="YES">
         <attribute name="churchCC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="churchMC" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -77,5 +86,6 @@
         <element name="Memory" positionX="-6678" positionY="770" width="126" height="448"/>
         <element name="Mood" positionX="-6525" positionY="1026" width="128" height="103"/>
         <element name="Subject" positionX="-6527" positionY="774" width="128" height="225"/>
+        <element name="ControlSettings" positionX="-6527" positionY="1161" width="128" height="148"/>
     </elements>
 </model>

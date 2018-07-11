@@ -29,6 +29,7 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
         let taskImageView = UIImageView(image: image)
         
         taskImageView.backgroundColor = UIColor.red
+
         return(taskImageView)
     }
     
@@ -69,7 +70,7 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
         
         infoTitleLabel.text = "Profile"
         
-        DrawProfileView(view: presentInfoView)
+        DrawProfileView(view: presentInfoView,viewController: self)
         
     }
 
@@ -88,20 +89,17 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
             
             switch index  {
             case 0:
-                DrawProfileView(view: presentInfoView)
+                DrawProfileView(view: presentInfoView,viewController: self)
             case 1:
-                print("Memory")
-                DrawMemoryView(view: presentInfoView)
+                DrawMemoryView(view: presentInfoView,viewController: self)
             case 2:
-                print("Sleep")
-                DrawApneaView(view: presentInfoView)
+                DrawApneaView(view: presentInfoView, viewController: self)
             case 3:
-                print("Abstraction")
-                DrawAbstractView(view: presentInfoView)
+                DrawAbstractView(view: presentInfoView, viewController: self)
             case 4:
-                DrawMoodView(view: presentInfoView)
+                DrawMoodView(view: presentInfoView, viewController: self)
             case 5:
-                DrawClockView(view: presentInfoView)
+                DrawClockView(view: presentInfoView, viewController: self)
             default:
                 print("hit default")
             }

@@ -13,7 +13,7 @@ import UIKit
 
 
 
-func DrawProfileView(view: UIView) -> Void{
+func DrawProfileView(view: UIView,viewController: UIViewController) -> Void{
     
     let fetchRequest: NSFetchRequest<Subject> = Subject.fetchRequest()
     
@@ -31,20 +31,25 @@ func DrawProfileView(view: UIView) -> Void{
         // Style Function
         func LabelStyle(label: UILabel) -> Void {
             label.textAlignment = .center
-            label.layer.borderWidth = 1
+            label.backgroundColor = UIColor.red
+            label.textColor = UIColor.white
             label.font = UIFont(name: "HelveticaNeue", size: 20)
         }
         
         func NumberStyle(label: UILabel) -> Void {
             label.textAlignment = .center
-            label.layer.borderWidth = 1
+            label.layer.borderWidth = 0.5
+            label.textColor = UIColor.red
+            label.layer.borderColor = UIColor.red.cgColor
+            label.layer.cornerRadius = 10
         }
         
         // Generate Age Title
         let ageTitleLabel = UILabel(frame: CGRect(x: 0, y: y, width: 125, height: 50))
         ageTitleLabel.text = "Age"
         ageTitleLabel.textAlignment = .center
-        ageTitleLabel.layer.borderWidth = 1
+        LabelStyle(label: ageTitleLabel)
+  
         
         fullView.addSubview(ageTitleLabel)
         
@@ -52,7 +57,7 @@ func DrawProfileView(view: UIView) -> Void{
         let ageNumberLabel = UILabel(frame: CGRect(x: 0, y: y+50, width: 125, height: 70))
         ageNumberLabel.text = String((subject?.age)!)
         ageNumberLabel.textAlignment = .center
-        ageNumberLabel.layer.borderWidth = 1
+        NumberStyle(label: ageNumberLabel)
         
         fullView.addSubview(ageNumberLabel)
         
@@ -60,7 +65,6 @@ func DrawProfileView(view: UIView) -> Void{
         let eduTitleLabel = UILabel(frame: CGRect(x: 125, y: y, width: 125, height: 50))
         eduTitleLabel.text = "Education"
         eduTitleLabel.textAlignment = .center
-        eduTitleLabel.layer.borderWidth = 1
         LabelStyle(label: eduTitleLabel)
         
         fullView.addSubview(eduTitleLabel)
@@ -69,7 +73,7 @@ func DrawProfileView(view: UIView) -> Void{
         let eduNumberLabel = UILabel(frame: CGRect(x: 125, y: y+50, width: 125, height: 70))
         eduNumberLabel.text = String((subject?.education)!)
         eduNumberLabel.textAlignment = .center
-        eduNumberLabel.layer.borderWidth = 1
+        NumberStyle(label: eduNumberLabel)
         
         fullView.addSubview(eduNumberLabel)
         
@@ -77,7 +81,6 @@ func DrawProfileView(view: UIView) -> Void{
         let sexTitle = UILabel(frame: CGRect(x: 250, y: y, width: 125, height: 50))
         sexTitle.text = "Sex"
         sexTitle.textAlignment = .center
-        sexTitle.layer.borderWidth = 1
         LabelStyle(label: sexTitle)
         
         fullView.addSubview(sexTitle)
@@ -96,8 +99,8 @@ func DrawProfileView(view: UIView) -> Void{
         let sexLabel = UILabel(frame: CGRect(x: 250, y: y+50, width: 125, height: 70))
         sexLabel.text = sexToString(inputBool: (subject?.sex)!)
         sexLabel.textAlignment = .center
-        sexLabel.layer.borderWidth = 1
         fullView.addSubview(sexLabel)
+        NumberStyle(label: sexLabel)
         
         
         // Weight Title
@@ -169,7 +172,10 @@ func DrawProfileView(view: UIView) -> Void{
         view.addSubview(fullView)
     }
         
-    catch {print("Place view Controller that says Alert there is no subject yet")}
+    catch {
+        viewController.present(callError(), animated: true, completion: nil)
+        
+    }
 
     
 }
