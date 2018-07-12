@@ -124,8 +124,15 @@ class TaskTableViewController: UITableViewController {
                 
             refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
 
+                tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                
+                currentCell.taskNameOut.textColor = UIColor.red
+
                 // Takes back to list.
             }))
+            
+            // Present the alert above ^
+            present(refreshAlert, animated: true, completion: nil)
             
         }
 
