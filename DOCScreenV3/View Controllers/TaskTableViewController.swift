@@ -103,14 +103,53 @@ class TaskTableViewController: UITableViewController {
 
         let runTask = docEntries[indexPath.row].taskIdentifier
         
-        if (runTask.identifier == "ProfileTask") {
+        let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
+        
+        do {
             
-            let refreshAlert = UIAlertController(title: "Caution Overwrite", message: "Starting a new subject deletes all task data, are you sure you want to over-write?", preferredStyle: UIAlertControllerStyle.alert)
+            let controlArray = try PersistenceService.context.fetch(fetchRequest)
+            
+            var control = controlArray.first
+            
+            if (control != nil && control?.profileComplete != false) {
+            
+            if (runTask.identifier == "ProfileTask" && (control?.profileComplete)!) {
+                
+                let refreshAlert = UIAlertController(title: "Caution Overwrite", message: "Starting a new subject deletes all task data, are you sure you want to over-write?", preferredStyle: UIAlertControllerStyle.alert)
                 
                 
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-   
-                // once the OK is hit you can run the profile view controller, but it jsut gets hung.
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+       
+                    // once the OK is hit you can run the profile view controller, but it jsut gets hung.
+                    let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
+                    
+                    taskViewController.delegate = self
+                    
+                    
+                    taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    
+                    self.present(taskViewController, animated: true, completion: nil)
+                    
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                    
+                    currentCell.taskNameOut.textColor = UIColor.red
+                }))
+                
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                    
+                    currentCell.taskNameOut.textColor = UIColor.red
+
+                    // Takes back to list.
+                }))
+                
+                // Present the alert above ^
+                present(refreshAlert, animated: true, completion: nil) }
+                
+                
+            else {
+                
                 let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
                 
                 taskViewController.delegate = self
@@ -118,42 +157,44 @@ class TaskTableViewController: UITableViewController {
                 
                 taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                 
-                self.present(taskViewController, animated: true, completion: nil)
+                present(taskViewController, animated: true, completion: nil)
                 
                 tableView.deselectRow(at: indexPath as IndexPath, animated: true)
                 
                 currentCell.taskNameOut.textColor = UIColor.red
-            }))
-                
-            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-
-                tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-                
-                currentCell.taskNameOut.textColor = UIColor.red
-
-                // Takes back to list.
-            }))
-            
-            // Present the alert above ^
-            present(refreshAlert, animated: true, completion: nil)
-            
+                }
         }
-
+        
         else {
-        
-            let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
+                
+                if (runTask.identifier == "ProfileTask") {
+                    
+                    let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
+                    
+                    taskViewController.delegate = self
+                    
+                    
+                    taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    
+                    present(taskViewController, animated: true, completion: nil)
+                    
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                    
+                    currentCell.taskNameOut.textColor = UIColor.red
+                    
+                }
+                    
+                else {
+                present(callErrorAlert(title: "No Subject", msg: "Error you must start a subject first."), animated: true, completion: nil)
+                
+                tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                
+                currentCell.taskNameOut.textColor = UIColor.red
+                }
+            }
             
-            taskViewController.delegate = self
             
-            
-            taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            present(taskViewController, animated: true, completion: nil)
-        
-            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        
-            currentCell.taskNameOut.textColor = UIColor.red
-        }
+            } catch { present(callError(), animated: true, completion: nil)}
      }
     
 
@@ -322,7 +363,6 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
             
             PersistenceService.saveContext()
             
-            testControl()
         }
         else { print("Control doesnt exist") }
             
