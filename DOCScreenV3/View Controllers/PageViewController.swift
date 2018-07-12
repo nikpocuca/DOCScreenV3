@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftCarousel
+import CoreData
+
 
 
 class PageViewController: UIViewController,UIDocumentInteractionControllerDelegate, SwiftCarouselDelegate {
@@ -68,10 +70,31 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
         
         TaskCarousel.backgroundColor = UIColor.white
         
-        infoTitleLabel.text = "Profile"
         
-        DrawProfileView(view: presentInfoView,viewController: self)
+        let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
         
+        do {
+            
+            let controlArray = try PersistenceService.context.fetch(fetchRequest)
+            
+            let control = controlArray.first
+        
+            if control != nil {
+                
+                if control?.profileComplete == true {
+                    
+                    infoTitleLabel.text = "Profile"
+                    
+                    DrawProfileView(view: presentInfoView,viewController: self)
+                    
+                }
+                
+                else { present(callErrorAlert(title: "No Subject", msg: "Error you have not started a screen, please select the Profile Task."), animated: true, completion: nil) }
+            }
+            
+            else { present(callErrorAlert(title: "No Subject", msg: "Error you have not started a screen, please start the Profile Task."), animated: true, completion: nil)  }
+            
+        } catch { present(callErrorAlert(title: "No Data", msg: "No data has been entered."), animated: true, completion: nil) }
     }
 
     
@@ -87,24 +110,47 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
             infoTitleLabel.text = infoTitleLabels[index]
             print(index)
             
-            switch index  {
-            case 0:
-                DrawProfileView(view: presentInfoView,viewController: self)
-            case 1:
-                DrawMemoryView(view: presentInfoView,viewController: self)
-            case 2:
-                DrawApneaView(view: presentInfoView, viewController: self)
-            case 3:
-                DrawAbstractView(view: presentInfoView, viewController: self)
-            case 4:
-                DrawMoodView(view: presentInfoView, viewController: self)
-            case 5:
-                DrawClockView(view: presentInfoView, viewController: self)
-            default:
-                print("hit default")
-            }
+            let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
             
-            
+            do {
+                
+                let controlArray = try PersistenceService.context.fetch(fetchRequest)
+                
+                let control = controlArray.first
+                
+                switch index  {
+
+                case 0:
+                    if control?.profileComplete == true { DrawProfileView(view: presentInfoView,viewController: self) }
+                            
+                    else { present(callErrorAlert(title: "No Subject", msg: "Error you have not started a screen, please select the Profile Task."), animated: true, completion: nil) }
+                case 1:
+                    if control?.memoryComplete == true { DrawMemoryView(view: presentInfoView,viewController: self) }
+                      
+                    else { present(callErrorAlert(title: "No Memory Section", msg: "Error you have not completed the memory section, do the memory registriation, and test."), animated: true, completion: nil) }
+                case 2:
+                    if control?.apneaComplete == true { DrawApneaView(view: presentInfoView, viewController: self)  }
+                 
+                    else { present(callErrorAlert(title: "No Sleep Section", msg: "Error you have not completed the sleep section, do the Sleep task."), animated: true, completion: nil) }
+                case 3:
+                    if control?.abstractionComplete == true { DrawAbstractView(view: presentInfoView, viewController: self) }
+                    
+                    else { present(callErrorAlert(title: "No Abstraction Section", msg: "Error you have not completed the abstraction section, do the Abstraction task."), animated: true, completion: nil) }
+                case 4:
+                    if control?.moodComplete == true {   DrawMoodView(view: presentInfoView, viewController: self)}
+                    
+                    else {
+                        present(callErrorAlert(title: "No Mood Section", msg: "Error you have not completed the mood section, do the Mood task."), animated: true, completion: nil) }
+                case 5:
+                    if control?.clockComplete == true { DrawClockView(view: presentInfoView, viewController: self) }
+                    
+                    else {
+                        present(callErrorAlert(title: "No Clock Section", msg: "Error you have not completed the clock section, do the Clock task."), animated: true, completion: nil)
+                    }
+                default:
+                    present(callErrorAlert(title: "No selection", msg: "You have not selected anything."), animated: true, completion: nil)
+                    }
+                } catch { present(callErrorAlert(title: "No Data", msg: "No data has been entered."), animated: true, completion: nil) }
             return taskImage
         }
         return item

@@ -104,20 +104,46 @@ class TaskTableViewController: UITableViewController {
 
         let runTask = docEntries[indexPath.row].taskIdentifier
         
-        let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
+        if (runTask.identifier == "ProfileTask") {
+            
+            let refreshAlert = UIAlertController(title: "Caution Overwrite", message: "Starting a new subject deletes all task data, are you sure you want to over-write?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+   
+                // once the OK is hit you can run the profile view controller, but it jsut gets hung.
+                let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
+                
+                taskViewController.delegate = TaskTableViewController()
+                
+                
+                taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                TaskTableViewController().present(taskViewController, animated: true, completion: nil)
+            }))
+                
+            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+
+                // Takes back to list.
+            }))
+            
+        }
+
+        else {
+        
+            let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
             
             taskViewController.delegate = self
+            
+            
+            taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            present(taskViewController, animated: true, completion: nil)
         
+            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
-        taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
-        present(taskViewController, animated: true, completion: nil)
-        
-      
-      tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        
-        currentCell.taskNameOut.textColor = UIColor.red
-        
+            currentCell.taskNameOut.textColor = UIColor.red
+        }
      }
     
 
@@ -279,7 +305,6 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                     
                 }
             }
-            
             
         if (control != nil) {
             

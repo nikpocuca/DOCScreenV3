@@ -225,6 +225,18 @@ func callError() -> UIViewController {
 }
 
 
+func callErrorAlert(title: String, msg: String) -> UIViewController {
+    
+    let refreshAlert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+    
+    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        
+    }))
+    
+    return(refreshAlert)
+}
+
+
 func checkTaskCompletions(control: ControlSettings) -> ControlSettings {
     
 
@@ -237,3 +249,17 @@ func checkTaskCompletions(control: ControlSettings) -> ControlSettings {
     
     return(control)
 }
+
+
+/*
+ let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
+ 
+ do {
+ 
+ let controlArray = try PersistenceService.context.fetch(fetchRequest)
+ 
+ let control = controlArray.first
+ 
+ }  catch { present(callErrorAlert(title: "No Data", msg: "No data has been entered."), animated: true, completion: nil) }
+ 
+ */
