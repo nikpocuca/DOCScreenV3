@@ -99,7 +99,6 @@ class TaskTableViewController: UITableViewController {
   
         let currentCell = tableView.cellForRow(at: indexPath) as! TaskTableViewCell
     
-    
         currentCell.taskNameOut.textColor = UIColor.white
 
         let runTask = docEntries[indexPath.row].taskIdentifier
@@ -114,12 +113,16 @@ class TaskTableViewController: UITableViewController {
                 // once the OK is hit you can run the profile view controller, but it jsut gets hung.
                 let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
                 
-                taskViewController.delegate = TaskTableViewController()
+                taskViewController.delegate = self
                 
                 
                 taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                 
-                TaskTableViewController().present(taskViewController, animated: true, completion: nil)
+                self.present(taskViewController, animated: true, completion: nil)
+                
+                tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                
+                currentCell.taskNameOut.textColor = UIColor.red
             }))
                 
             refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
