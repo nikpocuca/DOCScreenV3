@@ -259,9 +259,11 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
             if taskViewController.task?.identifier == "MemoryTask"{
                 if reason == .completed {
                     
-                    ExtractMemoryScores(taskController: taskViewController)
+                  //  ExtractMemoryScores(taskController: taskViewController)
                     
-                    control?.memoryComplete = true
+                   // control?.memoryComplete = true
+                   
+                    print(taskViewController.result.results)
                     
                     PersistenceService.saveContext()
                 }
