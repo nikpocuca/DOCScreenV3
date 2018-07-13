@@ -183,6 +183,7 @@ class TaskTableViewController: UITableViewController {
                     currentCell.taskNameOut.textColor = UIColor.red
                     
                 }
+                
                     
                 else {
                 present(callErrorAlert(title: "No Subject", msg: "Error you must start a subject first."), animated: true, completion: nil)
@@ -328,9 +329,12 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                         
                         let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: false)
                         
+                        imageFormStep.isOptional = false
                         imageFormStep.formItems = [imageItem,scoreItem]
+                    
                         
                         steps += [imageFormStep]
+                        
                         
                         return ORKOrderedTask(identifier: "ScoreClockTask", steps: steps)
                         

@@ -57,12 +57,15 @@ public var MemoryTask: ORKOrderedTask{
     let trial3AnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: trial3textChoices)
     let trial3QuestionStep = ORKQuestionStep(identifier: "trialMutipleStep", title: trial3QuestionStepTitle, answer: trial3AnswerFormat)
     
+    trial3QuestionStep.isOptional = false
+    
     steps += [trial3QuestionStep]
     
     let summaryStep = ORKCompletionStep(identifier: "Memory Task - End")
     summaryStep.title = "Thank you."
     
     steps += [summaryStep]
+    
     
     let task =  ORKNavigableOrderedTask(identifier: "MemoryTask", steps: steps)
     

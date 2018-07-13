@@ -16,9 +16,6 @@ public var SleepTask: ORKOrderedTask {
     var steps = [ORKStep]()
     
     
-    
-    
-    
     //TODO: add instructions step
     let instructionStep = ORKInstructionStep(identifier: "IntroStep")
     instructionStep.title = "DOC Apnea"
@@ -60,7 +57,7 @@ public var SleepTask: ORKOrderedTask {
     
     steps += [step4Question]
     
-    
+    for step in steps {step.isOptional = false}
     
     return ORKOrderedTask(identifier: "SleepTask", steps: steps)
 }

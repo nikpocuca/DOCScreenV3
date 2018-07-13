@@ -67,9 +67,10 @@ public var ProfileTask: ORKOrderedTask {
     
     let heightFormStep = ORKFormStep(identifier: "heightStep", title: heightFormTitle, text: "")
     
-    let heightUnitItem = ORKFormItem(identifier: "heightUnitItem", text: "Unit", answerFormat: heightUnitFormat)
-    let heightAnswerItem  = ORKFormItem(identifier: "heightAnswerItem", text: "Height", answerFormat: heightAnswerFormat)
+    let heightUnitItem = ORKFormItem(identifier: "heightUnitItem", text: "Unit", answerFormat: heightUnitFormat, optional: false)
+    let heightAnswerItem  = ORKFormItem(identifier: "heightAnswerItem", text: "Height", answerFormat: heightAnswerFormat, optional: false)
     
+    heightFormStep.isOptional = false
     heightFormStep.formItems = [heightUnitItem,heightAnswerItem]
     
     steps += [heightFormStep]
@@ -88,12 +89,13 @@ public var ProfileTask: ORKOrderedTask {
     
     let w8UnitAnswer = ORKValuePickerAnswerFormat(textChoices: w8UnitTextChoices)
     
-    let w8unitItem = ORKFormItem(identifier: "w8UnitItem", text: "Unit", answerFormat: w8UnitAnswer)
+    let w8unitItem = ORKFormItem(identifier: "w8UnitItem", text: "Unit", answerFormat: w8UnitAnswer, optional: false)
     
     let w8AnswerFormat = ORKNumericAnswerFormat(style: .decimal, unit: "")
     
-    let w8AnswerItem = ORKFormItem(identifier: "weightAnswerItem", text: "Weight of subject:", answerFormat: w8AnswerFormat)
+    let w8AnswerItem = ORKFormItem(identifier: "weightAnswerItem", text: "Weight of subject:", answerFormat: w8AnswerFormat, optional: false)
     
+    w8FormStep.isOptional = false
     w8FormStep.formItems = [w8unitItem,w8AnswerItem]
     
     steps += [w8FormStep]

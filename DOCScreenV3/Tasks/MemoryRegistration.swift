@@ -45,6 +45,7 @@ public var MemoryRegistrationTask: ORKOrderedTask{
     
     steps += [trial2QuestionStep]
     
+    for step in steps {step.isOptional = false}
     
     return ORKOrderedTask(identifier: "MemoryRegistrationTask", steps: steps)
 }

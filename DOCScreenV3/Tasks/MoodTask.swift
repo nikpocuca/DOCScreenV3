@@ -53,7 +53,7 @@ public var MoodTask: ORKOrderedTask {
     
     steps += [step2QuestionStep]
     
-
+    for step in steps {step.isOptional = false}
     
     return ORKOrderedTask(identifier: "MoodTask", steps: steps)
 }

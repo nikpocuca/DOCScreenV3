@@ -19,11 +19,29 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app would like to access your media library.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app would like to access Bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app would like to access Calaender </string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app will use a camera to take a picture</string>
+	<string>This app will use your camera to take a picture</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app would like to access your Contacts</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>This app would like to access FaceID</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>This app would like to access HealthKit</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>This app would like to update your HealthKit</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app would like to access your microphone</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app would like to track your movement</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

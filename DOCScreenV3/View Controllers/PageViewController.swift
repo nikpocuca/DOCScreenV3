@@ -39,14 +39,33 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
 
     @IBAction func CompilePDF(_ sender: Any) {
         
-        CreatePDF()
+        let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
         
-      let path = NSTemporaryDirectory().appending("sample1.pdf")
+        do {
+            
+            let controlArray = try PersistenceService.context.fetch(fetchRequest)
+            
+            let control = controlArray.first
         
-        let documentInteractionController = UIDocumentInteractionController(url: URL(fileURLWithPath: path))
-        documentInteractionController.delegate = self
-        documentInteractionController.presentPreview(animated: true)
-    
+            if (control != nil && control?.fullComplete != nil && control?.fullComplete == true) {
+            
+            CreatePDF()
+        
+            let path = NSTemporaryDirectory().appending("sample1.pdf")
+            
+            let documentInteractionController = UIDocumentInteractionController(url: URL(fileURLWithPath: path))
+            documentInteractionController.delegate = self
+            documentInteractionController.presentPreview(animated: true)
+            
+            }
+                
+            else {
+                present(callErrorAlert(title: "Not complete", msg: "You have not completed the DOC Screen"), animated: true, completion: nil)
+            }
+            
+        } catch { present(callErrorAlert(title: "No Data", msg: "No data has been entered."), animated: true, completion: nil)}
+        
+        
     }
     //MARK: UIDocumentInteractionController delegates
 
