@@ -85,36 +85,6 @@ public var MemoryTask: ORKOrderedTask{
     
     let task =  ORKNavigableOrderedTask(identifier: "MemoryTask", steps: newSteps)
     
-    
-    /*
-    // Adding in rules
-    let AnswerArray = [0 as NSCoding & NSCopying & NSObjectProtocol,
-                       1 as NSCoding & NSCopying & NSObjectProtocol,
-                       2 as NSCoding & NSCopying & NSObjectProtocol,
-                       3 as NSCoding & NSCopying & NSObjectProtocol,
-                       4 as NSCoding & NSCopying & NSObjectProtocol]
-    
-    let withoutCuePredicate = ORKResultPredicate.predicateForChoiceQuestionResult(with: ORKResultSelector(resultIdentifier: "trialWithoutCueStep"), expectedAnswerValues: AnswerArray)
-    
-    let categoryCuePredicate = ORKResultPredicate.predicateForChoiceQuestionResult(with: ORKResultSelector(resultIdentifier: "trialCategoryStep"), expectedAnswerValues: AnswerArray)
-    
-    
-    let multipleChoicePredicate = ORKResultPredicate.predicateForChoiceQuestionResult(with: ORKResultSelector(resultIdentifier: "trialMultipleStep"), expectedAnswerValues: AnswerArray)
-    
-
-    let withoutCueRule = ORKPredicateStepNavigationRule(resultPredicatesAndDestinationStepIdentifiers: [(withoutCuePredicate, "summaryStep")])
-    
-    let categoryCueRule = ORKPredicateStepNavigationRule(resultPredicatesAndDestinationStepIdentifiers: [(categoryCuePredicate, "summaryStep")])
-     let multipleCueRule = ORKPredicateStepNavigationRule(resultPredicatesAndDestinationStepIdentifiers: [(multipleChoicePredicate, "summaryStep")])
-    
-    
-    task.setNavigationRule(withoutCueRule, forTriggerStepIdentifier: "trialWithoutCueStep")
-    
-    task.setNavigationRule(categoryCueRule, forTriggerStepIdentifier: "trialCategoryStep")
-    
-    task.setNavigationRule(multipleCueRule, forTriggerStepIdentifier: "trialMultipleStep")
-    */
-    
     return task
 }
 
