@@ -19,6 +19,9 @@ public var MemoryTask: ORKOrderedTask{
     instructionStep.text = "In a moment I will ask you to recall any of the words I mentioned prior, please take your time."
     steps += [instructionStep]
     
+    
+    let memoryQuestions = ORKFormStep(identifier: "memoryQuestions")
+    
     let trial1QuestionStepTitle = "Memory Trial - WithoutCue"
     let trial1textChoices = [
         ORKTextChoice(text: "FACE", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
@@ -28,6 +31,9 @@ public var MemoryTask: ORKOrderedTask{
         ORKTextChoice(text: "RED", value: 4 as NSCoding & NSCopying & NSObjectProtocol)
     ]
     let trial1AnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: trial1textChoices)
+    
+    let trial1FormItem = ORKFormItem(identifier: "trialWithoutCueStep", text: "Without Cue", answerFormat: trial1AnswerFormat, optional: true)
+    
     let trial1QuestionStep = ORKQuestionStep(identifier: "trialWithoutCueStep", title: trial1QuestionStepTitle, answer: trial1AnswerFormat)
     
     steps += [trial1QuestionStep]
@@ -41,6 +47,9 @@ public var MemoryTask: ORKOrderedTask{
         ORKTextChoice(text: "RED", value: 4 as NSCoding & NSCopying & NSObjectProtocol)
     ]
     let trial2AnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: trial2textChoices)
+    
+    let trial2FormStep = ORKFormItem(identifier: "trialCategoryStep", text: "Category Cue", answerFormat: trial2AnswerFormat, optional: true)
+    
     let trial2QuestionStep = ORKQuestionStep(identifier: "trialCategoryStep", title: trial2QuestionStepTitle, answer: trial2AnswerFormat)
     
     steps += [trial2QuestionStep]
@@ -55,6 +64,10 @@ public var MemoryTask: ORKOrderedTask{
         ORKTextChoice(text: "RED", value: 4 as NSCoding & NSCopying & NSObjectProtocol)
     ]
     let trial3AnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: trial3textChoices)
+    
+    
+    let trial3FormStep = ORKFormItem(identifier: "trialMultipleStep", text: "Multiple Choice Cue", answerFormat: trial3AnswerFormat, optional: true)
+    
     let trial3QuestionStep = ORKQuestionStep(identifier: "trialMutipleStep", title: trial3QuestionStepTitle, answer: trial3AnswerFormat)
     
     trial3QuestionStep.isOptional = false
@@ -66,36 +79,11 @@ public var MemoryTask: ORKOrderedTask{
     
     steps += [summaryStep]
     
+    memoryQuestions.formItems = [trial1FormItem,trial2FormStep,trial3FormStep]
     
-    let task =  ORKNavigableOrderedTask(identifier: "MemoryTask", steps: steps)
+    let newSteps = [instructionStep,memoryQuestions]
     
-    // Adding in rules
-    let AnswerArray = [0 as NSCoding & NSCopying & NSObjectProtocol,
-                       1 as NSCoding & NSCopying & NSObjectProtocol,
-                       2 as NSCoding & NSCopying & NSObjectProtocol,
-                       3 as NSCoding & NSCopying & NSObjectProtocol,
-                       4 as NSCoding & NSCopying & NSObjectProtocol]
-    
-    let withoutCuePredicate = ORKResultPredicate.predicateForChoiceQuestionResult(with: ORKResultSelector(resultIdentifier: "trialWithoutCueStep"), expectedAnswerValues: AnswerArray)
-    
-    let categoryCuePredicate = ORKResultPredicate.predicateForChoiceQuestionResult(with: ORKResultSelector(resultIdentifier: "trialCategoryStep"), expectedAnswerValues: AnswerArray)
-    
-    
-    let multipleChoicePredicate = ORKResultPredicate.predicateForChoiceQuestionResult(with: ORKResultSelector(resultIdentifier: "trialMultipleStep"), expectedAnswerValues: AnswerArray)
-    
-
-    let withoutCueRule = ORKPredicateStepNavigationRule(resultPredicatesAndDestinationStepIdentifiers: [(withoutCuePredicate, "summaryStep")])
-    
-    let categoryCueRule = ORKPredicateStepNavigationRule(resultPredicatesAndDestinationStepIdentifiers: [(categoryCuePredicate, "summaryStep")])
-     let multipleCueRule = ORKPredicateStepNavigationRule(resultPredicatesAndDestinationStepIdentifiers: [(multipleChoicePredicate, "summaryStep")])
-    
-    
-    task.setNavigationRule(withoutCueRule, forTriggerStepIdentifier: "trialWithoutCueStep")
-    
-    task.setNavigationRule(categoryCueRule, forTriggerStepIdentifier: "trialCategoryStep")
-    
-    task.setNavigationRule(multipleCueRule, forTriggerStepIdentifier: "trialMultipleStep")
-    
+    let task =  ORKNavigableOrderedTask(identifier: "MemoryTask", steps: newSteps)
     
     return task
 }

@@ -240,8 +240,6 @@ func ExtractMemoryScores(taskController: ORKTaskViewController) {
         subject?.memory?.daisyMC = false
         subject?.memory?.redMC = false
         
-        let trialResults = taskController.result.results
-        
         // Helper functions for extracting and recording responses
         // Without Cue extractor
         func ExtractResponesWC(intNumber: Int) {
@@ -300,79 +298,32 @@ func ExtractMemoryScores(taskController: ORKTaskViewController) {
         }
         
         
-        switch trialResults?.count {
-            
-        case 2:
-            
-            // Parse first and only step, then extract responses without cue.
-            let firstQuestionStep = trialResults![1] as! ORKStepResult
-            let firstResult = firstQuestionStep.firstResult as! ORKChoiceQuestionResult
-            let firstChoiceAnswers = firstResult.choiceAnswers
-            for subjectResponse in firstChoiceAnswers! {
-                let choiceNumber = subjectResponse as! NSNumber
-                ExtractResponesWC(intNumber: choiceNumber.intValue)
-            }
-            
-            // assign a perfect score due to predicateRules
-            subject?.memory?.memoryScore = 5
+        let memoryResults = taskController.result.stepResult(forStepIdentifier: "memoryQuestions")
         
-        case 3:
+        let wcResults = memoryResults?.result(forIdentifier: "trialWithoutCueStep") as! ORKChoiceQuestionResult
         
-            // Parse first step, then extract responses without cue.
-            let firstQuestionStep = trialResults![1] as! ORKStepResult
-            let firstResult = firstQuestionStep.firstResult as! ORKChoiceQuestionResult
-            let firstChoiceAnswers = firstResult.choiceAnswers
-            for subjectResponse in firstChoiceAnswers! {
-                let choiceNumber = subjectResponse as! NSNumber
-                ExtractResponesWC(intNumber: choiceNumber.intValue)
-            }
-            
-            // Assign score for memory based only on first test
-            subject?.memory?.memoryScore = Int16(firstChoiceAnswers!.count)
-            
-            // Parse second step, then extracted cued respones
-            let secondQuestionStep = trialResults![2] as! ORKStepResult
-            let secondResult = secondQuestionStep.firstResult as! ORKChoiceQuestionResult
-            let secondChoiceAnswers = secondResult.choiceAnswers
-            for subjectResponse in secondChoiceAnswers! {
-                let choiceNumber = subjectResponse as! NSNumber
-                ExtractResponesCC(intNumber: choiceNumber.intValue)
-            }
-    
-        
-        default:
-            
-            let firstQuestionStep = trialResults![1] as! ORKStepResult
-            let firstResult = firstQuestionStep.firstResult as! ORKChoiceQuestionResult
-            let firstChoiceAnswers = firstResult.choiceAnswers
-            for subjectResponse in firstChoiceAnswers! {
-                let choiceNumber = subjectResponse as! NSNumber
-                ExtractResponesWC(intNumber: choiceNumber.intValue)
-            }
-            
-            // Assign score for memory based only on first test
-            subject?.memory?.memoryScore = Int16(firstChoiceAnswers!.count)
-
-            // Parse second step, then extract cued respones
-            let secondQuestionStep = trialResults![2] as! ORKStepResult
-            let secondResult = secondQuestionStep.firstResult as! ORKChoiceQuestionResult
-            let secondChoiceAnswers = secondResult.choiceAnswers
-            for subjectResponse in secondChoiceAnswers! {
-                let choiceNumber = subjectResponse as! NSNumber
-                ExtractResponesCC(intNumber: choiceNumber.intValue)
-            }
-            
-            // Parse third step, and extract multiple choice responses.
-            let thirdQuestionStep = trialResults![3] as! ORKStepResult
-            let thirdResult = thirdQuestionStep.firstResult as! ORKChoiceQuestionResult
-            let thirdChoiceAnswers = thirdResult.choiceAnswers
-            for subjectResponse in thirdChoiceAnswers! {
-                let choiceNumber = subjectResponse as! NSNumber
-                ExtractResponesMC(intNumber: choiceNumber.intValue)
-            }
-            
+        for wcResult in wcResults.choiceAnswers! {
+            let choiceNumber = wcResult as! NSNumber
+            ExtractResponesWC(intNumber: choiceNumber.intValue)
         }
         
+        subject?.memory?.memoryScore = Int16((wcResults.choiceAnswers?.count)!)
+        
+        let ccResults = memoryResults?.result(forIdentifier: "trialCategoryStep") as! ORKChoiceQuestionResult
+        
+        for ccResult in ccResults.choiceAnswers! {
+            let choiceNumber = ccResult as! NSNumber
+            ExtractResponesCC(intNumber: choiceNumber.intValue)
+        }
+        
+        let mcResults = memoryResults?.result(forIdentifier: "trialMultipleStep") as! ORKChoiceQuestionResult
+        
+        for mcResult in mcResults.choiceAnswers! {
+            let choiceNumber = mcResult as! NSNumber
+            ExtractResponesMC(intNumber: choiceNumber.intValue)
+        }
+        
+    
     }
         
     catch {print("Place view Controller that says Alert there is no subject yet")}
