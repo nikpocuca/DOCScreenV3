@@ -30,7 +30,7 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
     func imageViewForTask(image: UIImage) -> UIImageView {
         let taskImageView = UIImageView(image: image)
         
-        taskImageView.backgroundColor = UIColor.red
+        //taskImageView.backgroundColor = UIColor.red
 
         return(taskImageView)
     }
@@ -76,7 +76,7 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        taskImages = [#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "memory"),#imageLiteral(resourceName: "sleep"),#imageLiteral(resourceName: "abstraction"),#imageLiteral(resourceName: "mood"),#imageLiteral(resourceName: "clock")]
+        taskImages = [#imageLiteral(resourceName: "profileRedBack"),#imageLiteral(resourceName: "memoryRedBack"),#imageLiteral(resourceName: "sleepRedBack"),#imageLiteral(resourceName: "abstractionRedBack"),#imageLiteral(resourceName: "moodRedBack"),#imageLiteral(resourceName: "clockRedBack")]
       
         imageViews = taskImages!.map( {imageViewForTask(image: $0)})
         
@@ -85,7 +85,7 @@ class PageViewController: UIViewController,UIDocumentInteractionControllerDelega
         TaskCarousel.defaultSelectedIndex = 0
         TaskCarousel.delegate = self
         TaskCarousel.scrollType = .default
-        TaskCarousel.resizeType = .floatWithSpacing(10);
+        TaskCarousel.resizeType = .withoutResizing(15)
         
         TaskCarousel.backgroundColor = UIColor.white
         
