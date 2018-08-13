@@ -256,7 +256,13 @@ func CreatePDF() {
             let page: [PDFPage] = [PDFPage.view(formView)
                 
             ]
-            let path = NSTemporaryDirectory().appending("sample1.pdf")
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "ddMMYYYY_HH"
+            let prefix_name = formatter.string(from: date)
+            InfoPdf.name_pdf = prefix_name
+            
+            let path = NSTemporaryDirectory().appending(prefix_name).appending(".pdf")
             print(path);
             try PDFGenerator.generate(page, to: path)
         } catch let error {

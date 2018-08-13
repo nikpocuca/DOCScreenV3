@@ -54,6 +54,8 @@
 		24ECD02820F694E4001C87BE /* ControlSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECD02620F694E4001C87BE /* ControlSettings+CoreDataClass.swift */; };
 		24ECD02920F694E4001C87BE /* ControlSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECD02720F694E4001C87BE /* ControlSettings+CoreDataProperties.swift */; };
 		24ED600A1FB09D850041C5A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ED60091FB09D840041C5A8 /* Main.storyboard */; };
+		24F36CAB211CF40700938B5D /* TaskNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F36CAA211CF40700938B5D /* TaskNavViewController.swift */; };
+		24F36CAD2121E51800938B5D /* InfoPdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F36CAC2121E51800938B5D /* InfoPdf.swift */; };
 		42D19150D5EFFAF8A8F7CB05 /* Pods_DOCScreenV3UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19906A1855E36D8B3943878 /* Pods_DOCScreenV3UITests.framework */; };
 		5F0987A342CEF006433B19F5 /* Pods_DOCScreenV3Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784A0BBC5C052F82D8B7D87 /* Pods_DOCScreenV3Tests.framework */; };
 		FA73C6DB793171591993888C /* Pods_DOCScreenV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19890055EA1A91EC8944A7EC /* Pods_DOCScreenV3.framework */; };
@@ -131,6 +133,8 @@
 		24ECD02620F694E4001C87BE /* ControlSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControlSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		24ECD02720F694E4001C87BE /* ControlSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControlSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24ED60091FB09D840041C5A8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		24F36CAA211CF40700938B5D /* TaskNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNavViewController.swift; sourceTree = "<group>"; };
+		24F36CAC2121E51800938B5D /* InfoPdf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPdf.swift; sourceTree = "<group>"; };
 		4512DF37F28B8F8A60513238 /* Pods-DOCScreenV3Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3Tests/Pods-DOCScreenV3Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		506673F8F6CF6CE8FCE65CBD /* Pods-DOCScreenV3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3UITests/Pods-DOCScreenV3UITests.release.xcconfig"; sourceTree = "<group>"; };
 		5E2BD42F51983F87F5637D79 /* Pods-DOCScreenV3UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOCScreenV3UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DOCScreenV3UITests/Pods-DOCScreenV3UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				2448931D1FAC8FB400139579 /* Utility.swift */,
 				241C62B31FAC97CC004F42F5 /* PersistenceService.swift */,
 				24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */,
+				24F36CAC2121E51800938B5D /* InfoPdf.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				2435B31D20E3EAEB00DBAEE0 /* UIBuilderFunctions */,
 				244893241FAC8FE800139579 /* PageViewController.swift */,
 				244893231FAC8FE800139579 /* TaskTableViewController.swift */,
+				24F36CAA211CF40700938B5D /* TaskNavViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 				244893151FAC8F4200139579 /* DocTabViewController.swift in Sources */,
 				24CEE76B20EBCF06005D983A /* ApneaBuilder.swift in Sources */,
 				244893351FAC901600139579 /* ClockTask.swift in Sources */,
+				24F36CAB211CF40700938B5D /* TaskNavViewController.swift in Sources */,
 				244893281FAC8FFB00139579 /* TaskTableViewCell.swift in Sources */,
 				24CEE78520EBD808005D983A /* Abstraction+CoreDataProperties.swift in Sources */,
 				244893201FAC8FB400139579 /* Utility.swift in Sources */,
@@ -608,6 +615,7 @@
 				244893341FAC901600139579 /* SleepTask.swift in Sources */,
 				24CEE76720EBCEA7005D983A /* ClockBuilder.swift in Sources */,
 				244892DA1FAC8EA300139579 /* AppDelegate.swift in Sources */,
+				24F36CAD2121E51800938B5D /* InfoPdf.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

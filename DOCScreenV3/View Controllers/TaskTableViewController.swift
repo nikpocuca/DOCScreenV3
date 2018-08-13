@@ -14,6 +14,45 @@ import CoreData
 
 class TaskTableViewController: UITableViewController {
 
+    @IBOutlet weak var reviewBarItem: UIBarButtonItem!
+    
+    @IBAction func reviewAction(_ sender: Any) {
+        
+        // query core data.
+        
+        let fetchRequest: NSFetchRequest<ControlSettings> = ControlSettings.fetchRequest()
+        
+        do {
+            let controlArray = try PersistenceService.context.fetch(fetchRequest)
+            let control = controlArray.first
+            
+            if control?.fullComplete == true {
+                
+                CreatePDF()
+                
+                
+                let path = NSTemporaryDirectory().appending(InfoPdf.name_pdf).appending(".pdf")
+                
+                let documentInteractionController = UIDocumentInteractionController(url: URL(fileURLWithPath: path))
+                documentInteractionController.delegate = self
+                documentInteractionController.presentPreview(animated: true)
+                
+            }
+            
+            else {
+               present(callErrorAlert(title: "Error", msg: "DOC Screen not completed, please finish every section"),animated: true,completion: nil)
+            }
+            
+        } catch {
+                print("hit control failure")
+                present(callError(), animated: true, completion: nil)}
+        
+    }
+        
+        
+    
+    
+    
     var docEntries = [DocEntry]()
     
     private func loadTasks() {
@@ -201,7 +240,14 @@ class TaskTableViewController: UITableViewController {
 
 }
 
-extension TaskTableViewController:  ORKTaskViewControllerDelegate{
+extension TaskTableViewController:  ORKTaskViewControllerDelegate, UIDocumentInteractionControllerDelegate{
+    
+    //MARK: UIDocumentInteractionController delegates
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
     
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
         //Handle results with taskViewController.result
@@ -305,6 +351,7 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate{
                 
             }
         
+            
             if taskViewController.task?.identifier == "ClockTask"{
                 if reason == .completed {
                     
