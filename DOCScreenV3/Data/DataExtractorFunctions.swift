@@ -532,30 +532,30 @@ func ExtractClockScores(taskController: ORKTaskViewController){
         subjectClock.hands = false
         subjectClock.numbers = false
         
-        print(choices!)
-        
-        for choice in choices! {
-            let numChoice = choice as! NSNumber
-            switch numChoice.intValue {
-            case 0:
-                subjectClock.contour = true
-            case 1:
-                subjectClock.numbers = true
-            case 2:
-                 subjectClock.hands = true
-            default:
-                print("no score given")
+        if (choices != nil ){
+            for choice in choices! {
+                let numChoice = choice as! NSNumber
+                switch numChoice.intValue {
+                case 0:
+                    subjectClock.contour = true
+                case 1:
+                    subjectClock.numbers = true
+                case 2:
+                     subjectClock.hands = true
+                default:
+                    print("no score given")
+                }
+                
             }
-            
-        }
+        
         
         subjectClock.clockScore = NSNumber(value: choices!.count).int16Value
-    
+        }
+        
         subject?.clock = subjectClock
         
         PersistenceService.saveContext()
         
-        print("Hit score")
     }
     catch {print("Place view Controller that says Alert there is no subject yet")}
     

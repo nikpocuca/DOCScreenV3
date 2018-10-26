@@ -57,7 +57,7 @@ public var MemoryTask: ORKOrderedTask{
     let trial3AnswerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: trial3textChoices)
     let trial3QuestionStep = ORKQuestionStep(identifier: "trialMutipleStep", title: trial3QuestionStepTitle, answer: trial3AnswerFormat)
     
-    trial3QuestionStep.isOptional = false
+    trial3QuestionStep.isOptional = true
     
     steps += [trial3QuestionStep]
     

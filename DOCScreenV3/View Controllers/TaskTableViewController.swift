@@ -274,6 +274,7 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate, UIDocumentInt
                 control?.memoryComplete = false
                 control?.moodComplete = false
                 control?.profileComplete = false
+                control?.consentComplete = false 
             }
         
             if taskViewController.task?.identifier == "ProfileTask" {
@@ -374,9 +375,9 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate, UIDocumentInt
                         
                         let textChoicesFormat = ORKTextChoiceAnswerFormat(style: .multipleChoice, textChoices: textChoices)
                         
-                        let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: false)
+                        let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: true)
                         
-                        imageFormStep.isOptional = false
+                        imageFormStep.isOptional = true
                         imageFormStep.formItems = [imageItem,scoreItem]
                     
                         

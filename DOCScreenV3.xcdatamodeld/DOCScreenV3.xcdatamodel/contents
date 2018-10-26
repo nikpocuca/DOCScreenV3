@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="18A293u" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="18A326h" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Abstraction" representedClassName="Abstraction" syncable="YES">
         <attribute name="abstractScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="q1BoolScore" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -25,6 +25,7 @@
         <attribute name="abstractionComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="apneaComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="clockComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="consentComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="fullComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="memoryComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="moodComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -80,12 +81,12 @@
         <relationship name="mood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mood" inverseName="subject" inverseEntity="Mood" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Abstraction" positionX="-6372" positionY="774" width="128" height="103"/>
-        <element name="Apnea" positionX="-6363" positionY="909" width="128" height="133"/>
-        <element name="Clock" positionX="-6365" positionY="1089" width="128" height="118"/>
-        <element name="Memory" positionX="-6678" positionY="770" width="126" height="448"/>
-        <element name="Mood" positionX="-6525" positionY="1026" width="128" height="103"/>
-        <element name="Subject" positionX="-6527" positionY="774" width="128" height="225"/>
-        <element name="ControlSettings" positionX="-6527" positionY="1161" width="128" height="148"/>
+        <element name="Abstraction" positionX="-7092" positionY="855" width="128" height="103"/>
+        <element name="Apnea" positionX="-7092" positionY="990" width="128" height="133"/>
+        <element name="Clock" positionX="-6743" positionY="846" width="128" height="118"/>
+        <element name="ControlSettings" positionX="-6426" positionY="854" width="128" height="163"/>
+        <element name="Memory" positionX="-6588" positionY="848" width="126" height="448"/>
+        <element name="Mood" positionX="-6914" positionY="1125" width="128" height="103"/>
+        <element name="Subject" positionX="-6912" positionY="846" width="128" height="225"/>
     </elements>
 </model>

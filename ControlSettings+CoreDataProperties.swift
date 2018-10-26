@@ -2,7 +2,7 @@
 //  ControlSettings+CoreDataProperties.swift
 //  DOCScreenV3
 //
-//  Created by Nik on 2018-07-11.
+//  Created by Nik on 2018-08-14.
 //  Copyright © 2018 Nik. All rights reserved.
 //
 //
@@ -17,12 +17,13 @@ extension ControlSettings {
         return NSFetchRequest<ControlSettings>(entityName: "ControlSettings")
     }
 
-    @NSManaged public var fullComplete: Bool
-    @NSManaged public var profileComplete: Bool
-    @NSManaged public var clockComplete: Bool
-    @NSManaged public var moodComplete: Bool
-    @NSManaged public var memoryComplete: Bool
-    @NSManaged public var apneaComplete: Bool
     @NSManaged public var abstractionComplete: Bool
+    @NSManaged public var apneaComplete: Bool
+    @NSManaged public var clockComplete: Bool
+    @NSManaged public var fullComplete: Bool
+    @NSManaged public var memoryComplete: Bool
+    @NSManaged public var moodComplete: Bool
+    @NSManaged public var profileComplete: Bool
+    @NSManaged public var consentComplete: Bool
 
 }

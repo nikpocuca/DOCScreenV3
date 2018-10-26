@@ -20,7 +20,6 @@
 		2448931A1FAC8F7C00139579 /* LandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893191FAC8F7C00139579 /* LandViewController.swift */; };
 		244893201FAC8FB400139579 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448931D1FAC8FB400139579 /* Utility.swift */; };
 		244893251FAC8FE800139579 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893231FAC8FE800139579 /* TaskTableViewController.swift */; };
-		244893261FAC8FE800139579 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893241FAC8FE800139579 /* PageViewController.swift */; };
 		244893281FAC8FFB00139579 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893271FAC8FFB00139579 /* TaskTableViewCell.swift */; };
 		244893321FAC901600139579 /* AbstractionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448932B1FAC901600139579 /* AbstractionTask.swift */; };
 		244893331FAC901600139579 /* MoodTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448932C1FAC901600139579 /* MoodTask.swift */; };
@@ -29,7 +28,9 @@
 		244893361FAC901600139579 /* MemoryRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448932F1FAC901600139579 /* MemoryRegistration.swift */; };
 		244893371FAC901600139579 /* MemoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244893301FAC901600139579 /* MemoryTask.swift */; };
 		245D1F8D20CD96D000EE4C02 /* DOCCompilerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D1F8C20CD96D000EE4C02 /* DOCCompilerFunctions.swift */; };
+		2462F9EC21232BA700F86B8D /* ReviewInfo .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462F9EB21232BA700F86B8D /* ReviewInfo .swift */; };
 		24AFEBF320B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24AFEBF120B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld */; };
+		24BDBD43212219DF00107034 /* ConsentTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBD42212219DF00107034 /* ConsentTask.swift */; };
 		24BF92C020B5F9EE00CCC989 /* DataExtractorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */; };
 		24BF92DA20B601CA00CCC989 /* ProfileTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF92D920B601CA00CCC989 /* ProfileTask.swift */; };
 		24C3F5BD20B1E4EF00A093C4 /* DOCForm.png in Resources */ = {isa = PBXBuildFile; fileRef = 24C3F5BC20B1E4EF00A093C4 /* DOCForm.png */; };
@@ -99,7 +100,6 @@
 		244893191FAC8F7C00139579 /* LandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandViewController.swift; sourceTree = "<group>"; };
 		2448931D1FAC8FB400139579 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		244893231FAC8FE800139579 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
-		244893241FAC8FE800139579 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		244893271FAC8FFB00139579 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		2448932B1FAC901600139579 /* AbstractionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractionTask.swift; sourceTree = "<group>"; };
 		2448932C1FAC901600139579 /* MoodTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodTask.swift; sourceTree = "<group>"; };
@@ -108,7 +108,9 @@
 		2448932F1FAC901600139579 /* MemoryRegistration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryRegistration.swift; sourceTree = "<group>"; };
 		244893301FAC901600139579 /* MemoryTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryTask.swift; sourceTree = "<group>"; };
 		245D1F8C20CD96D000EE4C02 /* DOCCompilerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOCCompilerFunctions.swift; sourceTree = "<group>"; };
+		2462F9EB21232BA700F86B8D /* ReviewInfo .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReviewInfo .swift"; sourceTree = "<group>"; };
 		24AFEBF220B1F7FF00526F8F /* DOCScreenV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DOCScreenV3.xcdatamodel; sourceTree = "<group>"; };
+		24BDBD42212219DF00107034 /* ConsentTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentTask.swift; sourceTree = "<group>"; };
 		24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtractorFunctions.swift; sourceTree = "<group>"; };
 		24BF92D920B601CA00CCC989 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
 		24C3F5BC20B1E4EF00A093C4 /* DOCForm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DOCForm.png; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				241C62B31FAC97CC004F42F5 /* PersistenceService.swift */,
 				24BF92BF20B5F9EE00CCC989 /* DataExtractorFunctions.swift */,
 				24F36CAC2121E51800938B5D /* InfoPdf.swift */,
+				2462F9EB21232BA700F86B8D /* ReviewInfo .swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -302,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				2435B31D20E3EAEB00DBAEE0 /* UIBuilderFunctions */,
-				244893241FAC8FE800139579 /* PageViewController.swift */,
 				244893231FAC8FE800139579 /* TaskTableViewController.swift */,
 				24F36CAA211CF40700938B5D /* TaskNavViewController.swift */,
 			);
@@ -319,6 +321,7 @@
 				2448932C1FAC901600139579 /* MoodTask.swift */,
 				2448932D1FAC901600139579 /* SleepTask.swift */,
 				24BF92D920B601CA00CCC989 /* ProfileTask.swift */,
+				24BDBD42212219DF00107034 /* ConsentTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -584,7 +587,6 @@
 				244893201FAC8FB400139579 /* Utility.swift in Sources */,
 				24CEE76520EBCE85005D983A /* ProfileBuilder.swift in Sources */,
 				24CEE76920EBCEDA005D983A /* MoodBuilder.swift in Sources */,
-				244893261FAC8FE800139579 /* PageViewController.swift in Sources */,
 				244893121FAC8F1D00139579 /* Colors.swift in Sources */,
 				24ECD02820F694E4001C87BE /* ControlSettings+CoreDataClass.swift in Sources */,
 				24CEE78620EBD808005D983A /* Memory+CoreDataClass.swift in Sources */,
@@ -596,6 +598,7 @@
 				244893251FAC8FE800139579 /* TaskTableViewController.swift in Sources */,
 				24BF92C020B5F9EE00CCC989 /* DataExtractorFunctions.swift in Sources */,
 				24AFEBF320B1F7FF00526F8F /* DOCScreenV3.xcdatamodeld in Sources */,
+				2462F9EC21232BA700F86B8D /* ReviewInfo .swift in Sources */,
 				24CEE78720EBD808005D983A /* Memory+CoreDataProperties.swift in Sources */,
 				244893371FAC901600139579 /* MemoryTask.swift in Sources */,
 				244893171FAC8F5500139579 /* DOCEntry.swift in Sources */,
@@ -603,6 +606,7 @@
 				24CEE77D20EBD808005D983A /* Mood+CoreDataProperties.swift in Sources */,
 				24CEE77C20EBD808005D983A /* Mood+CoreDataClass.swift in Sources */,
 				24CEE78120EBD808005D983A /* Subject+CoreDataProperties.swift in Sources */,
+				24BDBD43212219DF00107034 /* ConsentTask.swift in Sources */,
 				24CEE77E20EBD808005D983A /* Clock+CoreDataClass.swift in Sources */,
 				245D1F8D20CD96D000EE4C02 /* DOCCompilerFunctions.swift in Sources */,
 				24ECD02920F694E4001C87BE /* ControlSettings+CoreDataProperties.swift in Sources */,

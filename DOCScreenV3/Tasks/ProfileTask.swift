@@ -9,8 +9,6 @@
 import Foundation
 import ResearchKit
 
-import ResearchKit
-
 public var ProfileTask: ORKOrderedTask {
     
     var steps = [ORKStep]()

@@ -2,7 +2,7 @@
 //  Apnea+CoreDataProperties.swift
 //  DOCScreenV3
 //
-//  Created by Nik on 2018-07-03.
+//  Created by Nik on 2018-08-14.
 //  Copyright © 2018 Nik. All rights reserved.
 //
 //
