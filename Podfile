@@ -10,6 +10,8 @@ target 'DOCScreenV3' do
 pod 'PDFGenerator', '2.0.1'
 pod 'ResearchKit', '1.5'
 pod 'SwiftCarousel'
+pod 'WeScan', '>= 0.9'
+
 
   target 'DOCScreenV3Tests' do
     inherit! :search_paths

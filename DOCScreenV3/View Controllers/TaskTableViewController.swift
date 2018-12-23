@@ -10,7 +10,7 @@ import UIKit
 import ResearchKit
 import CoreML
 import CoreData
-
+import WeScan
 
 class TaskTableViewController: UITableViewController {
 
@@ -159,7 +159,7 @@ class TaskTableViewController: UITableViewController {
                 
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
        
-                    // once the OK is hit you can run the profile view controller, but it jsut gets hung.
+                    // once the OK is hit you can run the profile view controller
                     let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
                     
                     taskViewController.delegate = self
@@ -186,24 +186,42 @@ class TaskTableViewController: UITableViewController {
                 // Present the alert above ^
                 present(refreshAlert, animated: true, completion: nil) }
                 
-                
             else {
                 
-                let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
-                
-                taskViewController.delegate = self
-                
-                
-                taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                
-                present(taskViewController, animated: true, completion: nil)
-                
-                tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-                
-                currentCell.taskNameOut.textColor = UIColor.red
+                if( runTask.identifier == "ClockTask" && (control?.profileComplete)!){
+                    
+                    let scannerVC = ImageScannerController()
+                    
+                    scannerVC.imageScannerDelegate = self
+                    
+                    self.present(scannerVC, animated: true)
+                    
+                    
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                    
+                    currentCell.taskNameOut.textColor = UIColor.red
+                    
                 }
-        }
+                
+                else{
+                    let taskViewController = ORKTaskViewController(task: runTask, taskRun: nil)
+                    
+                    taskViewController.delegate = self
+                    
+                    taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    
+                    present(taskViewController, animated: true, completion: nil)
+                    
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+                    
+                    currentCell.taskNameOut.textColor = UIColor.red
+                }
+                }
+            }
         
+                // MARK: WE SCAN
+            
+                
         else {
                 
                 if (runTask.identifier == "ProfileTask") {
@@ -290,6 +308,7 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate, UIDocumentInt
                     control?.fullComplete = false
                     control?.memoryComplete = false
                     control?.moodComplete = false
+                    ReviewInfo.isScanCompleted = false
                     
                     PersistenceService.saveContext()
                 }
@@ -354,52 +373,15 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate, UIDocumentInt
         
             
             if taskViewController.task?.identifier == "ClockTask"{
-                if reason == .completed {
-                    
-                    var ScoreClockTask: ORKOrderedTask{
-                        
-                        var steps = [ORKStep]()
-        
-                        let imageScoreStepImage = crop(image: loadImage(fileName: "imageStep.jpg")!,withWidth: 2000, andHeight: 2000)!
-                        let imageTitle = "Score the clock"
-                        let imageFormStep = ORKFormStep(identifier: "imageFormStep", title: imageTitle, text: "")
-                        
-                        let imageAnswerChoice = ORKImageChoice(normalImage: imageScoreStepImage, selectedImage: imageScoreStepImage, text: "", value: 0 as NSCoding & NSCopying & NSObjectProtocol)
-                        let imageChoiceAnswerFormat = ORKImageChoiceAnswerFormat(imageChoices: [imageAnswerChoice])
-                        let imageItem = ORKFormItem(identifier: "imageItem", text: "", answerFormat: imageChoiceAnswerFormat)
-                        
-                        let textChoices = [
-                            ORKTextChoice(text: "Contour", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
-                            ORKTextChoice(text: "Numbers", value: 1 as NSCoding & NSCopying & NSObjectProtocol),
-                            ORKTextChoice(text: "Hands", value: 2 as NSCoding & NSCopying & NSObjectProtocol) ]
-                        
-                        let textChoicesFormat = ORKTextChoiceAnswerFormat(style: .multipleChoice, textChoices: textChoices)
-                        
-                        let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: true)
-                        
-                        imageFormStep.isOptional = true
-                        imageFormStep.formItems = [imageItem,scoreItem]
-                    
-                        
-                        steps += [imageFormStep]
-                        
-                        
-                        return ORKOrderedTask(identifier: "ScoreClockTask", steps: steps)
-                        
-                    }
-                    
-                    let scoreTaskViewController = ORKTaskViewController(task: ScoreClockTask, taskRun: nil)
-                    scoreTaskViewController.delegate = self
-                    
-                    present(scoreTaskViewController, animated: true, completion: nil)
-                   
-                }
+                print("Hit the clock task")
+               
                 
             }
         
             if taskViewController.task?.identifier == "ScoreClockTask"{
                 if reason == .completed {
                 
+                    print("Hit extracted scores")
                     ExtractClockScores(taskController: taskViewController)
              
                     control?.clockComplete = true
@@ -423,3 +405,79 @@ extension TaskTableViewController:  ORKTaskViewControllerDelegate, UIDocumentInt
             present(callError(), animated: true, completion: nil)}
     }
 }
+
+
+// WE SCAN EXTENSION.
+
+extension TaskTableViewController: ImageScannerControllerDelegate {
+    
+    // Failure on Scan
+    func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+        // Your ViewController is responsible for dismissing the ImageScannerController
+        
+        print("Saving Image")
+        let resultImage = results.scannedImage
+        
+        let docDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        
+        let imageURL = docDir.appendingPathComponent("clockScan.png")
+    
+        let imageData = UIImagePNGRepresentation(resultImage)
+        
+        try! imageData?.write(to: imageURL)
+        
+        ReviewInfo.isScanCompleted = true
+        
+        scanner.dismiss(animated: true)
+            
+        var ScoreClockTask: ORKOrderedTask{
+                
+            var steps = [ORKStep]()
+            print("Hitting Clock task")
+            //let imageScoreStepImage = crop(image: loadImage(fileName: "clockScan.png")!,withWidth: 2000, andHeight: 2000)!
+            let imageScoreStepImage = crop(image: loadImage(fileName: "clockScan.png")!,withWidth: 2000, andHeight: 2000)!
+            let imageTitle = "Score the clock"
+            let imageFormStep = ORKFormStep(identifier: "imageFormStep", title: imageTitle, text: "")
+                
+            let imageAnswerChoice = ORKImageChoice(normalImage: imageScoreStepImage, selectedImage: imageScoreStepImage, text: "", value: 0 as NSCoding & NSCopying & NSObjectProtocol)
+            let imageChoiceAnswerFormat = ORKImageChoiceAnswerFormat(imageChoices: [imageAnswerChoice])
+            let imageItem = ORKFormItem(identifier: "imageItem", text: "", answerFormat: imageChoiceAnswerFormat)
+                
+            let textChoices = [
+                    ORKTextChoice(text: "Contour", value: 0 as NSCoding & NSCopying & NSObjectProtocol),
+                    ORKTextChoice(text: "Numbers", value: 1 as NSCoding & NSCopying & NSObjectProtocol),
+                    ORKTextChoice(text: "Hands", value: 2 as NSCoding & NSCopying & NSObjectProtocol) ]
+                
+            let textChoicesFormat = ORKTextChoiceAnswerFormat(style: .multipleChoice, textChoices: textChoices)
+                
+            let scoreItem = ORKFormItem(identifier: "scoreItem", text: "AI recomends contour numbers", answerFormat: textChoicesFormat, optional: true)
+                
+            imageFormStep.isOptional = true
+            imageFormStep.formItems = [imageItem,scoreItem]
+                
+                
+            steps += [imageFormStep]
+                
+                
+            return ORKOrderedTask(identifier: "ScoreClockTask", steps: steps)
+                
+            }
+            
+            let scoreTaskViewController = ORKTaskViewController(task: ScoreClockTask, taskRun: nil)
+            scoreTaskViewController.delegate = self
+            
+            present(scoreTaskViewController, animated: true, completion: nil)
+        
+    }
+    
+    func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
+        // Your ViewController is responsible for dismissing the ImageScannerController
+        scanner.dismiss(animated: true)
+    }
+
+}
+

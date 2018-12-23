@@ -2,23 +2,27 @@ PODS:
   - PDFGenerator (2.0.1)
   - ResearchKit (1.5.0)
   - SwiftCarousel (0.8.0)
+  - WeScan (0.9.1)
 
 DEPENDENCIES:
   - PDFGenerator (= 2.0.1)
   - ResearchKit (= 1.5)
   - SwiftCarousel
+  - WeScan (>= 0.9)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - PDFGenerator
     - ResearchKit
     - SwiftCarousel
+    - WeScan
 
 SPEC CHECKSUMS:
   PDFGenerator: 69cf0787767d501a10b6b85492b1f27fd23b00e8
   ResearchKit: bd28eb41558983dff32ebed3633cd2dc72d2717b
   SwiftCarousel: a62f4e9b944d1bca4ccfe3f28abb6119e3e36b12
+  WeScan: 85518097ab11d38be3b3a6e0ae244d59bc8071b4
 
-PODFILE CHECKSUM: b88ae6fa17df8d13d3f5d6b0b237442a278723dd
+PODFILE CHECKSUM: bb05416a5b4f404477c1dde9dc1e1cc1851025bd
 
 COCOAPODS: 1.5.2

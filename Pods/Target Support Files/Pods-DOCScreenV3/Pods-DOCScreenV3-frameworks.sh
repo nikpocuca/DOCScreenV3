@@ -146,11 +146,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PDFGenerator/PDFGenerator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ResearchKit/ResearchKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftCarousel/SwiftCarousel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WeScan/WeScan.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PDFGenerator/PDFGenerator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ResearchKit/ResearchKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftCarousel/SwiftCarousel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WeScan/WeScan.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

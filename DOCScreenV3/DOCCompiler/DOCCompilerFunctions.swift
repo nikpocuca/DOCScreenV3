@@ -234,7 +234,7 @@ func CreatePDF() {
         
         let clockImageView = UIImageView(frame: CGRect(x: 272, y: 735, width: 325, height: 325))
         
-        let imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("imageStep.jpg")
+        let imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("clockScan.png")
         
         let imageData =  try Data(contentsOf: imageURL)
         

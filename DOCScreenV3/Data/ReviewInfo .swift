@@ -10,6 +10,7 @@ import Foundation
 
 struct ReviewInfo {
     static var isCompleted = false
+    static var isScanCompleted = false
 }
 
 
